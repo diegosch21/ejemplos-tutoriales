@@ -1,0 +1,4 @@
+http://www.smashingmagazine.com/2013/11/22/four-ways-to-build-a-mobile-app-part1-native-ios/
+http://www.smashingmagazine.com/2014/01/10/four-ways-to-build-a-mobile-app-part2-native-android/
+http://www.smashingmagazine.com/2014/02/11/four-ways-to-build-a-mobile-app-part3-phonegap
+http://www.smashingmagazine.com/2014/03/10/4-ways-build-mobile-application-part4-appcelerator-titanium/

@@ -1,0 +1,14 @@
+{
+  "common": [
+    "www/**"
+  ],
+  "windowsphone":[
+    "merges/winphone/**"
+  ],
+  "android":[
+    "merges/android/**"
+  ],
+  "ios":[
+    "merges/ios/**"
+  ]
+}

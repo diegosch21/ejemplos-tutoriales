@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backbone Weather App</title>
+    
+    <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="/static/solution/weather.css" type="text/css" media="screen" charset="utf-8"/>
+    
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/underscore.js"></script>
+    <script type="text/javascript" src="/static/js/template.js"></script>
+    <script type="text/javascript" src="/static/js/backbone.js"></script>
+    <script type="text/javascript" src="/static/solution/cities.js"></script>
+    <script type="text/javascript" src="/static/solution/forecast.js"></script>
+    <script type="text/javascript" src="/static/solution/weather.js"></script>
+</head>
+<body>
+    <div class="container">
+        <form id="cityform">
+            <fieldset>
+                <input id="cityname" type="text"/>
+                <button class="btn small primary" type="submit">Add</button>
+                <span class="help-block">City, State or Zip Code</span>
+            </fieldset>
+        </form>
+        
+        <div id="forecast" class="sidebar"></div>
+    
+        <div id="cities">
+            <ul id="city-list" class="unstyled"></ul>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+    $(document).ready(function(evt) {
+        new WeatherApp();
+    });
+    </script>
+    
+    <script type="text/template" id="forecast-template">
+    <h3><%= forecast_information.city %></h3>
+    
+    <table>
+        <tr>
+            <td><img src="<%= current_conditions.icon %>"/></td>
+            <td>
+                <strong>Currently</strong><br/>
+                <span><%= current_conditions.condition %>, <%= current_conditions.temp_f %>&deg;</span>
+            </td>
+        </tr>
+    </table>
+    
+    <table class="zebra-striped">
+    <% _.each(forecasts, function(forecast) { %>
+        <tr>
+            <td><%= forecast.day_of_week %></td>
+            <td><img src="<%= forecast.icon %>"/></td>
+            <td><%= forecast.high %>&deg;</td>
+            <td><%= forecast.low %>&deg;</td>
+        </tr>
+    <% }); %>
+    </table>
+    </script>
+</body>
+</html>

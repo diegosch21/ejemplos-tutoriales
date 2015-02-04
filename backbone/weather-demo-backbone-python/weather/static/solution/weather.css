@@ -1,0 +1,21 @@
+.container {
+    position: relative;
+}
+
+#forecast {
+    position: absolute;
+    width: 220px;
+}
+
+#cities {
+    margin-top: 48px;
+    margin-left: 240px;
+}
+
+ul#city-list li {
+    cursor: pointer;
+}
+
+ul#city-list li:hover {
+    color: #333;
+}

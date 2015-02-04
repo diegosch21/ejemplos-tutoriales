@@ -1,0 +1,35 @@
+<!-- Template list para projects.html -->
+
+<!-- ng-model
+Bind the input field to the search property. The property is then used to filter for only the projects which contain the text entered by the user. -->
+<input type="text" ng-model="search" class="search-query" id="projects_search" placeholder="Search">
+<table>
+	<thead>
+		<tr>
+			<th>Project</th>
+			<th>Description</th>
+   			<th><a href="#/new"><i class="icon-plus-sign"></i></a></th> <!-- #/new
+		    A link to a /new route defined in projects.js. Note that we follow the spirit of the web. 
+      		There is no need to register callbacks on links, we are simply navigating to a new URL. 
+      		This automatically updates the browser history, and enables deep-linking. 
+      		But unlike a server round trip application, this navigation event gets rendered instantly in the browser. -->
+  		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="project in projects | filter:search | orderBy:'name'"> <!-- ng-repeat:
+		Use ng-repeat to unroll a collection. Here, for every project in projects, AngularJS will create new copy of the <tr> element. 
+		filter:
+			The filter uses the search to return only a subset of items in the projects array. 
+			As you enter text into the search box, the filter will narrow down the list according to your criteria. 
+			ng-repeat will then add or remove items from the table. 
+		orderBy:
+			Returns the project list ordered by name property.	-->
+			
+			<td><a ng-href="{{project.site}}" target="_blank">{{project.name}}</a></td>
+			<td>{{project.description}}</td>
+			<td>
+				<a ng-href="#/edit/{{project.$id}}"><i class="icon-pencil"></i></a>
+			</td>
+		</tr>
+	</tbody>
+</table>

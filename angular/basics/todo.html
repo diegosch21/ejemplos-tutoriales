@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="todoApp">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script src="todo.js"></script>
+	<link rel="stylesheet" href="todo.css">
+</head>
+<body>
+	<h2>Todo</h2>
+	<div ng-controller="TodoController"> <!-- ng-controller:
+	The behavior of content under this element will be managed using the TodoController class defined in todo.js.	-->
+
+		<span>{{remaining()}} of {{todos.length}} remaining</span>	<!-- {{remaining()}}:
+		The {{ }} are a declarative way of specifying data binding locations in the HTML. AngularJS will automatically update this text whenever the remaining() function return value changes. -->	
+
+		[ <a href="" ng-click="archive()">archive</a> ]		<!-- ng-click:
+		Instead of registering event-handlers, you declare which method on the controller to call. Here clicking the link will call archive() method. -->
+
+		<ul class="list-unstyled">
+			<li ng-repeat="todo in todos">		<!-- ng-repeat:
+			Use ng-repeat to unroll a collection. Here, for every object in todos, AngularJS will create new copy of the <li> element. 
+			When objects are added to the todos collection the ng-repeat automatically adds new <li> elements into the DOM. Similarly when the objects are removed from todos then the corresponding <li> element is removed as well. This is one of the most versatile directives in AngularJS. -->
+				
+				<input type="checkbox" ng-model="todo.done">	<!--  ng-model:
+				This links the form and the model. This means that any changes to the control update the data in your model, and when you change the model it updates the control. 
+				AngularJS automatically copies the state of the checkbox into todo.done. Conversely, if you update todo.done you will see the checkbox respond accordingly. -->
+				
+				<span class="done-{{todo.done}}">{{todo.text}}</span>	<!-- {{todo.done}}:
+				To show strikethroughs for completed tasks we have created a CSS class done-true. When the todo.done is true the resulting CSS selector is done-true which then applies the strikethrough. -->	
+			</li>
+		</ul>
+		<form ng-submit="addTodo()">   <!-- ng-submit:
+			Intercepts form submission and instead calls addTodo(). Inside this method we read the todoText property and insert it into the todos collection. -->
+			
+			<input type="text" ng-model="todoText"  size="30"
+			placeholder="add new todo here">
+			<input class="btn-primary" type="submit" value="add">
+		</form>
+	</div>
+</body>
+</html>

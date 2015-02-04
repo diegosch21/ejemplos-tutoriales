@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.diegosch.employees-backbone-topcoat" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>EmployeesBackboneTopcoat</name>
+    <description>
+        Sample Application built with Backbone.js and TopCoat
+		"Backbone Directory" is a simple Employee Directory application built with Backbone.js and TopCoat.
+    </description>
+    <author email="ccoenraets@gmail.com" href="http://coenraets.org">
+        Christophe Coenraets
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>
