@@ -1,0 +1,1 @@
+git clone --depth=14 https://github.com/diegosch21/angular-phonecat.git
