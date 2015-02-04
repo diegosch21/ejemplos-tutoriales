@@ -1,0 +1,507 @@
+*********BACKBONE*************  (MVC Javascript)
+http://backbonejs.org/
+
+Backbone.js is a JavaScript library with a RESTful JSON interface and is based on the model–view–presenter (MVP) and Actor model application design paradigm. 
+Backbone is known for being lightweight, as its only dependency is on one JavaScript library, Underscore.js. 
+It is designed for developing single-page web applications, and for keeping various parts of web applications (e.g. multiple clients and the server) synchronized
+(http://en.wikipedia.org/wiki/Backbone.js)
+
+===============================================================================================================================
+
+*****************************************************************************
+
+Backbone.js is a lightweight framework that lets us create single page applications in a structured manner. 
+It is based on the Model-View-Controller (MVC) pattern. It is best suited for creating single page applications using a RESTful service for persisting data.
+
+Backbone.js gives structure to web applications by providing models with key-value binding and custom events, 
+collections with a rich API of enumerable functions, views with declarative event handling, 
+and connects it all to your existing API over a RESTful JSON interface.
+
+
+http://elijahmanor.github.io/talks/intro-to-backbonejs
+
+http://arvindr21.github.io/backbonejs
+
+*************************************************************************	
+
+==> FAST FACTS
+	- Core components: Model, View, Collection, Router. Enforces its own flavor of MV*
+	- Event-driven communication between Views and Models. As we’ll see, it’s relatively straight-forward to add event listeners to any attribute in a Model, giving developers fine-grained control over what changes in the View
+	- Supports data bindings through manual events or a separate Key-value observing (KVO) library
+	- Support for RESTful interfaces out of the box, so Models can be easily tied to a backend
+	- Extensive eventing system. It’s trivial to add support for pub/sub in Backbone
+	- Prototypes are instantiated with the new keyword, which some developers prefer
+	- Agnostic about templating frameworks, however Underscore’s micro-templating is available by default
+	- Clear and flexible conventions for structuring applications. Backbone doesn’t force usage of all of its components and can work with only those needed
+
+	* Self-contained building blocks
+		Backbone.js provides several classes (Model, Collection, View, Router) that you can extend to define the building blocks of your application. 
+		To build an app with Backbone.js, you first create the Models, Collections, and Views of your application. 
+		You then bring these components to life by defining a “Router” that provides the entry points of your application through a set of (deep-linkable) URLs.
+	* Data Binding
+		With Backbone.js, you bind Views to Models so that when a Model’s data changes, all the Views bound to that Model automatically re-render. No more complex UI synchronization code.
+		
+		Every thing inside the framework is actually an event dispatcher. 
+		And because the model is changed with setters, the framework knows when the data is updated and can notify the rest of the system for that. 
+		Once you bind something to these notifications, your application will react on the changes in the model. This is a really powerful feature in Backbone.js.
+		
+	* Elegant REST Integration
+		Backbone.js also provides a natural / magical / elegant integration with RESTful services. If your back-end data is exposed through a pure RESTful API, retrieving (GET), creating (POST), updating (PUT), and deleting (DELETE) models is incredibly easy using the Backbone.js simple Model API.
+	
+Backbone's only hard dependency is Underscore.js ( >= 1.5.0). For RESTful persistence, history support via Backbone.Router and DOM manipulation with Backbone.View, include jQuery, and json2.js for older Internet Explorer support. (Mimics of the Underscore and jQuery APIs, such as Lo-Dash and Zepto, will also tend to work, with varying degrees of compatibility.)
+
+Backbone.js has hard dependency on underscore.js and a soft dependency on jQuery. It’s made up of the following modules:
+	Views
+	Events
+	Models
+	Collections
+	Routers
+	
+==> MODELS
+	http://backbonetutorials.com/what-is-a-model/
+	Models are the heart of any JavaScript application, containing the interactive data as well as a large part of the logic surrounding it: 
+		conversions, validations, computed properties, and access control.
+	You extend Backbone.Model with your domain-specific methods, and Model provides a basic set of functionality for managing changes.
+	
+	To create a Model class of your own, you extend Backbone.Model and provide instance properties, as well as optional classProperties to be attached directly to the constructor function.
+		var MiModelo = Backbone.Model.extend({
+			iniatilize: function() {  } se ejecuta al instanciar el modelo
+			...
+		});
+	extend correctly sets up the prototype chain, so subclasses created with extend can be further extended and subclassed as far as you like.
+		var ModeloMejorado = MiModelo.extend({
+			...
+		});	
+		
+	* save()  model.save([attributes], [options]) 
+		Save a model to your database (or alternative persistence layer), by delegating to Backbone.sync	
+	* destroy() model.destroy([options]) 	
+		Destroys the model on the server
+
+==> COLLECTION
+	Collections are ordered sets of models. You can bind "change" events to be notified when any model in the collection has been modified, 
+	listen for "add" and "remove" events, fetch the collection from the server, and use a full suite of Underscore.js methods.
+	Any event that is triggered on a model in a collection will also be triggered on the collection directly, for convenience. 
+	This allows you to listen for changes to specific attributes in any model in a collection, for example: documents.on("change:selected", ...)
+	
+	var Library = Backbone.Collection.extend({
+		model: Book
+	});		
+	
+	* create
+		createcollection.create(attributes, [options]) 
+		Convenience to create a new instance of a model within a collection. 
+		Equivalent to instantiating a model with a hash of attributes, saving the model to the server, and adding the model to the set after being successfully created. 
+		Returns the new model.
+	* fetch
+		collection.fetch([options]) 
+		Fetch the default set of models for this collection from the server, setting them on the collection when they arrive.
+			( set: collection.set(models, [options]) )
+				The set method performs a "smart" update of the collection with the passed list of models. 
+				If a model in the list isn't yet in the collection it will be added; if the model is already in the collection its attributes will be merged; and if the collection contains any models that aren't present in the list, they'll be removed. 
+				All of the appropriate "add", "remove", and "change" events are fired as this happens. Returns the touched models in the collection
+		The behavior of fetch can be customized by using the available set options. For example, to fetch a collection, getting an "add" event for every new model, and a "change" event for every changed existing model, without removing anything: collection.fetch({remove: false})
+		
+
+==> VIEWS
+	Backbone views are used to reflect what your applications' data models look like. 
+		
+	Backbone views are almost more convention than they are code — they don't determine anything about your HTML or CSS for you, and can be used with any JavaScript templating library. 
+	The general idea is to organize your interface into logical views, backed by models, each of which can be updated independently when the model changes, without having to redraw the page	
+	
+	http://backbonetutorials.com/what-is-a-view/
+	var MiVista = Backbone.View.extend({
+		el: ...  The "el" property references the DOM object created in the browser. 
+		render: function() {  }   The "render()" function will load our template into the view's "el" property using jQuery.   
+		events:  {   
+					"click input[type=button]": "doSearch",
+					...
+			}  To attach a listener to our view, we use the "events" attribute of Backbone.View. Remember that event listeners can only be attached to child elements of the "el" property
+		template: _.template(...)		it's often a nice convention to define a template function on your views. In this way, when rendering your view, you have convenient access to instance data.
+		...
+	});	
+	There are 4 basic properties in a view: el, initialize, render, and events.
+	Properties like tagName, id, className, el, and events may also be defined as a function, if you want to wait to define them until runtime.
+
+	* template (underscore): _.template(templateString, [data], [settings])
+	
+	* view.el
+		Every view needs to reference a DOM at all times. Therefore, the view will inject content into this element. This is the el property. 
+		this.el is created from view’s el,tagName, className, id or attributes properties. If none of these are specified, then this.el is an empty div. 
+		The view.$el it’s a cached jQuery object of the view’s element (view.el).
+			Se puede poner por ejemplo la propiedad tagName: li, en lugar de el. De esa forma se renderizará dentro de <li></li>
+		
+		this.$el is an object created by the framework and every view has it by default (there is a $ infront of el because we have jQuery included). 		
+				
+	* Initialize/construtor
+		Here you have the option to pass parameters that will be attached to a model, collection or view.el.
+	* render
+		This function injects the markup into the elements. Not all views require having a render function, they can call other view’s render functions.
+	* delegated events
+		In Backbone.js the event's definition is a just a hash. 
+		You firstly type the name of the event and then a selector. The values of the properties are actually methods of the view.	
+		{"<EVENT_TYPE> <ELEMENT_ID>": "<CALLBACK_FUNTION>"}
+		Ej:
+			events: {'keypress #new-todo': 'createTodoOnEnter'}
+		En JQuery sería esto:
+			$('#new-todo').keypress(createTodoOnEnter);
+		
+		
+			
+	
+	When we instanciate the views, they can receive any parameter that we need. Por ejemplo, el model.
+	
+	* bind, bindall: para que this apunte a lo que se desee
+		http://blog.bigbinary.com/2011/08/18/understanding-bind-and-bindall-in-backbone.html
+		
+		BIND:
+			window.ProductView = Backbone.View.extend({
+			  initialize: function() {
+				this.model.on('change', _.bind(this.render, this));
+			  }
+			});
+			Al llamar al método render de esa vista, cuando el modelo cambie, el valor de this será la vista
+			(_.bind produce una nueva funcion que es la que se enlaza al evento de change)
+	
+		BINDALL:
+			window.ProductView = Backbone.View.extend({
+			  initialize: function() {
+				_.bindAll(this, this.render);
+				this.model.on('change', this.render);
+			  }
+			});
+			Mismo efecto que en la anterior. 
+			Pero se modifica el método render para que siempre el valor de this sea esa vista
+			
+	* CERRAR VISTAS AL CAMBIARLAS!
+	Por ej, en el router:	
+			showView: function(selector, view) {
+				if (this.currentView)
+					this.currentView.remove();
+				$(selector).html(view.render().el);
+				this.currentView = view;
+				return view;
+			}
+	
+==> EVENTS
+	Backbone.Events
+	Este es el módulo que se usa para trabajar con eventos en el framework, Backbone.Events y puede implementarse sobre cualquier objeto, no necesariamente objetos de Backbone, sino cualquier objeto Javascript en general. 
+	Gracias a su funcionalidad tendremos la posibilidad, entre otras cosas, de crear eventos personalizados, asignando funciones manejadoras y de desatar (invocar, disparar) esos eventos personalizados.		
+	
+	Para definir un evento sobre un objeto tenemos primero que extender dicho objeto con la clase Backbone.Events, para que podamos asignarle luego esos eventos personalizados.
+	//creo un objeto cualquiera con Javascript, usando notación JSON
+	var objeto = {};
+	//extiendo ese objeto con la clase Backbone.Events  (usando Underscore)
+	_.extend(objeto, Backbone.Events);
+	
+	* on(): asignar una función manejadora de eventos sobre un objeto, para un evento cualquiera.
+		objeto.on(event, callback, [context])
+	* trigger(): para disparar eventos
+		objeto.trigger(event, "valor1", "valor2");
+	
+
+==> SYNC
+	Backbone.sync is the function that Backbone calls every time it attempts to read or save a model to the server. 
+	By default, it uses jQuery.ajax to make a RESTful JSON request and returns a jqXHR. 
+	You can override it in order to use a different persistence strategy, such as WebSockets, XML transport, or Local Storage.	
+	
+==> ROUTERS	
+	You could build web application without using the routers. 
+	However, if you want to make reference to certain ‘state’ or location of the web application, you need a reference (link/URL) to it. This is where routers come to rescue.
+	
+	Web applications often provide linkable, bookmarkable, shareable URLs for important locations in the app. 
+	Backbone.Router provides methods for routing client-side pages, and connecting them to actions and events. 
+	For browsers which don't yet support the History API, the Router handles graceful fallback and transparent translation to the fragment version of the URL
+	
+	In backbone, routes are hash maps that match URL patterns to functions. 
+	You can use parameter parts, such as todos/:id, or using splats file/*path you will match all the parameters from the splat on. For that reason, the splat parameter should be always the last matcher.
+	
+	Llamar a  Backbone.history.start()  al iniciar la app
+		 
+	var AppRouter = Backbone.Router.extend({
+		routes: {
+			"help":                 "help",    // #help
+			"search/:query":        "search",  // #search/kiwis
+			"search/:query/p:page": "search" ,  // #search/kiwis/p7
+			"posts/:id": "getPost",
+		},
+		help: function() {...  },
+		search: function(query, page) {	...	  }
+	});	 
+	Dynamic routing...
+		// Instantiate the router
+		var app_router = new AppRouter;
+		app_router.on('route:getPost', function (id) {
+			// Note the variable in the route definition being passed in here
+			alert( "Get post number " + id );   
+		});
+
+		
+		
+==> HISTORY
+	History serves as a global router (per frame) to handle hashchange events or pushState, match the appropriate route, and trigger callbacks
+		
+
+	
+==> USANDO AMD/REQUIRE.JS	
+	http://backbonetutorials.com/organizing-backbone-using-modules/
+	
+	Extender clases: http://www.bennadel.com/blog/2320-extending-classes-in-a-modular-javascript-application-architecture-using-requirejs.htm
+	
+==> Evitar errores comunes:
+
+		http://ozkatz.github.io/avoiding-common-backbonejs-pitfalls.html
+		
+		Usar listenTo() en lugar de on(), para que al lamar a remove() se desbindee
+	
+	
+******************************************************************
+==> TUTORIALES - EJEMPLOS - BOILERPLATES
+
+http://backbonetutorials.com/	
+
+-> Lista: Tutorials, blog posts and example sites: https://github.com/jashkenas/backbone/wiki/Tutorials%2C-blog-posts-and-example-sites
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-> Tutorial completo: Google Task, autenticación OAuth  	<----------------- VER!!  <----------------------
+	Tutorial: http://dailyjs.com/2012/11/29/backbone-tutorial-1/
+	Repo: https://github.com/alexyoung/dailyjs-backbone-tutorial
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!	
+
+-> Tutorial (slides y app ejemplo contactos): Backbone - Introduction
+	Slides: http://dmytroyarmak.github.io/codeangels-backbone-introduction/#/
+	Demo: http://dmytroyarmak.github.io/backbone-contact-manager/#contacts
+	Tutorial: https://github.com/dmytroyarmak/backbone-contact-manager/blob/gh-pages/README.md#backbone-contact-manager
+		- Bootstrap
+
+-> BOILERPLATES:
+	* Backbone Boilerplate: a workflow for building Backbone.js applications.
+		Repo: https://github.com/backbone-boilerplate/backbone-boilerplate
+		
+	* Super Simple Backbone Starter Kit / Boilerplate
+		http://webapplog.com/super-simple-backbone-starter-kit-boilerplate/
+		https://github.com/azat-co/super-simple-backbone-starter-kit
+		- RequireJS 2.0.2 included in /libs
+		- RequireJS Text plug-in 2.0.0 included in /libs
+		- jQuery 1.10.2 hot-linked from Google APIs
+		- Backbone 1.1.0 hot-linked from CDNJS
+		- Underscore 1.5.2 hot-linked from CDNJS
+		- Twitter Bootstrap 3.0.2 included in /css, /img, /js	
+	
+
+-> ToDoMVC	http://todomvc.com/		<=================================================
+	** Backbone.js • TodoMVC
+	->ejemplos/backbone/todomvc/backbone			OK
+		Demo: http://todomvc.com/examples/backbone/
+		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/backbone
+		Código comentado (versión anterior): http://documentcloud.github.io/backbone/docs/todos.html	
+			--> Buen manejo de eventos. Router. Modularizado. Ejemplo a seguir
+		
+	** Backbone.js + RequireJS • TodoMVC
+	->ejemplos/backbone/todomvc/backbone_require			OK
+		Demo: http://todomvc.com/examples/backbone_require/
+		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/backbone_require
+			--> Uso de require.js. Templates separados (usa requirejs-text)
+		
+
+* Backbone.js for Absolute Beginners - Getting Started		
+	-> Hello World (todo en 1 html): ejemplos/backbone/hello-world.html		OK
+		-Part 1: Intro	
+			Blog: http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/
+	-> Todo App (todo en 1 html): ejemplos/backbone/todo-app.html			OK
+		-Part 2: Models, Collections and Views. Events. LocalStorage. Create & Read item list
+			Blog: http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/
+		-Part 3: CRUD (Create-Read-Update-Delete) for the item list.
+			Blog: http://adrianmejia.com/blog/2012/09/13/backbonejs-for-absolute-beginners-getting-started-part-3/
+		-Part 4: Routers: Filtrar items completados o no
+			Blog: http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-4/
+		Codigo final: https://github.com/amejiarosario/Backbone-tutorial/blob/master/backbone-tutorial.html
+
+* Ejemplo lista de tareas con Backbone, RESTEasy y Tapestry (server: Java)
+-> ejemplos/backbone/lista-de-tareas-backboneREST-Java
+	Blog: http://elblogdepicodev.blogspot.com.es/2013/04/ejemplo-lista-de-tareas-con-backbone.html
+	Repo: https://github.com/picodotdev/elblogdepicodev/tree/master/BackboneREST
+			
+* Single Page ToDo Application With Backbone.js		
+-> ejemplos/backbone/single-page-todo-application		OK
+	Tutorial: http://code.tutsplus.com/tutorials/single-page-todo-application-with-backbonejs--cms-21417}
+	Repo: https://github.com/tutsplus/single-page-todo-backbone
+	(No me gusta cómo está diseñada)
+		- Namespacing: revealing module pattern. Definición de componentes
+		- ViewsFactory: vistas menu, list (mediante route se listan archivados o no), form (para crear o editar ToDo)
+		--> Le agregué localStorage
+			
+* Backbone.js Wine Cellar Tutorial: RESTful API, CRUD, Deep Linking and Application States (Router)
+-> ejemplos/backbone/wine-cellar-tutorial/tutorial		OK
+	Repo: https://github.com/ccoenraets/backbone-cellar/tree/master/tutorial
+	TUTORIAL BACKBONE...
+	Blog: http://coenraets.org/blog/2011/12/backbone-js-wine-cellar-tutorial-part-1-getting-started/
+		http://coenraets.org/blog/2011/12/backbone-js-wine-cellar-tutorial-part-2-crud/
+		http://coenraets.org/blog/2011/12/backbone-js-wine-cellar-tutorial-part-3-deep-linking-and-application-states/
+		http://coenraets.org/blog/2012/01/backbone-js-lessons-learned-and-improved-sample-app/
+		- Template loader
+		- Método close para las views. Cleaning Up: Avoiding Memory Leaks and Ghost Views
+		- Método before en router. Route pre-processing (aka Filters)
+	
+	** Versión móvil: Sample Mobile App with Backbone.js and PhoneGap.
+	-> ejemplos/backbone/wine-cellar-tutorial/tutorial/mobile/offline
+		Blog: http://coenraets.org/blog/2012/02/sample-mobile-app-with-backbone-js-and-phonegap/
+			Versión "consumer" (no tiene CRUD, sólo lectura)
+			- Api online, no funciona
+	
+	** Con Bootstrap: Single-Page CRUD Application with Backbone.js and Twitter Bootstrap 		
+	-> ejemplos/backbone/wine-cellar-tutorial/bootstrap		OK
+		Blog: http://coenraets.org/blog/2012/05/single-page-crud-application-with-backbone-js-and-twitter-bootstrap/
+		Demo: http://coenraets.org/backbone-cellar/bootstrap/
+			- Persistencia:
+				> in-memory datastore (default) [All the changes you make to the data will be lost the next time you access the app or hit Refresh]
+					memorystore.js. Reescribe Babkcone.sync
+				> RESTful back-end implemented in PHP (see the /api directory)
+					 (Framework PHP: Slim)
+			- Template Loader: JQuery deferred: AJAX para obtener los templates, los setea en las view, y $.when.apply con un callback cuando terminan de cargarse
+			- Header View - SelectMenuItem. About View
+			- Drag-and-Drop File Upload and HTML 5 File API
+			- Paging: Twitter Bootstrap markup and styles are “componentized” or “widgetized” into a Backbone View: Paginator
+					The entire data set is always retrieved from the server and paging is provided for a cosmetic/layout reason
+			- Forms: Twitter Bootstrap's forms: WineView
+			- Validation: Bootstrap’s validation markup and styles are wired with validation rules defined in the Backbone model. 
+						Custom validateItem() and validateAll() methods
+			- Other Twitter Bootstrap features: thumbnails, dropdowns, alerts, etc.
+			>  In a real-life application, you should consider implementing a namespacing scheme to keep the global namespace clean, and other optimization techniques such as view and/or data caching.
+			
+
+* EMPLOYEE DIRECTORY: Implementaciones con Backbone.js		<================================
+	(API REST (JSON y JSONP):																																	)
+	(	- PHP (Slim Framework) - https://github.com/ccoenraets/directory-rest-php						->employee-directory/backbone-viejo/api-rest-php		)
+	(	- NodeJS (Express Framework / MongoDB) - https://github.com/ccoenraets/directory-rest-nodejs	->employee-directory/backbone-viejo/api-rest-nodejs 	)
+	
+	** Backbone + Bootstrap: Sample App with Backbone.js and Twitter Bootstrap (Viejo)
+	->ejemplos/backbone/employee-directory/backbone-viejo/web		OK
+		Blog: http://coenraets.org/blog/2012/02/sample-app-with-backbone-js-and-twitter-bootstrap/
+		Repo: https://github.com/ccoenraets/backbone-directory
+		Demo: http://coenraets.org/backbone/directory/twitterbootstrap/
+			- HeaderView: select menu item; search
+			- One-to-Many association. A one-to-many (Manager-to-Employees) association is defined in the Employee model (model/employeemodel.js) as a collection of employees (the direct reports). That collection is lazily fetched in the render() function of EmployeeFullView (view/employeedetails.js).
+			- Composite View. EmployeeFullView (views/employeedetails.js) is an example of a composite view. Its render() function instantiates two subviews: EmployeeView and EmployeeListView (to display the employee’s direct reports).
+			- API REST: PHP Slim Framework   ->employee-directory/backbone-viejo/api
+	
+	** Backbone + Bootstrap: Sample Application with Backbone.js and Twitter Bootstrap: Updated and Improved
+	->ejemplos/backbone/employee-directory/backbone-bootstrap		OK
+		Blog: http://coenraets.org/blog/2013/04/sample-application-with-backbone-js-and-twitter-bootstrap-updated-and-improved/
+		Repo: https://github.com/ccoenraets/directory-backbone-bootstrap
+		Demo: http://coenraets.org/directory/
+			- Bootstrap 2.3.1
+			- TemplateLoader: setea los templates de las vistas
+			Persistencia datos: (Se abstrae. Redefine Backbone.sync en cada model)
+				- model-in-memory.js (In-memory data store)
+				- model-rest-json.js (Backbone.js default behavior. The application gets data through RESTFul services: PHP o NodeJS)
+				- model-rest-jsonp.js (If the server serving your pages and the server serving your data are on different domains, use this adapter instead to avoid the same origin policy error.)
+				- model-websql.js (Uses local database using the WebSQL api.)
+				- model-parse-dot-com.js (Don’t want to host your own data infrastructure? Parse.com is a cloud service that will host your data for you. Use this adapter to test your app with sample data I deployed on Parse.com)
+
+	** Backbone + RequireJS + Bootstrap: Building Modular Web Applications with Backbone.js and RequireJS — Sample App
+	->ejemplos/backbone/employee-directory/backbone-bootstrap-requirejs		OK
+		Blog: http://coenraets.org/blog/2013/06/building-modular-web-applications-with-backbone-js-and-requirejs-sample-app/
+		Repo: https://github.com/ccoenraets/directory-backbone-bootstrap-require
+		Demo: http://coenraets.org/apps/directory-backbone-bootstrap-require/	
+			REQUIREJS:	
+			- Modularized model, view, router...
+				Modulos con define - require, usando sintaxis "sugar": http://requirejs.org/docs/whyamd.html#sugar 
+			- Require text plugin para cargar templates de archivos separados: https://github.com/requirejs/text
+			- Map config (require.config({...}) en app.js)
+				RequireJS allows you to centrally manage dependency mappings (using a map config) so you can easily replace the version of a module that is injected in other modules. 
+				Elegir fácil entre data adapters: in-memory, json, jsonp
+			
+	** Backbone + Topcoat (versión móvil): Sample Mobile / PhoneGap Application with Backbone.js and Topcoat
+	->ejemplos/backbone/employee-directory/backbone-topcoat		OK - PROBADA EN CELU
+		Blog: http://coenraets.org/blog/2013/06/sample-mobile-phonegap-application-with-backbone-js-and-topcoat/
+		Repo: https://github.com/ccoenraets/directory-backbone-topcoat
+		Demo: http://coenraets.org/apps/directory/backbone/topcoat/
+			- Backbone.js as the architectural framework  
+			- Topcoat as the UI toolkit. Pageslider
+			- Data adapters: in-memory - localstorage
+		
+	** Backbone + RequireJS + Topcoat (versión móvil): Building Modular Mobile/PhoneGap Apps with Backbone.js, RequireJS & Topcoat — Sample App
+	->ejemplos/backbone/employee-directory/backbone-topcoat-require		OK - PROBADA EN CELU: Funciona bien. Problema: Se resalta en azul al tocar los links 
+		Blog: http://coenraets.org/blog/2013/06/building-modular-mobile-phonegap-apps-with-backbone-js-requirejs-and-topcoat/
+		Repo: https://github.com/ccoenraets/directory-backbone-topcoat-require
+		Demo: http://coenraets.org/apps/directory-backbone-topcoat-require/
+
+	** Backbone + Ratchet (versión móvil - ios - android): Employee Directory Sample Application with Ratchet 2.0	
+	->ejemplos/backbone/employee-directory/backbone-ratchet		OK - PROBADA EN CELU (index-android, con localstorage): JOYA! (error al ocultar teclado)
+		Blog: http://coenraets.org/blog/2013/06/sample-mobile-phonegap-application-with-backbone-js-and-ratchet/ (viejo)
+			  http://coenraets.org/blog/2014/02/employee-directory-sample-application-with-ratchet-2-0/
+		Repo: https://github.com/ccoenraets/directory-backbone-ratchet
+		Demo: http://coenraets.org/apps/directory-backbone-ratchet/
+			  http://coenraets.org/apps/directory-backbone-ratchet/index-android.html	
+			- Ratchet: UI framework con temas para iOS o Android
+			- Mismo código que versión Topcoat, sólo cambia estilos, tags HTML
+			- MAP VIEW: OpenStreetMap
+
+	** Autenticación: Backbone.js apps with Authentication Tutorial
+	->ejemplos/backbone/employee-directory/login-backbone-viejo			OK
+		Blog: http://clintberry.com/2012/backbone-js-apps-authentication-tutorial/
+		Repo: https://github.com/clintberry/backbone-directory-auth
+		* Server side authentication (JSON API en PHP): ->api-rest-php-login
+			-Agrega post /login a la API. Función login(). Basado en $_SESSION de PHP
+			-Funcion authorize(). Se agrega a todos los routes. Si no está logueado tira error 401, si está logueado pero no tiene permiso, error 403
+		* Cliente:
+			-Fork de backone-viejo
+			-LoginView, y template Login. Login redirecciona a home.
+			-$.ajaxSetup: para redireccionar los erroes 401 y 403
+			
+* Client-side authentication & session management via Backbone.js and Node.js
+->ejemplos/backbone/backbone-login   (Signup y login)				<-- VER!
+	Blog: http://alexehrnschwender.com/2013/07/client-side-auth-session-mgmt-backbone-node/
+	Repo: https://github.com/alexanderscott/backbone-login
+	Demo: http://backbone-login.crunchdevelopment.com/
+		- CSRF headers in authentication requests to prevent forgery: 
+			A CSRF token is essentially a means for the server to recognize the identity of the requesting client. This identity detection is used to prevent XSS (Cross-Site Scripting)
+			The randomized token is generated and planted by the server in the client’s HTML meta tags (which should not be refreshed in a single-page app) or inside of a hidden form element.
+			The client can then choose to include this token in the headers (more specifically a “X-CSRF-Token” header) of AJAX requests as a means of identification & authorization.
+		- Signed Cookies
+			Auth state persistence through SIGNED COOKIES (cookies encriptadas... del lado server)
+		- Global, client-side session model
+			Global (singleton) session model whose state changes can be listened to
+				> If you are letting a Session Model handle authentication, it’s important to immediately purge an auth token, password, or any sensitive information immediately after it is used in a request.  Or simply avoid setting sensitive properties on the model itself, and abstracting these out to a pass-thru function in the model.
+					// Fxn to update user attributes after recieving API response
+						updateSessionUser: function( userData ){
+							this.user.set( _.pick( userData, _.keys(this.user.defaults) ) );	//sólo guarda atributos del usuairo, no info sensible 
+						},
+				>  Ensure all session communication with the server is via HTTPS
+				>  Wrap the Session Model in a closure, only allowing access to your other views/models inside the closure. (Con RequireJS)	
+		- Client-side validations through ParsleyJS
+			$("#login-form").parsley('validate')
+		- Salt/hashing of passwords for back-end storage
+	* Server-Side: NodeJS con Express
+		A lightweight, single-file Express.js server and SQLLite3 db. Responds to API routes, as well as initial index.html page render to plant the session CSRF token.
+	* Cliente: 	Backbone & Require - Bootstrap
+		Uses a persistent global Backbone.js SessionModel to manage state. 
+		It is also rather bare with only a couple views, a pushState-enabled router, and models for a User and a Session. 
+			- Router con HTML5 pushState
+		The client communicates with the server via Backbone.sync methods, which essentially just wrap standard AJAX CRUD operations.
+		Views and other models all can:
+			- subscribe to changes in session state
+				En HeaderView: app.session.on("change:logged_in", this.onLoginStatusChange); 
+			- extract current user data
+				En HeaderView: "Logged in as "+app.session.user.get("username")
+			- trigger auth events (login, logout, etc)
+				En HeaderView: app.session.logout({});
+		Utils: cookies helpers, errors and alert handling
+		
+* Google Maps: Using GMap in RequireJS, with Backbone
+->ejemplos/backbone/googlemaps
+	Blog: http://www.rockylhc.com/blog/2012/05/17/using-gmap-requirejs-backbone
+	Source: http://app.rockylhc.com/static/map-app/source.zip
+	Demo: http://app.rockylhc.com/projects/map-app/
+	
+* Backbone Weather App
+->ejemplos/backbone/weather-app-backbone-amd
+	Slides:  Intro to Backbone.js http://elijahmanor.github.io/talks/intro-to-backbonejs
+	Repo: https://github.com/theprivileges/backbone-amd-weather	
+	
+* Backbone Weather Demo
+->ejemplos/backbone/weather-demo-backbone-python
+	Repo: https://github.com/larrymyers/backbone-weather-demo
+	* Server en Python
+	
