@@ -1,0 +1,149 @@
+AngularJS
+****************TUTORIALES - EJEMPLOS******************************************************************************
+
+**** TUTORIAL OFICIAL - angular-phonecat - https://docs.angularjs.org/tutorial	<=================
+	https://code.angularjs.org/1.3.11/docs/tutorial
+->ejemplos/angular/angular-phonecat				http://localhost/ejemplos/angular/angular-phonecat/app/
+	Repo: https://github.com/angular/angular-phonecat  -> fork:  https://github.com/diegosch21/angular-phonecat
+	> Para aprender a...
+		- Create a dynamic application that works in all modern browsers
+		- Use data binding to wire up your data model to your views.
+		- Create and run unit tests, with Karma.
+		- Create and run end to end tests, with Protractor.
+		- Move application logic out of the template and into Controllers.
+		- Get data from a server using Angular services. - how to use dependency injection and services to make common web tasks, such as getting data into your app
+		- Apply animations to your application, using ngAnimate.
+	> Tools:
+		- Bower - client-side code package manager
+		- Http-Server - simple local static web server	-->  npm start --> http://localhost:8000/app/index.html
+		- Karma - unit test runner						
+			-->	 npm test
+				· open up a Chrome browser and connect it to Karma
+				· execute all the unit tests in this browser
+				· report the results of these tests in the terminal/command line window
+				· watch all the project's JavaScript files and re-run the tests whenever any of these change
+		- Protractor - end to end (E2E) test runner
+			-->  npm run protractor
+				· open up a Chrome browser and connect it to the application
+				· execute all the End to End tests in this browser
+				· report the results of these tests in the terminal/command line window
+				· close down the browser and exit
+	> Pasos:
+		0. Bootstrapping
+		1. Static template
+		2. Angular Templates
+			
+	
+	
+
+* Ejemplos del sitio home oficial	https://angularjs.org/
+->ejemplos/angular/basics		>>> VER COMENTARIOS EXPLICATIVOS EN EL CÓDIGO
+	** The Basics: Hello World	> Video: http://youtu.be/uFTFsKmkQnQ  (compara JQuery vs Angular)
+		->helloworld.html
+	** Add Some Control: ToDo	> Video: http://youtu.be/WuiHuZq_cg4
+		->todo.html
+			- Data binding, controller 
+	** Wire up a Backend	
+		->projects.html
+			- Backend (con Firebase), routing - deep linking, services, form validation
+	** Create Components
+		->localization-pluralization.html
+			- Directivas: etiquetas personalizadas (reusable components). Localizacion y pluralizacion (idiomas). 
+				Definicion de directivas, y controlador en dos modulos distintos
+				
+* Ejemplos guía oficial	- Conversión de monedas	https://docs.angularjs.org/guide	
+->ejemplos/angular/basics/guide		
+	** Data-binding basico 	https://docs.angularjs.org/guide/concepts#a-first-example-data-binding
+		->data-binding-basic.html
+	** Adding UI logic: Controllers	https://docs.angularjs.org/guide/concepts#adding-ui-logic-controllers
+		->controller.html
+			- Controlador contiene toda la lógica
+	** View independent business logic: Services	https://docs.angularjs.org/guide/concepts#view-independent-business-logic-services
+		->services.html
+			- Conversión de monedas en un servicio - Dependency injection
+	** Accessing the backend	https://docs.angularjs.org/guide/concepts#accessing-the-backend	
+		->backend.html	
+			- Servicio de conversión de monedas: usa API de Yahoo
+			
+*** Angularjs – A Hands On tutorial			<================
+	Blog: http://thejackalofjavascript.com/angularjs-hands-on-tutorial/
+	Repo: https://github.com/arvindr21/ngMovieStub
+		Paso a paso: https://github.com/arvindr21/ngMovieStub/tree/master/tutorial-parts
+	Demo: http://moviestub.cloudno.de/
+
+*** ToDoMVC	http://todomvc.com/		<===================
+	* AngularJS • TodoMVC
+	-> ejemplos/angular/todomvc/angularjs
+		Demo: http://todomvc.com/examples/angularjs
+		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs
+		
+	* AngularJS Performance Optimized • TodoMVC
+	-> ejemplos/angular/todomvc/angularjs-perf
+		Demo: http://todomvc.com/examples/angularjs-perf/#/
+		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs-perf
+			"The normal AngularJS TodoMVC implementation performs deep watching of the todos array object. This means that it keeps an in-memory copy of the complete array that is used for dirty checking in order to detect model mutations. 
+			For smaller applications such as TodoMVC, this is completely fine as one trades off a little memory and performance for the sake of simplicity.
+			In larger more complex applications however, where one might be working with 100s or 1000s of large objects one definitely should avoid using this approach. 
+			This implementation of the AngularJS app demonstrates the correct way to approach this problem when working in larger apps."
+	
+	* AngularJS & RequireJS • TodoMVC
+	-> ejemplos/angular/todomvc/angularjs_require
+		Demo: http://todomvc.com/examples/angularjs_require
+		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs_require
+		
+	* Firebase & AngularJS Realtime	• TodoMVC
+	-> ejemplos/angular/todomvc/firebase-angular
+		Demo: http://todomvc.com/examples/firebase-angular
+		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/firebase-angular
+		
+*** AngularJS CRUD application demo				<================ VER  
+	Repo: https://github.com/angular-app/angular-app	
+	> Stack
+		- Persistence store: MongoDB hosted on MongoLab
+		- Backend: Node.js
+		- Awesome AngularJS on the client
+		- CSS based on Twitter's bootstrap
+	> Build
+		- powered by Grunt.js
+		- test written using Jasmine syntax
+		- test are executed by Karma Test Runner (integrated with the Grunt.js build)
+		- build supporting JS, CSS and AngularJS templates minification
+		- Twitter's bootstrap with LESS templates processing integrated into the build
+		- Travis-CI integration
+		
+	
+=> Tutoriales varios: http://angular.org.il/tutorials/	
+	
+* Tutorial de AngularJS. Ejemplo de aplicación web conectada a una API REST con Node
+	Blog: http://carlosazaustre.es/blog/tutorial-ejemplo-de-aplicacion-web-con-angular-js-y-api-rest-con-node/
+	
+* End to End Testing with Protractor
+	Blog: http://thejackalofjavascript.com/end-to-end-testing-with-protractor
+		Con explicaciones de testing			
+	
+* Wine Cellar  (versión vieja Angular)
+	Blog: http://coenraets.org/blog/2012/02/sample-application-with-angular-js/
+	Repo: https://github.com/ccoenraets/angular-cellar
+	Demo: http://coenraets.org/angular-cellar
+
+* Employee Directory 
+	* AngularJS: Sample Mobile Application with AngularJS
+		Blog: http://coenraets.org/blog/2013/11/sample-mobile-application-with-angularjs/
+		Repo: https://github.com/ccoenraets/angular-directory
+		Demo: http://coenraets.org/apps/angular-directory/	
+			- Topcoat
+
+	* IONIC + AngularJS: Sample Mobile Application with Ionic and AngularJS
+		Blog: http://coenraets.org/blog/2014/02/sample-mobile-application-with-ionic-and-angularjs/
+		Repo: https://github.com/ccoenraets/directory-angular-ionic
+		Demo: http://coenraets.org/apps/directory-angular-ionic/#/employees
+		
+* Angularjs, Material Design and Twitter Streams – A Twitter Live Search App
+	http://thejackalofjavascript.com/twitter-live-search/
+		--> MATERIAL DESIGN en Angular: https://material.angularjs.org/#/
+		Arquitectura
+		- Node.js
+		- Twitter Streams
+		- Socket.io
+		- Angularjs
+		- Material Design

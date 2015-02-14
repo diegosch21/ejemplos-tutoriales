@@ -1,7 +1,6 @@
 ********AngularJS*********  (MVW Javascript) HTML enhanced for web apps!
 
 https://angularjs.org/		https://docs.angularjs.org/guide		http://docs.angularjs.org/api
-
  - Superheroic JavaScript MVW Framework
  - A complete client-side solution
  - Angular es lo que HTML hubiera sido, si hubiera sido diseñado para construir aplicaciones web
@@ -20,10 +19,15 @@ https://angularjs.org/		https://docs.angularjs.org/guide		http://docs.angularjs.
 	npm: > npm install angular@1.3.11
 -> Extras - Modulos:	
 	https://code.angularjs.org/1.3.11/
+
+En este  txt:	
+DEFINICIONES,CONCEPTOS	-	LINKS útiles, características - ELEMENTOS, FUNCIONES, FUNCIONAMIENTO - TIPS & TRICKS
+EJEMPLOS Y TUTORIALES
+	Destacados tienen esto:   <===========
  
 ===============================================================================================================================
 
-*********** DEFINICIONES, CONCEPTOS   *****************************************************************************************
+*********** DEFINICIONES, CONCEPTOS *************************************************************************************
 
 -> Del sitio oficial.... https://angularjs.org/
 
@@ -115,91 +119,176 @@ https://angularjs.org/		https://docs.angularjs.org/guide		http://docs.angularjs.
 			AngularJS templating uses a combination of customizable HTML tags and expressions. Backbone.js ships with underscore.js's utility function template() and also integrates with different templating engines such as Mustache.
 		
 --> GUÍA OFICIAL		
-	* ¿Qué es Angular?	https://docs.angularjs.org/guide/introduction		<=== VER
+	** ¿Qué es Angular?	https://docs.angularjs.org/guide/introduction		<=== VER
 		AngularJS is a structural framework for dynamic web apps. It lets you use HTML as your template language and lets you extend HTML's syntax to express your application's components clearly and succinctly. 
 		ngular's data binding and dependency injection eliminate much of the code you would otherwise have to write. 
 		And it all happens within the browser, making it an ideal partner with any server technology.
-	* A complete client-side solution
+		Angular attempts to minimize the impedance mismatch between document centric HTML and what an application needs by creating new HTML constructs. Angular teaches the browser new syntax through a construct we call directives. 
+	
+	** A complete client-side solution
 		Angular is not a single piece in the overall puzzle of building the client-side of a web application. It handles all of the DOM and AJAX glue code you once wrote by hand and puts it in a well-defined structure. 
 		This makes Angular opinionated about how a CRUD application should be built. But while it is opinionated, it also tries to make sure that its opinion is just a starting point you can easily change. 
 		Angular comes with the following out-of-the-box:
 			- Everything you need to build a CRUD app in a cohesive set: data-binding, basic templating directives, form validation, routing, deep-linking, reusable components, dependency injection.
 			- Testability story: unit-testing, end-to-end testing, mocks, test harnesses.
 			- Seed application with directory layout and test scripts as a starting point.
-
-*** CONCEPTUAL OVERVIEW: 	
-	https://docs.angularjs.org/guide/concepts		<=== VER		
 	
-	> TEMPLATES - https://docs.angularjs.org/guide/templates
-		HTML with additional markup (Angular-specific elements and attributes)
-		Angular combines the template with information from the model and controller to render the dynamic view that a user sees in the browser.	
-		
-	Kinds of new markup...
-		> DIRECTIVES - https://docs.angularjs.org/guide/directive
-			extend HTML with custom attributes and elements
-			- Custom directives to access the DOM: In Angular, the only place where an application should access the DOM is within directives. 
+	** Para qué tipo de aplicaciones no es conveniente Angular:
+		Angular fue construido pensando en aplicaciones CRUD (que representan la mayoría de las web app).
+		Angular simplifies application development by presenting a higher level of abstraction to the developer. Like any abstraction, it comes at a cost of flexibility. 
+		Games and GUI editors are examples of applications with intensive and tricky DOM manipulation. These kinds of apps are different from CRUD apps, and as a result are probably not a good fit for Angular. 
+		In these cases it may be better to use a library with a lower level of abstraction, such as jQuery.
+	
+	** Las ideas de Angular	https://docs.angularjs.org/guide/introduction#the-zen-of-angular
+		- declarative code is better than imperative when it comes to building UIs and wiring software components together, while imperative code is excellent for expressing business logic
+		- decouple DOM manipulation from app logic (ayuda para testing)
+		- regard app testing as equal in importance to app writing. Testing difficulty is dramatically affected by the way the code is structured.
+		- decouple the client side of an app from the server side. This allows development work to progress in parallel, and allows for reuse of both sides
+		- very helpful indeed if the framework guides developers through the entire journey of building an app: from designing the UI, through writing the business logic, to testing.
+		- make common tasks trivial and difficult tasks possible.
+		- Angular libera al desarrollador de las siguientes tareas engorrosas:
+			* Registering callbacks: 
+				Removing common boilerplate code such as callbacks is a good thing. It vastly reduces the amount of JavaScript coding you have to do, and it makes it easier to see what your application does.
+			* Manipulating HTML DOM programmatically: 
+				By declaratively describing how the UI should change as your application state changes, you are freed from low-level DOM manipulation tasks. Most applications written with Angular never have to programmatically manipulate the DOM, although you can if you want to.
+			* Marshaling data to and from the UI: 
+				The flow of marshaling data from the server to an internal object to an HTML form, allowing users to modify the form, validating the form, displaying validation errors, returning to an internal model, and then back to the server, creates a lot of boilerplate code.
+				Angular eliminates almost all of this boilerplate, leaving code that describes the overall flow of the application rather than all of the implementation details.
+			* Writing tons of initialization code just to get started: 
+				With Angular you can bootstrap your app easily using services, which are auto-injected into your application in a Guice-like dependency-injection style
+
+********* CONCEPTUAL OVERVIEW - ESTRUCTURA	*****************************************************************************************************			
+
+https://docs.angularjs.org/guide/concepts		<=== VER		
+VER Investigacion/AngularJS/Concepts-estructura.png
+http://mean-workshop.herokuapp.com/resources/day4/presentation/#/
+
+> TEMPLATES - https://docs.angularjs.org/guide/templates
+	HTML with additional markup (Angular-specific elements and attributes)
+	Angular combines the template with information from the model and controller to render the dynamic view that a user sees in the browser.	
+	
+Kinds of new markup...
+	> DIRECTIVES - https://docs.angularjs.org/guide/directive
+		extend HTML with custom attributes and elements
+		At a high level, directives are markers on a DOM element (such as an attribute, element name, or CSS class) 
+		that tell AngularJS’s HTML compiler ($compile) to attach a specified behavior to that DOM element or even transform the DOM element and its children.
+		- Ejemplos: ng-app, ng-model, ng-controller, ng-repeat, ...
+		- Agregan: Comportamiento, Data binding scope, reemplazan o extienden el elemento HTML
+		- Execution flow:
+			1. Detect the directive (por ej ng-model)
+			2. Call the $compile method on the directive
+			3. Bind directive with $scope
+			4. Render the generated DOM
+		-> Custom directives to access the DOM: In Angular, the only place where an application should access the DOM is within directives. 
 			If you need to access the DOM directly you should write a custom directive for this
+		
+	> {{ expression | filter }}    
+		Angular uses HTML markups as templates. Dynamic values are represented with {{ variable }}
+		When the compiler encounters this markup, it will replace it with the evaluated value of the markup
+		> EXPRESSIONS - https://docs.angularjs.org/guide/expression
+			access variables and functions from the scope
+		> FILTER - https://docs.angularjs.org/guide/filter
+			formats the value of an expression for display to the user 
 			
-		> {{ expression | filter }} 
-			When the compiler encounters this markup, it will replace it with the evaluated value of the markup
-			> EXPRESSIONS - https://docs.angularjs.org/guide/expression
-				access variables and functions from the scope
-			> FILTER - https://docs.angularjs.org/guide/filter
-				formats the value of an expression for display to the user 
-				
-		> FORMS - https://docs.angularjs.org/guide/forms
-			Controls (input, select, textarea) are ways for a user to enter data. A Form is a collection of controls for the purpose of grouping related controls together.
-			
-	> COMPILER - https://docs.angularjs.org/guide/compiler
-		parses the template and instantiates directives and expressions
+	> FORMS - https://docs.angularjs.org/guide/forms
+		Controls (input, select, textarea) are ways for a user to enter data. A Form is a collection of controls for the purpose of grouping related controls together.
 		
-	> VIEW
-		what the user sees (the rendered DOM)	
+> COMPILER - https://docs.angularjs.org/guide/compiler
+	parses the template and instantiates directives and expressions
+	
+> VIEW
+	what the user sees (the rendered DOM)	
+	is a projection of the model through the HTML template
 
-	> MODEL 
-		the data shown to the user in the view and with which the user interacts - values that are stored in variables on the scope	
-	
-	> SCOPE - https://docs.angularjs.org/guide/scope
-		context where the model is stored so that controllers, directives and expressions can access it
-		scope is an object that refers to the application model. It is an execution context for expressions 
-		exposes model to templates
-		
-	> DATA BINDING - https://docs.angularjs.org/guide/databinding
-		sync data between the model and the view - the DOM will be automatically updated whenever the model changes (variables or result of functions)
-	
-	> CONTROLLER - https://docs.angularjs.org/guide/controller 
-		the business logic behind views - The purpose of controllers is to expose variables and functionality to expressions and directives.
-		a Controller is a JavaScript constructor function that is used to augment the Angular Scope.
-	
-	> DEPENDENCY INJECTION (DI) - https://docs.angularjs.org/guide/di
-		Creates and wires objects and functions - Dependency Injection (DI) is a software design pattern that deals with how components get hold of their dependencies.
-		Everything within Angular (directives, filters, controllers, services, ...) is created and wired using dependency injection.
-		The Angular injector subsystem is in charge of creating components, resolving their dependencies, and providing them to other components as requested.
-	
-	> INJECTOR
-		dependency injection container
-	
-	> MODULE - https://docs.angularjs.org/guide/module
-		a container for the different parts of an app including controllers, services, filters, directives which configures the Injector
-	
-	> SERVICES - https://docs.angularjs.org/guide/services
-		reusable business logic independent of views - When the application grows it is a good practice to move view independent logic from the controller into a so called "service"
-		Angular services are substitutable objects that are wired together using dependency injection (DI).
-		You can use services to organize and share code across your app. Angular services are:
-			- Lazily instantiated – Angular only instantiates a service when an application component depends on it.
-			- Singletons – Each component dependent on a service gets a reference to the single instance generated by the service factory.
-		Angular offers several useful services (like $http), but for most applications you'll also want to create your own.
-		Like other core Angular identifiers, built-in services always start with $ (e.g. $http).
-		--> there are multiple ways to define their factory
-		
-	¿Cuándo usar Controllers, Services or Directives?	
-		http://kirkbushell.me/when-to-use-directives-controllers-or-services-in-angular/	
-	
-	** SEGURIDAD: https://docs.angularjs.org/guide/security	
+> MODEL 
+	the data shown to the user in the view and with which the user interacts - values that are stored in variables on the scope	
 
-	** PRODUCCION: https://docs.angularjs.org/guide/production
+> SCOPE - https://docs.angularjs.org/guide/scope
+	- context where the model is stored so that controllers, directives and expressions can access it
+	- scope is an object that refers to the application model. It is an execution context for expressions 
+	- exposes model to templates -> In HTML, values inside {{ variable }} get resolved at runtime from $scope
+	- A scope can be seen as the glue which allows the template, model and controller to work together.
+	  Angular uses scopes, along with the information contained in the template, data model, and controller, to keep models and views separate, but in sync
+
+	- Si en un controller defino una funcion o variable..
+		myApp.controller("MyCtrl", function($scope) {
+			$scope.miVariable = 123;
+			$scope.otraVar = [{...},{...}]
+			$scope.miFuncion = function(..) { 
+				var otraVar = $scope.otraVar;
+				...
+			}
+		}
+	  Después en HTML puedo usarla en una directiva en un elemento dentro del que tenga ng-controller
+		<a href="javascript:" data-ng-click="miFuncion(miVariable)">..</a>;
+
+	"Controller as name"  o "injectar $scope"	
 	
-******* LINKS útiles  *************************************************************************	
+> DATA BINDING - https://docs.angularjs.org/guide/databinding
+	sync data between the model and the view - the DOM will be automatically updated whenever the model changes (variables or result of functions)
+
+> CONTROLLER - https://docs.angularjs.org/guide/controller 
+	the business logic behind views - The purpose of controllers is to expose variables and functionality to expressions and directives.
+	a Controller is a JavaScript constructor function that is used to augment the Angular Scope.
+	- When a Controller is attached to the DOM via the ng-controller directive, Angular will instantiate a new Controller object, using the specified Controller's constructor function
+	- A new child scope will be available as an injectable parameter to the Controller's constructor function as $scope
+	USAR CONTROLLER PARA...
+		- Set up the initial state of the $scope object
+		- Add behavior to the $scope object.
+	NO USAR CONTROLLER PARA...
+		- Manipulate DOM —(Controllers should contain ONLY BUSINESS LOGIC):
+			* Putting any presentation logic into Controllers significantly affects its testability
+			* Angular has databinding for most cases and directives to encapsulate manual DOM manipulation.
+		- Format input —(Use angular FORM CONTROLS instead).	
+		- Filter output —(Use angular FILTERS instead).
+		- Share code or state across controllers —(Use angular SERVICES instead)
+		- Manage the life-cycle of other components (for example, to create service instances).
+		
+> DEPENDENCY INJECTION (DI) - https://docs.angularjs.org/guide/di
+	Creates and wires objects and functions - Dependency Injection (DI) is a software design pattern that deals with how components get hold of their dependencies.
+	Everything within Angular (directives, filters, controllers, services, ...) is created and wired using dependency injection.
+	The Angular injector subsystem is in charge of creating components, resolving their dependencies, and providing them to other components as requested.
+
+> INJECTOR
+	dependency injection container
+
+> MODULE - https://docs.angularjs.org/guide/module
+	a container for the different parts of an app including controllers, services, filters, directives which configures the Injector
+
+> SERVICES - https://docs.angularjs.org/guide/services
+	reusable business logic independent of views - When the application grows it is a good practice to move view independent logic from the controller into a so called "service"
+	Angular services are substitutable objects that are wired together using dependency injection (DI).
+	You can use services to organize and share code across your app. Angular services are:
+		- Lazily instantiated – Angular only instantiates a service when an application component depends on it.
+		- Singletons – Each component dependent on a service gets a reference to the single instance generated by the service factory.
+	Angular offers several useful services (like $http), but for most applications you'll also want to create your own.
+	Like other core Angular identifiers, built-in services always start with $ (e.g. $http).
+	--> there are multiple ways to define their factory
+	
+	Ejemplo de services:	http://mean-workshop.herokuapp.com/resources/day4/presentation/#/78
+	
+¿Cuándo usar Controllers, Services or Directives?	
+	http://kirkbushell.me/when-to-use-directives-controllers-or-services-in-angular/	
+	
+> ROUTERS:
+	http://mean-workshop.herokuapp.com/resources/day4/presentation/#/71
+	
+> PROVIDERS - RECIPES:	https://docs.angularjs.org/guide/providers
+
+	The injector uses recipes to create two types of objects: services and special purpose objects
+	There are five recipe types that define how to create objects: Value, Factory, Service, Provider and Constant.
+	Factory and Service are the most commonly used recipes.
+		The only difference between them is that the Service recipe works better for objects of a custom type, while the Factory can produce JavaScript primitives and functions.
+	The Provider recipe is the core recipe type and all the other ones are just syntactic sugar on it.
+	Provider is the most complex recipe type. You don't need it unless you are building a reusable piece of code that needs global configuration.	
+	All special purpose objects except for the Controller are defined via Factory recipes.	
+
+** SEGURIDAD: https://docs.angularjs.org/guide/security	
+
+** PRODUCCION: https://docs.angularjs.org/guide/production
+	
+	
+******* LINKS útiles, características  *********************************************************************************************************************	
 
 =====>>> https://docs.angularjs.org/guide <<<==========
 
@@ -224,6 +313,16 @@ https://angularjs.org/		https://docs.angularjs.org/guide		http://docs.angularjs.
 		- FILTERS 						- Ejemplo	http://arvindr21.github.io/ng-overview/examples/example3.html
 		- TEMPLATING & ROUTING 			- Ejemplo	http://arvindr21.github.io/ng-overview/examples/example4.html
 		- SERVICES & FACTORY 			- Ejemplo	http://arvindr21.github.io/ng-overview/examples/example5.html		
+		
+	http://mean-workshop.herokuapp.com/#/day4		<=== VER
+		We will go through the basics of Angularjs
+			- What & Why of Angularjs
+			- Understanding that Angularjs is a framework and not a "2 way data binding library"
+			- Understanding Filters, Routers, Controllers and Factories
+			- Setup bower to maintain dependencies
+			- Hands on basic examples
+			- Angular.js + Express.js example
+			- Angular.js + Express.js + Node.js + MongoDB example
 
 ==> Angular a producción   	https://github.com/jacarma/ngpro/wiki	<======================================== VER
 	Workflow - Tutorial Angular - Yeoman - Testing - Empaquetado
@@ -231,7 +330,7 @@ https://angularjs.org/		https://docs.angularjs.org/guide		http://docs.angularjs.
 -> Links conceptos generales	https://github.com/jmcunningham/AngularJS-Learning/blob/master/ES-ES.md
 
 => ¿Qué es AngularJS? http://carlosazaustre.es/blog/empezando-con-angular-js/ <==
-	Primeros pasos para aprenderlo	http://joelhooks.com/blog/2013/08/03/learn-angularjs-in-a-weekend/
+=>	Primeros pasos para aprenderlo	http://joelhooks.com/blog/2013/08/03/learn-angularjs-in-a-weekend/
 		1. Tutorial Oficial	~4hrs		http://docs.angularjs.org/tutorial
 		2. Video-Tutoriales de Egghead.io. ~3hrs	https://egghead.io/technologies/angularjs
 		3. Un vistazo a una Aplicación AngularJS real ~4hrs		https://github.com/angular-app/angular-app
@@ -246,7 +345,7 @@ https://angularjs.org/		https://docs.angularjs.org/guide		http://docs.angularjs.
 
 -> Fun with AngularJS! 	http://devgirl.org/2013/03/21/fun-with-angularjs/
 
-====> CONTRAS DE ANGULARJS  	https://medium.com/@mnemon1ck/why-you-should-not-use-angularjs-1df5ddf6fc99
+====> CONTRAS DE ANGULARJS  	https://medium.com/@mnemon1ck/why-you-should-not-use-angularjs-1df5ddf6fc99	<====================
 		(Ver links al final)
 
 ==> Pensar en AngularJS teniendo un background de JQuery 	<=====
@@ -255,13 +354,15 @@ https://angularjs.org/		https://docs.angularjs.org/guide		http://docs.angularjs.
 -> Tips, good practices...
 	http://leftshift.io/8-tips-for-angular-js-beginners/
 	http://pabloleone.com/2014/05/angularjs-good-practices/
-
+==> Top 10 mistakes https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make 	<===================================== VER	
+	
 -> Slides	AngularJS 101 - Everything you need to know to get started
 		http://www.slideshare.net/sbegaudeau/angular-js-101-everything-you-need-to-know-to-get-started
 -> Slides AngularJS Architecture 	http://www.slideshare.net/EyalV/angularjs-architecture	
 
--> http://ng-course.org/demos/index.html	
+-> Parte del workshop de MEAN: http://mean-workshop.herokuapp.com/#/day4
 
+-> http://ng-course.org/demos/index.html	
 
 
 
@@ -273,7 +374,7 @@ https://angularjs.org/		https://docs.angularjs.org/guide		http://docs.angularjs.
 
 -> {{ }} are a declarative way of specifying data binding locations in the HTML.		
 	
-ETIQUETAS HTML (DIRECTIVAS)
+DIRECTIVAS (etiquetas HTML):
 
 	=> ng-app	
 		Declares the root element of an AngularJS application, under which directives can be used to declare bindings and define behavior
@@ -289,13 +390,17 @@ ETIQUETAS HTML (DIRECTIVAS)
 	=> ng-view
 		We’re marking this <element> as the place we’ll load partial pages or “views”. The surrounding page will stay static while we load changing UI into this section.	
 		(The base directive responsible for handling routes that resolve JSON before rendering templates driven by specified controllers.)
-	
+
+	=> ng-include	<div ng-include="'partials/header.html'"></div>
+		Incluye pedazos de html
+		
 	=> ng-click="funcion()"
 		Instead of registering event-handlers, you declare which method on the controller to call.
 		
 	=> ng-repeat="elem in collection"
 		Use ng-repeat to unroll a collection. This is one of the most versatile directives in AngularJS.
 		Instantiate an element once per item from a collection.
+		Repeaters are “for loops”. We define a list in the Angular scope & then iterate the list using a ng-repeat directive & display the data.
 		Por ejemplo, usado en un <li>:
 			When objects are added to the collection the ng-repeat automatically adds new <li> elements into the DOM. Similarly when the objects are removed from collection then the corresponding <li> element is removed as well. 
 			(data-binding: ng-repeat actualiza el DOM cuando se modifica collection)
@@ -349,7 +454,7 @@ FUNCIONES
 		
 		http://stackoverflow.com/questions/14324451/angular-service-vs-angular-factory	
 
-	=> controller:  angular.module(...).controller('MiControlador',constructor )		constructor: [...,... ]  o function()
+	=> controller:  angular.module(...).controller('MiControlador',constructor )		constructor: [...,..., function() ]  o function()
 		registra el controlador 'MiControlador'
 		The controller MiControlador is the code behind the view. You can clearly see your application behavior because there is no DOM manipulation or framework specific boilerplate. Just simple, readable JavaScript.
 		Si se pasa un arreglo como constructor:
@@ -404,123 +509,3 @@ Investigacion/AngularJS/Advanced tips & tricks using AngularJS.pdf  (http://es.s
 		
 	1. PERFOMANCE - How do I prevent performance bottlenecks?	
 		....
-
-****************TUTORIALES - EJEMPLOS******************************************************************************
-
-**** TUTORIAL OFICIAL - angular-phonecat - https://docs.angularjs.org/tutorial
-->ejemplos/angular/angular-phonecat
-	Repo: https://github.com/angular/angular-phonecat
-	> Para aprender a...
-	- Create a dynamic application that works in all modern browsers
-	- Use data binding to wire up your data model to your views.
-	- Create and run unit tests, with Karma.
-	- Create and run end to end tests, with Protractor.
-	- Move application logic out of the template and into Controllers.
-	- Get data from a server using Angular services. - how to use dependency injection and services to make common web tasks, such as getting data into your app
-	- Apply animations to your application, using ngAnimate.	
-	> Pasos:
-	
-	
-
-* Ejemplos del sitio home oficial	https://angularjs.org/
-->ejemplos/angular/basics		>>> VER COMENTARIOS EXPLICATIVOS EN EL CÓDIGO
-	** The Basics: Hello World	> Video: http://youtu.be/uFTFsKmkQnQ  (compara JQuery vs Angular)
-		->helloworld.html
-	** Add Some Control: ToDo	> Video: http://youtu.be/WuiHuZq_cg4
-		->todo.html
-			- Data binding, controller 
-	** Wire up a Backend	
-		->projects.html
-			- Backend (con Firebase), routing - deep linking, services, form validation
-	** Create Components
-		->localization-pluralization.html
-			- Directivas: etiquetas personalizadas (reusable components). Localizacion y pluralizacion (idiomas). 
-				Definicion de directivas, y controlador en dos modulos distintos
-				
-* Ejemplos guía oficial	- Conversión de monedas	https://docs.angularjs.org/guide	
-->ejemplos/angular/basics/guide		
-	** Data-binding basico 	https://docs.angularjs.org/guide/concepts#a-first-example-data-binding
-		->data-binding-basic.html
-	** Adding UI logic: Controllers	https://docs.angularjs.org/guide/concepts#adding-ui-logic-controllers
-		->controller.html
-			- Controlador contiene toda la lógica
-	** View independent business logic: Services	https://docs.angularjs.org/guide/concepts#view-independent-business-logic-services
-		->services.html
-			- Conversión de monedas en un servicio - Dependency injection
-	** Accessing the backend	https://docs.angularjs.org/guide/concepts#accessing-the-backend	
-		->backend.html	
-			- Servicio de conversión de monedas: usa API de Yahoo
-			
-*** Angularjs – A Hands On tutorial			<================
-	Blog: http://thejackalofjavascript.com/angularjs-hands-on-tutorial/
-	Repo: https://github.com/arvindr21/ngMovieStub
-		Paso a paso: https://github.com/arvindr21/ngMovieStub/tree/master/tutorial-parts
-	Demo: http://moviestub.cloudno.de/
-
-*** ToDoMVC	http://todomvc.com/		<===================
-	* AngularJS • TodoMVC
-	-> ejemplos/angular/todomvc/angularjs
-		Demo: http://todomvc.com/examples/angularjs
-		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs
-		
-	* AngularJS Performance Optimized • TodoMVC
-	-> ejemplos/angular/todomvc/angularjs-perf
-		Demo: http://todomvc.com/examples/angularjs-perf/#/
-		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs-perf
-			"The normal AngularJS TodoMVC implementation performs deep watching of the todos array object. This means that it keeps an in-memory copy of the complete array that is used for dirty checking in order to detect model mutations. 
-			For smaller applications such as TodoMVC, this is completely fine as one trades off a little memory and performance for the sake of simplicity.
-			In larger more complex applications however, where one might be working with 100s or 1000s of large objects one definitely should avoid using this approach. 
-			This implementation of the AngularJS app demonstrates the correct way to approach this problem when working in larger apps."
-	
-	* AngularJS & RequireJS • TodoMVC
-	-> ejemplos/angular/todomvc/angularjs_require
-		Demo: http://todomvc.com/examples/angularjs_require
-		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs_require
-		
-	* Firebase & AngularJS Realtime	• TodoMVC
-	-> ejemplos/angular/todomvc/firebase-angular
-		Demo: http://todomvc.com/examples/firebase-angular
-		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/firebase-angular
-		
-*** AngularJS CRUD application demo				<================ VER  
-	Repo: https://github.com/angular-app/angular-app	
-	> Stack
-		- Persistence store: MongoDB hosted on MongoLab
-		- Backend: Node.js
-		- Awesome AngularJS on the client
-		- CSS based on Twitter's bootstrap
-	> Build
-		- powered by Grunt.js
-		- test written using Jasmine syntax
-		- test are executed by Karma Test Runner (integrated with the Grunt.js build)
-		- build supporting JS, CSS and AngularJS templates minification
-		- Twitter's bootstrap with LESS templates processing integrated into the build
-		- Travis-CI integration
-		
-	
-=> Tutoriales varios: http://angular.org.il/tutorials/	
-	
-* Tutorial de AngularJS. Ejemplo de aplicación web conectada a una API REST con Node
-	Blog: http://carlosazaustre.es/blog/tutorial-ejemplo-de-aplicacion-web-con-angular-js-y-api-rest-con-node/
-	
-* Wine Cellar  (versión vieja Angular)
-	Blog: http://coenraets.org/blog/2012/02/sample-application-with-angular-js/
-	Repo: https://github.com/ccoenraets/angular-cellar
-	Demo: http://coenraets.org/angular-cellar
-
-* Employee Directory 
-	* AngularJS: Sample Mobile Application with AngularJS
-		Blog: http://coenraets.org/blog/2013/11/sample-mobile-application-with-angularjs/
-		Repo: https://github.com/ccoenraets/angular-directory
-		Demo: http://coenraets.org/apps/angular-directory/	
-			- Topcoat
-
-	* IONIC + AngularJS: Sample Mobile Application with Ionic and AngularJS
-		Blog: http://coenraets.org/blog/2014/02/sample-mobile-application-with-ionic-and-angularjs/
-		Repo: https://github.com/ccoenraets/directory-angular-ionic
-		Demo: http://coenraets.org/apps/directory-angular-ionic/#/employees
-		
-
-* End to End Testing with Protractor
-	Blog: http://thejackalofjavascript.com/end-to-end-testing-with-protractor
-		Con explicaciones de testing		

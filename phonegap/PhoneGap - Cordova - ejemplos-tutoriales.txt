@@ -1,0 +1,121 @@
+PHONEGAP - APACHE CORDOVA
+***********************************************************************************************************************************
+==> TUTORIALES - Ejemplos
+
+* Workshop - Cordova (aka PhoneGap) 3.x Tutorial			<========== 
+	Apache Cordova Tutorial - Fast Track to Mobile Application Development
+=>EMPLOYEE DIRECTORY
+->ejemplos/phonegap/employee-directory/workshop-employees			OK - TEST CELU (versión anterior)
+	http://coenraets.org/blog/cordova-phonegap-3-tutorial/
+	http://ccoenraets.github.io/cordova-tutorial/		<-- REHACER!
+	Repo: https://github.com/ccoenraets/cordova-tutorial/
+	"In this tutorial, you will learn strategies and best practices to build native-like mobile applications with HTML, JavaScript, and CSS. 
+	You will build an Apache Cordova (aka PhoneGap) Employee Directory application from scratch using the Single Page Architecture, HTML templates, touch events, and performance optimization techniques."
+	- What you will learn:
+		> How to use different local data storage strategies.
+		> How to use several Cordova APIs such as Geolocation, Contacts, and Camera.
+		> How to handle specific mobile problems such as touch events, scrolling, styling, page transitions, etc.
+		> How to build an application using a single-page architecture and HTML templates.
+		> How to build (compile and package) an application locally using the Cordova CLI (Command Line Interface).
+		> How to build (compile and package) an application for 6 platforms using PhoneGap Build. (http://coenraets.org/blog/phonegap-tutorial/)
+	0. Plugins: device, console
+	1. Data adapter: opciones de persistencia de datos  [PASO A PASO: www03]
+		- app.js: función inmediata (autoejecutable)
+		- jQuery deferred - callbacks. Filters de arrays
+		- Metodo initialize para "crear" el adapter de modo asincrónico
+		- Alternativas:
+		* MemoryAdapter (in memory-adapter.js): datos guardados en el mismo js
+		* JSONPAdapter (in jsonp-adapter.js): datos via AJAX a API http://coenraets.org/directory/api/employees
+		* LocalStorageAdapter (in localstorage-adapter.js): guarda y obtiene datos de window.localStorage. [ELEGIDO]
+		* WebSqlAdapter (in websql-adapter.js): crea tabla webSQL "EmployeeDemoDB, obtiene datos de ahí con consulta SQL
+	2. Native Notification [PASO A PASO: www05]
+		- Para que el alert no sea el default de javascript, si no el de androi
+		Plugin: dialogs
+		- navigator.notification.alert
+	3. FastClick [PASO A PASO: www06]
+		- Evitar delay 300ms al hacer click
+	4. Single Page Application [PASO a PASO: www07]
+		- Metodo renderHomeView() en función inmediata de app.js
+	5. HTML template: Handlebars  [PASO A PASO: www08]
+		- handlebars.js. En app.js: Handlebars.compile(...), 
+		- css: topcoat-mobile-light (HTML con clases de topcoat)
+		- Styles.css propio  
+	6. Crear una Vista (HomeView Class) [PASO A PASO: www09]
+		- HomeView: métodos initialize, render, findByName
+		- En initialize de la función inmediata crea la homeView y pasa el adapter y los templates a la homeView
+	7. Scrolling nativo [PASO A PASO: www10]	
+		- Scrollear lista, no header: css
+		- En android tendría que usar iScroller para "scroller nativo"
+	8. View Routing [PASO A PASO: www11]
+		- Template de detalles de empleado en index.html
+			* Links con tel:  sms:  mailto:
+		- Vista de detalles de cada empleado: EmployeeView.js. Métodos initalize, render
+		- Más de una vista (Home - Details): mecanismo ruteo con el hash tag
+			* Event listener en app.js: hashchange
+			* Función local en app.js: route(). Se la llama al inicializar, o cada vez que cambia el hash (cada empleado tiene link)
+			* Expresión regular para hash - match
+	9. API Location  [PASO A PASO: www12]
+		plugin: geolocation
+		- función addLocation en EmployeeView usando navigator.geolocation.getCurrentPosition
+	10. API Contactos [PASO A PASO: www13]
+		plugin: contacts
+		- agregar empleado a contactos del celu: funcion addToContacts en EmployeeView usando contact = navigator.contacts.create() y contact.save()
+	11. API Camara [PASO A PASO: www14]
+		plugin: camara
+		- cambiar foto del empleado (no se guarda datos): funcion changePicture en EmployeeView usando navigator.camera.getPicture (con callbacks success, error.. y opciones)
+	12. Sliding Pages with CSS Transitions [PASO A PASO: www15]
+		- lib pageslider.js, pageslider.css
+		- en app.js reemplazo los $('body').html(...), por slider.slidePage(...)
+	
+	Versión más vieja: http://coenraets.org/blog/phonegap-tutorial/		
+	
+	
+	
+* Tutorial: Create Your First Mobile App with PhoneGap Build - API GitHub - jQueryMobile
+->ejemplos/phonegap/brinaldi-phonegap-tutorial		
+	1. Setup http://modernweb.com/2013/03/29/phonegap-build-part1/
+	2. Using PhoneGap Build http://modernweb.com/2013/03/29/phonegap-build-part2/
+	3. Connecting to an API http://modernweb.com/2013/03/29/create-your-first-mobile-app-part3/
+	4. Adding jQueryMobile http://modernweb.com/2013/04/08/phonegap-build-part4/
+	5. Adding Pages with jQuery Mobile http://modernweb.com/2013/04/15/phonegap-build-step-5/
+	6. Using the Storage API http://modernweb.com/2013/04/22/phonegap-build-step-6/
+	7. Using the Notification API http://modernweb.com/2013/04/29/phonegap-build-step-7/
+		
+* Tutorial: Movies List con JQueryMobile		
+-> ejemplos/phonegap/tutorial-movies-jquerymobile		OK - TEST CELU
+	http://www.gajotres.net/building-a-native-mobile-app-with-phonegap-and-jquery-mobile-1-4/	
+	http://jsfiddle.net/Gajotres/8uac7/
+	- jQuery Mobile 1.4
+	- external JSON source: themoviedb database (AJAX)
+	- iScroll
+	- En css: -webkit-transform: translate3d(0, 0, 0); (mejora scroll)
+	
+* Tutorial: FasTip (cálculo de porcentaje guardado)
+-> ejemplos/phonegap/fastip		OK - TEST CELU - LENTO
+	http://www.smashingmagazine.com/2014/02/11/four-ways-to-build-a-mobile-app-part3-phonegap/
+	(tutorial con Android nativo, iOS nativo, PhoneGap, Appcelerator) 
+	- jQueryMobile
+	- localStorage
+	- window.history
+	- plugin StatusBar (para iOS especialmente)
+	- le puse fastclick
+	- medio lento??
+		
+* Template: jQueryMobile - FlatUI
+-> ejemplos/phonegap/template-jquerymobile-flatui		OK - TEST CELU
+	http://davidrs.com/wp/how-to-setup-a-phonegap-3-4-app-in-5-min/
+	https://github.com/davidrs/phonegap-template
+	- jQueryMobile
+	- UI: Flat UI https://github.com/ququplay/jquery-mobile-flat-ui-theme
+	- FastClick to remove 300ms delay on clicks.
+
+* TestPhoneGapPlugins
+-> android/workspace/TestPhoneGapPlugin		OK - TEST CELU (versión vieja de cordova)
+	(Proyecto Eclipse)
+	- App android, con cordova 1.9
+	- JQueryMobile
+	- Test de varios plugins (funcionalidades nativas)	
+	
+* PhoneGap 3 – Contacts API Tutorial
+	Blog: http://thejackalofjavascript.com/phonegap-3-contacts-api-tutorial/
+	
