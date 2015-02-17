@@ -32,7 +32,7 @@ EJEMPLOS Y TUTORIALES
 -> Del sitio oficial.... https://angularjs.org/
 
 	* Why AngularJS?
-		HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications. 
+ ==>	HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications.  <====
 		AngularJS lets you extend HTML vocabulary for your application. 
 		The resulting environment is extraordinarily expressive, readable, and quick to develop.
 	* Alternatives	
@@ -119,9 +119,9 @@ EJEMPLOS Y TUTORIALES
 			AngularJS templating uses a combination of customizable HTML tags and expressions. Backbone.js ships with underscore.js's utility function template() and also integrates with different templating engines such as Mustache.
 		
 --> GUÍA OFICIAL		
-	** ¿Qué es Angular?	https://docs.angularjs.org/guide/introduction		<=== VER
-		AngularJS is a structural framework for dynamic web apps. It lets you use HTML as your template language and lets you extend HTML's syntax to express your application's components clearly and succinctly. 
-		ngular's data binding and dependency injection eliminate much of the code you would otherwise have to write. 
+ 	** ¿Qué es Angular?	https://docs.angularjs.org/guide/introduction		<=== VER
+ ==>>	AngularJS is a structural framework for dynamic web apps. It lets you use HTML as your template language and lets you extend HTML's syntax to express your application's components clearly and succinctly.   <=======
+		Angular's data binding and dependency injection eliminate much of the code you would otherwise have to write. 
 		And it all happens within the browser, making it an ideal partner with any server technology.
 		Angular attempts to minimize the impedance mismatch between document centric HTML and what an application needs by creating new HTML constructs. Angular teaches the browser new syntax through a construct we call directives. 
 	
@@ -189,9 +189,11 @@ Kinds of new markup...
 			access variables and functions from the scope
 		> FILTER - https://docs.angularjs.org/guide/filter
 			formats the value of an expression for display to the user 
+			https://docs.angularjs.org/api/ng/filter/filter
 			
 	> FORMS - https://docs.angularjs.org/guide/forms
 		Controls (input, select, textarea) are ways for a user to enter data. A Form is a collection of controls for the purpose of grouping related controls together.
+		Validacion
 		
 > COMPILER - https://docs.angularjs.org/guide/compiler
 	parses the template and instantiates directives and expressions
@@ -226,6 +228,8 @@ Kinds of new markup...
 	
 > DATA BINDING - https://docs.angularjs.org/guide/databinding
 	sync data between the model and the view - the DOM will be automatically updated whenever the model changes (variables or result of functions)
+	Cuando el modelo correspondiente al scope de determinada vista cambia, se actualiza el DOM, sin necesidad de escribir código de manipulación de DOM.
+	Ese binding se hace mediante directivas en el HTML, que a su vez pueden usar un controlador que manipula el scope de la vista
 
 > CONTROLLER - https://docs.angularjs.org/guide/controller 
 	the business logic behind views - The purpose of controllers is to expose variables and functionality to expressions and directives.
@@ -245,16 +249,44 @@ Kinds of new markup...
 		- Manage the life-cycle of other components (for example, to create service instances).
 		
 > DEPENDENCY INJECTION (DI) - https://docs.angularjs.org/guide/di
+		
 	Creates and wires objects and functions - Dependency Injection (DI) is a software design pattern that deals with how components get hold of their dependencies.
 	Everything within Angular (directives, filters, controllers, services, ...) is created and wired using dependency injection.
 	The Angular injector subsystem is in charge of creating components, resolving their dependencies, and providing them to other components as requested.
-
+	
+	Provider, Injector... VER: https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
+	
+	Para usar un servicio en un controller, se puede hacer de las siguientes maneras:
+		- Inline Array Annotation (preferido)
+			someModule.controller('MyController', ['$scope', '$http', 'otro', function($scope, $http, otro) { // .... }]);
+		- $inject Property Annotation:
+			var MyController = function($scope, $http, otro) {  // ... }
+			MyController.$inject = ['$scope', '$http', 'otro'];
+			someModule.controller('MyController', MyController);
+		- Implicit Annotation:	--> Al minificar, se renombran las variables, causa error
+			someModule.controller('MyController', function($scope, $http, otro) {  // ... });
+			
+	Angular's dependency injector provides services to your controller when the controller is being constructed.
+	The dependency injector also takes care of creating any transitive dependencies the service may have (services often depend upon other services).
+	
+	Angular modules solve the problem of removing global state from the application and provide a way of configuring the injector. 
+	As opposed to AMD or require.js modules, Angular modules don't try to solve the problem of script load ordering or lazy script fetching. 
+	These goals are totally independent and both module systems can live side by side and fulfill their goals.
+	
 > INJECTOR
 	dependency injection container
+	
+	When the application bootstraps, Angular creates an injector that will be used to find and inject all of the services that are required by your app
+	The injector only carries out the following steps :
+		-load the module definition(s) that you specify in your app
+		-register all Providers defined in these module definitions
+		-when asked to do so, inject a specified function and any necessary dependencies (services) that it lazily instantiates via their Providers.
 
 > MODULE - https://docs.angularjs.org/guide/module
 	a container for the different parts of an app including controllers, services, filters, directives which configures the Injector
 
+http://blog.koalite.com/2013/05/angularjs-servicios-inyeccion-de-dependencias-y-modulos/	
+	
 > SERVICES - https://docs.angularjs.org/guide/services
 	reusable business logic independent of views - When the application grows it is a good practice to move view independent logic from the controller into a so called "service"
 	Angular services are substitutable objects that are wired together using dependency injection (DI).
@@ -266,12 +298,34 @@ Kinds of new markup...
 	--> there are multiple ways to define their factory
 	
 	Ejemplo de services:	http://mean-workshop.herokuapp.com/resources/day4/presentation/#/78
+	Los servicios provistos por Angular empiezan con $.
+	
 	
 ¿Cuándo usar Controllers, Services or Directives?	
 	http://kirkbushell.me/when-to-use-directives-controllers-or-services-in-angular/	
 	
-> ROUTERS:
+> ROUTING:
 	http://mean-workshop.herokuapp.com/resources/day4/presentation/#/71
+	
+	Módulo ngRoute  (angular-route.js)
+		var myApp = angular.module('myApp', ['ngRoute','myController']);
+		myApp.config(phonecatApp.config(['$routeProvider',
+			function($routeProvider) {
+				$routeProvider.
+					when(url, {
+						templateUrl: 'partials/miTemplate.html',
+						controller: 'miCtrl'
+					  }).
+					  when('otroUrl', {
+						templateUrl: 'partials/otroTemplate.html',
+						controller: 'otroCtrl'
+					  }).
+					  otherwise({
+						redirectTo: 'url'
+					  });
+				 }]);
+	
+	
 	
 > PROVIDERS - RECIPES:	https://docs.angularjs.org/guide/providers
 
@@ -282,7 +336,31 @@ Kinds of new markup...
 	The Provider recipe is the core recipe type and all the other ones are just syntactic sugar on it.
 	Provider is the most complex recipe type. You don't need it unless you are building a reusable piece of code that needs global configuration.	
 	All special purpose objects except for the Controller are defined via Factory recipes.	
-
+	
+	VER: https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
+	
+	Providers are objects that provide (create) instances of services and expose configuration APIs that can be used to control the creation and runtime behavior of a service.
+		In case of the $route service, the $routeProvider exposes APIs that allow you to define routes for your application.
+		Providers can only be injected into config functions. Thus you could not inject $routeProvider into controller.
+		
+> ANIMATIONS	https://docs.angularjs.org/guide/animations		
+		
+** TESTING
+	> Unit testing https://docs.angularjs.org/guide/unit-testing
+		Para testear funcionamiento unitario de controladores, filtros y directivas 
+		Herramientas:
+			Jasmine: sintaxis (test driven development framework, provides functions to help with structuring your tests and also making assertions)
+			Karma: ejecucion de los tests (javascript CLI, carga la aplicacion en un browser y ejecuta los tests unitarios)
+	
+	>  End to end testing	https://docs.angularjs.org/guide/e2e-testing
+		Simula la interaccion del usuario con la aplicación. Controla el browser realizando las acciones escritas en el test
+		Herramientas:
+			Jasmine: sintaxis
+			Protractor: ejecucion de los tests
+		
+	VER ABAJO SECCIÓN *** TESTING ******		
+			
+	
 ** SEGURIDAD: https://docs.angularjs.org/guide/security	
 
 ** PRODUCCION: https://docs.angularjs.org/guide/production
@@ -348,11 +426,11 @@ Kinds of new markup...
 ====> CONTRAS DE ANGULARJS  	https://medium.com/@mnemon1ck/why-you-should-not-use-angularjs-1df5ddf6fc99	<====================
 		(Ver links al final)
 
-==> Pensar en AngularJS teniendo un background de JQuery 	<=====
+==> Pensar en AngularJS teniendo un background de JQuery 	<=====	VER
 		http://stackoverflow.com/questions/14994391/thinking-in-angularjs-if-i-have-a-jquery-background
 	
--> Tips, good practices...
-	http://leftshift.io/8-tips-for-angular-js-beginners/
+-> Tips, good practices...										
+	http://leftshift.io/8-tips-for-angular-js-beginners/		<================== VER	
 	http://pabloleone.com/2014/05/angularjs-good-practices/
 ==> Top 10 mistakes https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make 	<===================================== VER	
 	
@@ -390,7 +468,12 @@ DIRECTIVAS (etiquetas HTML):
 	=> ng-view
 		We’re marking this <element> as the place we’ll load partial pages or “views”. The surrounding page will stay static while we load changing UI into this section.	
 		(The base directive responsible for handling routes that resolve JSON before rendering templates driven by specified controllers.)
-
+		
+		Usado con servicio $route (debe tener instalado el modulo angular-route): The role of the ngView directive is to include the view template for the current route into the layout template
+		ngView is a directive that complements the $route service by including the rendered template of the current route into the main layout (index.html) file.
+		Every time the current route changes, the included view changes with it according to the configuration of the $route service.
+		
+		
 	=> ng-include	<div ng-include="'partials/header.html'"></div>
 		Incluye pedazos de html
 		
@@ -408,14 +491,20 @@ DIRECTIVAS (etiquetas HTML):
 	=> ng-submit="funcion()"
 		Intercepts form submission and instead calls funcion(). 
 		
-	-> ng-class:"{clas: condition1 && condition2}"
+	-> ng-class:"{clase: condition1 && condition2}"
 		Agrega al elemento la clase class cuando se cumple la condicion
+		
 	-> ng-show:"condition1 && condition2"
 		Muestra <element> cuando se cumple una condicion. (por ej, las variables condition1 y condition2 son true)
 	-> ng-disabled:"condition"
 		Disable <element> cuando se cumple una condicion (por ej, la variable condition es true)	
-		
-VARIABLES JAVASCRIPT (BUILT-IN SERVICES)
+	
+	-> ng-bind o ng-bind-template:  para usar <element ng-bind-template="{{ expression }}">...</element>
+									en lugar de poner directamente  {{ expression }}
+			(para que no se vea antes de que se carge Angular)
+	-> ng-src para usar {{expression}} en atributo src:  <img ng-src={{expression}} >  ( con src no funciona antes de que se ejecute angular)		
+	
+BUILT-IN SERVICES  (variables en Javascript)
 	
 	=> $scope
 		contains your model data (y funciones). It is the glue between the controller and the view. The $scope is just one of the services that can be injected into the controller.
@@ -438,6 +527,15 @@ VARIABLES JAVASCRIPT (BUILT-IN SERVICES)
 	-> $locale
 		The $locale service contains meta-data for the current locale	
 	
+	=> $resource 
+		The $resource service makes it easy to create a RESTful client with just a few lines of code. 
+			This client can then be used in our application, instead of the lower-level $http service.
+		Cuando se invoca una accion a $resource, y no se ejecuta callback, si no que se iguala directamente a una variable, no es que se ejecute sincronicamente	
+		What is returned synchronously is a "future" — an object, which will be filled with data when the XHR response returns. 
+	-->	Because of the data-binding in Angular, we can use this future and bind it to our template. Then, when the data arrives, the view will automatically update.	
+		VER: https://docs.angularjs.org/api/ngResource/service/$resource
+	
+	
 FUNCIONES		
 		
 	=> angular.module('modulo', ...)
@@ -450,6 +548,7 @@ FUNCIONES
 		Register a service constructor, which will be invoked with new to create the service instance
 		
 	=> factory: angular.module(...).factory(name, $getFn) 
+			POR EJ:	phonecatServices.factory('Phone', ['$resource',  function($resource){ return $resource(url, {}, { ... } }); }]);
 		Register a service factory, which will be called to return the service instance. 
 		
 		http://stackoverflow.com/questions/14324451/angular-service-vs-angular-factory	
@@ -467,6 +566,8 @@ FUNCIONES
 		
 	=> directive: angular.module(...).('name',function(...){ }	)
 		Define new HTML vocabulary for our components	(Register a new directive with the compiler)
+		
+	=> filter: angular.module(...).('filterName',function(){} )	
 	
 		
 ***************** TIPS & TRICKS ***********************************************************************
@@ -509,3 +610,47 @@ Investigacion/AngularJS/Advanced tips & tricks using AngularJS.pdf  (http://es.s
 		
 	1. PERFOMANCE - How do I prevent performance bottlenecks?	
 		....
+
+*******************  DEBUGGING  ********************************
+
+Extension de Chrome: Batarang  https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk?hl=en
+			https://github.com/angular/angularjs-batarang
+		
+*******************  TESTING ******************************************************************************
+
+UNIT TESTS: 
+	https://docs.angularjs.org/guide/unit-testing	<== VER
+	Escribir tests con sintaxis Jasmine. Ejecutar con Karma (abre una instancia del Chrome.. resultados en consola)			
+	Unit tests are perfect for testing controllers and other components of our application written in JavaScript
+	
+	Por ejemplo:
+	/* jasmine specs for controllers go here */
+	describe('PhoneCat controllers', function() {			//Suite: agrupa suites de todos los controladores
+		describe('PhoneListCtrl', function(){		//Nested suite: de un controlador en particular
+			beforeEach(module('phonecatApp'));	//Declaro modulo a usar así está disponible en los specs
+
+			it('should create "phones" model with 3 phones', inject(function($controller) {	//Spec: test unitario de una funcion del controlador
+																							inject: https://docs.angularjs.org/api/ngMock/function/angular.mock.inject
+				var scope = {},		
+				ctrl = $controller('PhoneListCtrl', {$scope:scope});	//el scope se va a modificar como en la app
+				expect(scope.phones.length).toBe(3);	//Asercion
+			}));
+		});
+	});
+	
+	
+	$httpBackend.expectGET(url).respond(data) : hace un get falso al url (para no tener dependencia con el server al hacer test) que responde data
+	$httpBackend.flush para retornar la respuesta del expectGET
+	Por ej: en beforeEach
+		$httpBackend.expectGET('phones/phones.json').
+        respond([{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
+	Luego, en un spec:
+		$httpBackend.flush();
+		expect(model_modificado_por_el_get).toEqual(data);
+	
+	
+END TO END TEST	 - Protractor http://angular.github.io/protractor/#/
+	http://docs.angularjs.org/guide/dev_guide.e2e-testing
+	Protractor is an end-to-end test framework for AngularJS applications. 
+	Protractor runs tests against your application running in a real browser, interacting with it as a user would.
+	

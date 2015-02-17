@@ -35,14 +35,14 @@ http://backbonetutorials.com/
 
 -> ToDoMVC	http://todomvc.com/		<=================================================
 	** Backbone.js • TodoMVC
-	->ejemplos/backbone/todomvc/backbone			OK
+	->ejemplos/backbone/todomvc/backbone										OK
 		Demo: http://todomvc.com/examples/backbone/
 		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/backbone
 		Código comentado (versión anterior): http://documentcloud.github.io/backbone/docs/todos.html	
 			--> Buen manejo de eventos. Router. Modularizado. Ejemplo a seguir
 		
 	** Backbone.js + RequireJS • TodoMVC						<==========
-	->ejemplos/backbone/todomvc/backbone_require			OK
+	->ejemplos/backbone/todomvc/backbone_require								OK
 		Demo: http://todomvc.com/examples/backbone_require/
 		Repo: https://github.com/tastejs/todomvc/tree/gh-pages/examples/backbone_require
 		http://arvindr21.github.io/Backbone-RequireTodoApp/Backbone-RequireTodoApp.html	
@@ -51,10 +51,10 @@ http://backbonetutorials.com/
 
 
 * Backbone.js for Absolute Beginners - Getting Started		
-	-> Hello World (todo en 1 html): ejemplos/backbone/hello-world.html		OK
+	-> Hello World (todo en 1 html): ejemplos/backbone/hello-world.html			OK
 		-Part 1: Intro	
 			Blog: http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/
-	-> Todo App (todo en 1 html): ejemplos/backbone/todo-app.html			OK
+	-> Todo App (todo en 1 html): ejemplos/backbone/todo-app.html				OK
 		-Part 2: Models, Collections and Views. Events. LocalStorage. Create & Read item list
 			Blog: http://adrianmejia.com/blog/2012/09/13/backbone-js-for-absolute-beginners-getting-started-part-2/
 		-Part 3: CRUD (Create-Read-Update-Delete) for the item list.
@@ -69,7 +69,7 @@ http://backbonetutorials.com/
 	Repo: https://github.com/picodotdev/elblogdepicodev/tree/master/BackboneREST
 			
 * Single Page ToDo Application With Backbone.js		
--> ejemplos/backbone/single-page-todo-application		OK
+-> ejemplos/backbone/single-page-todo-application								OK
 	Tutorial: http://code.tutsplus.com/tutorials/single-page-todo-application-with-backbonejs--cms-21417}
 	Repo: https://github.com/tutsplus/single-page-todo-backbone
 	(No me gusta cómo está diseñada)
@@ -78,7 +78,7 @@ http://backbonetutorials.com/
 		--> Le agregué localStorage
 			
 * Backbone.js Wine Cellar Tutorial: RESTful API, CRUD, Deep Linking and Application States (Router)
--> ejemplos/backbone/wine-cellar-tutorial/tutorial		OK
+-> ejemplos/backbone/wine-cellar-tutorial/tutorial								OK
 	Repo: https://github.com/ccoenraets/backbone-cellar/tree/master/tutorial
 	TUTORIAL BACKBONE...
 	Blog: http://coenraets.org/blog/2011/12/backbone-js-wine-cellar-tutorial-part-1-getting-started/
@@ -96,7 +96,7 @@ http://backbonetutorials.com/
 			- Api online, no funciona
 	
 	** Con Bootstrap: Single-Page CRUD Application with Backbone.js and Twitter Bootstrap 		
-	-> ejemplos/backbone/wine-cellar-tutorial/bootstrap		OK
+	-> ejemplos/backbone/wine-cellar-tutorial/bootstrap							OK
 		Blog: http://coenraets.org/blog/2012/05/single-page-crud-application-with-backbone-js-and-twitter-bootstrap/
 		Demo: http://coenraets.org/backbone-cellar/bootstrap/
 			- Persistencia:
@@ -116,13 +116,13 @@ http://backbonetutorials.com/
 			>  In a real-life application, you should consider implementing a namespacing scheme to keep the global namespace clean, and other optimization techniques such as view and/or data caching.
 			
 
-* EMPLOYEE DIRECTORY: Implementaciones con Backbone.js		<================================
+*** EMPLOYEE DIRECTORY: Implementaciones con Backbone.js		<================================
 	(API REST (JSON y JSONP):																																	)
 	(	- PHP (Slim Framework) - https://github.com/ccoenraets/directory-rest-php						->employee-directory/backbone-viejo/api-rest-php		)
 	(	- NodeJS (Express Framework / MongoDB) - https://github.com/ccoenraets/directory-rest-nodejs	->employee-directory/backbone-viejo/api-rest-nodejs 	)
 	
 	** Backbone + Bootstrap: Sample App with Backbone.js and Twitter Bootstrap (Viejo)
-	->ejemplos/backbone/employee-directory/backbone-viejo/web		OK
+	->ejemplos/backbone/employee-directory/backbone-viejo/web					OK
 		Blog: http://coenraets.org/blog/2012/02/sample-app-with-backbone-js-and-twitter-bootstrap/
 		Repo: https://github.com/ccoenraets/backbone-directory
 		Demo: http://coenraets.org/backbone/directory/twitterbootstrap/
@@ -132,7 +132,7 @@ http://backbonetutorials.com/
 			- API REST: PHP Slim Framework   ->employee-directory/backbone-viejo/api
 	
 	** Backbone + Bootstrap: Sample Application with Backbone.js and Twitter Bootstrap: Updated and Improved
-	->ejemplos/backbone/employee-directory/backbone-bootstrap		OK
+	->ejemplos/backbone/employee-directory/backbone-bootstrap					OK
 		Blog: http://coenraets.org/blog/2013/04/sample-application-with-backbone-js-and-twitter-bootstrap-updated-and-improved/
 		Repo: https://github.com/ccoenraets/directory-backbone-bootstrap
 		Demo: http://coenraets.org/directory/
@@ -146,7 +146,7 @@ http://backbonetutorials.com/
 				- model-parse-dot-com.js (Don’t want to host your own data infrastructure? Parse.com is a cloud service that will host your data for you. Use this adapter to test your app with sample data I deployed on Parse.com)
 
 	** Backbone + RequireJS + Bootstrap: Building Modular Web Applications with Backbone.js and RequireJS — Sample App
-	->ejemplos/backbone/employee-directory/backbone-bootstrap-requirejs		OK
+	->ejemplos/backbone/employee-directory/backbone-bootstrap-requirejs			OK
 		Blog: http://coenraets.org/blog/2013/06/building-modular-web-applications-with-backbone-js-and-requirejs-sample-app/
 		Repo: https://github.com/ccoenraets/directory-backbone-bootstrap-require
 		Demo: http://coenraets.org/apps/directory-backbone-bootstrap-require/	
@@ -159,7 +159,7 @@ http://backbonetutorials.com/
 				Elegir fácil entre data adapters: in-memory, json, jsonp
 			
 	** Backbone + Topcoat (versión móvil): Sample Mobile / PhoneGap Application with Backbone.js and Topcoat
-	->ejemplos/backbone/employee-directory/backbone-topcoat		OK - PROBADA EN CELU
+	->ejemplos/backbone/employee-directory/backbone-topcoat						OK - PROBADA EN CELU
 		Blog: http://coenraets.org/blog/2013/06/sample-mobile-phonegap-application-with-backbone-js-and-topcoat/
 		Repo: https://github.com/ccoenraets/directory-backbone-topcoat
 		Demo: http://coenraets.org/apps/directory/backbone/topcoat/
@@ -168,13 +168,13 @@ http://backbonetutorials.com/
 			- Data adapters: in-memory - localstorage
 		
 	** Backbone + RequireJS + Topcoat (versión móvil): Building Modular Mobile/PhoneGap Apps with Backbone.js, RequireJS & Topcoat — Sample App
-	->ejemplos/backbone/employee-directory/backbone-topcoat-require		OK - PROBADA EN CELU: Funciona bien. Problema: Se resalta en azul al tocar los links 
+	->ejemplos/backbone/employee-directory/backbone-topcoat-require				OK - PROBADA EN CELU: Funciona bien. Problema: Se resalta en azul al tocar los links 
 		Blog: http://coenraets.org/blog/2013/06/building-modular-mobile-phonegap-apps-with-backbone-js-requirejs-and-topcoat/
 		Repo: https://github.com/ccoenraets/directory-backbone-topcoat-require
 		Demo: http://coenraets.org/apps/directory-backbone-topcoat-require/
 
 	** Backbone + Ratchet (versión móvil - ios - android): Employee Directory Sample Application with Ratchet 2.0	
-	->ejemplos/backbone/employee-directory/backbone-ratchet		OK - PROBADA EN CELU (index-android, con localstorage): JOYA! (error al ocultar teclado)
+	->ejemplos/backbone/employee-directory/backbone-ratchet						OK - PROBADA EN CELU (index-android, con localstorage): JOYA! (error al ocultar teclado)
 		Blog: http://coenraets.org/blog/2013/06/sample-mobile-phonegap-application-with-backbone-js-and-ratchet/ (viejo)
 			  http://coenraets.org/blog/2014/02/employee-directory-sample-application-with-ratchet-2-0/
 		Repo: https://github.com/ccoenraets/directory-backbone-ratchet
@@ -185,7 +185,7 @@ http://backbonetutorials.com/
 			- MAP VIEW: OpenStreetMap
 
 	** Autenticación: Backbone.js apps with Authentication Tutorial
-	->ejemplos/backbone/employee-directory/login-backbone-viejo			OK
+	->ejemplos/backbone/employee-directory/login-backbone-viejo					OK
 		Blog: http://clintberry.com/2012/backbone-js-apps-authentication-tutorial/
 		Repo: https://github.com/clintberry/backbone-directory-auth
 		* Server side authentication (JSON API en PHP): ->api-rest-php-login
@@ -197,7 +197,7 @@ http://backbonetutorials.com/
 			-$.ajaxSetup: para redireccionar los erroes 401 y 403
 			
 * Client-side authentication & session management via Backbone.js and Node.js
-->ejemplos/backbone/backbone-login   (Signup y login)				<-- VER!
+->ejemplos/backbone/backbone-login   (Signup y login)						<-- VER!
 	Blog: http://alexehrnschwender.com/2013/07/client-side-auth-session-mgmt-backbone-node/
 	Repo: https://github.com/alexanderscott/backbone-login
 	Demo: http://backbone-login.crunchdevelopment.com/
@@ -235,8 +235,8 @@ http://backbonetutorials.com/
 				En HeaderView: app.session.logout({});
 		Utils: cookies helpers, errors and alert handling
 		
-* Google Maps: Using GMap in RequireJS, with Backbone
-->ejemplos/backbone/googlemaps
+* Google Maps: Using GMap in RequireJS, with Backbone						<===========================  VER
+->ejemplos/backbone/googlemaps													OK
 	Blog: http://www.rockylhc.com/blog/2012/05/17/using-gmap-requirejs-backbone
 	Source: http://app.rockylhc.com/static/map-app/source.zip
 	Demo: http://app.rockylhc.com/projects/map-app/
