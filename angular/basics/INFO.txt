@@ -1,0 +1,14 @@
+** Ejemplos del sitio home oficial	https://angularjs.org/
+->ejemplos/angular/basics		>>> VER COMENTARIOS EXPLICATIVOS EN EL CÓDIGO						OK
+	** The Basics: Hello World	> Video: http://youtu.be/uFTFsKmkQnQ  (compara JQuery vs Angular)
+		->0-helloworld.html
+	** Add Some Control: ToDo	> Video: http://youtu.be/WuiHuZq_cg4
+		->1-todo.html
+			- Data binding, controller 
+	** Wire up a Backend				<---- VER
+		->2-projects.html
+			- Backend (con Firebase), routing - **deep linking**, **services**, **form validation**
+	** Create Components				<---- VER
+		->3-localization-pluralization.html
+			- Directivas: etiquetas personalizadas (reusable components). Localizacion y pluralizacion (idiomas). 
+				**CUSTOM DIRECTIVES**, y controlador en dos modulos distintos

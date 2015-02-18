@@ -1,0 +1,13 @@
+** Ejemplos guía oficial	- Conversión de monedas	https://docs.angularjs.org/guide	
+->ejemplos/angular/basics/guide																		OK
+	** Data-binding basico 	https://docs.angularjs.org/guide/concepts#a-first-example-data-binding
+		->0-data-binding-basic.html
+	** Adding UI logic: Controllers	https://docs.angularjs.org/guide/concepts#adding-ui-logic-controllers
+		->1-controller.html
+			- Controlador contiene toda la lógica
+	** View independent business logic: Services	https://docs.angularjs.org/guide/concepts#view-independent-business-logic-services
+		->2-services.html
+			- Conversión de monedas en un servicio - Dependency injection
+	** Accessing the backend	https://docs.angularjs.org/guide/concepts#accessing-the-backend	
+		->3-backend.html	
+			- Servicio de conversión de monedas: usa API de Yahoo

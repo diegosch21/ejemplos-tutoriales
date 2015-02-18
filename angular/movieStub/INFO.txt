@@ -1,0 +1,22 @@
+*** Angularjs – A Hands On tutorial	: MovieStub (Online Movie Ticket Booking) - CRUD (fetch & post data) -  Server side Express   <====================
+->ejemplos/angular/movieStub																		OK!!
+  --> En terminal: node index.js (Ejecuta servidor node + express para que funcione API REST)
+	  En Browser: http://localhost:2595/
+	Blog: http://thejackalofjavascript.com/angularjs-hands-on-tutorial/
+	Repo: https://github.com/arvindr21/ngMovieStub
+		Paso a paso: https://github.com/arvindr21/ngMovieStub/tree/master/tutorial-parts
+	Demo: http://moviestub.cloudno.de/
+
+		- Angularjs Boilerplate desde 0:
+			npm init / editar package.json / npm install express --save-dev 
+			bower init / editar bower.json / bower install angular --save-dev / bower install bootstrap --save-dev
+			Server en index.js: ejecutar con > node index.js
+		- Model bindings	- Repeaters, module, controller		- Filters: uppercase, orderBy, json, filter
+		- Scope functions	- Partial views (ngInclude)		- Routers (bower install angular-route --save-dev / agregar script en index, y ngRoute como dependencia del module)
+		- Services	(bower install angular-resource --save-dev / agregar script en index, y ngResource como dependencia del module): 
+			Crear mediante factory. Usa $resource para obtener data del server (Express): return $resource('/movies');	 Service.query()	
+		- Post data (book tickets) al server con $http. **Form validation**	(Ver bookTickets.html y bookTicketsController en app.js)  <==================================================
+			Agrega método post() en server Express. Se guarda en un arreglo los post que va recibiendo
+		- Fetch data (Show Booking Details) del server con otro service, usando $resource:  return $resource('/bookings');  Luego a ese service se le pide query()
+		- **$location**: usado para saber en qué parte de la app está y poner estado de activo en el header, y para redireccionar a otra seccion desde un controller
+	
