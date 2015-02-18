@@ -1,0 +1,7 @@
+Instalación de componentes:  
+	> npm install
+	> bower install
+
+Para que funcione la REST API que use la aplicación (GET lista pelis, POST para hacer bookings, ...)
+Ejecutar servidor NODE + EXPRESS
+	> node index.js

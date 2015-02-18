@@ -100,49 +100,59 @@ AngularJS
 						Método animation(.clase,function(){.. return{ }}): Se registra una .clase que seleccionen elementos sobbre los que se va a aplicar las animaciones.
 							Se definen dos callbacks (addClass y removeClass) que se ejecutará cada vez que se agregue o remueva una clase en el elemento
 						En el elemento: ng-class, que agrega clase cuando se cumple condicion	
-	
 
+			
+*** Angularjs – A Hands On tutorial	: MovieStub (Online Movie Ticket Booking) - CRUD (fetch & post data) -  Server side Express   <====================
+->ejemplos/angular/movieStub																		OK!!
+  --> En terminal: node index.js (Ejecuta servidor node + express para que funcione API REST)
+	  En Browser: http://localhost:2595/
+	Blog: http://thejackalofjavascript.com/angularjs-hands-on-tutorial/
+	Repo: https://github.com/arvindr21/ngMovieStub
+		Paso a paso: https://github.com/arvindr21/ngMovieStub/tree/master/tutorial-parts
+	Demo: http://moviestub.cloudno.de/
+
+		- Angularjs Boilerplate desde 0:
+			npm init / editar package.json / npm install express --save-dev 
+			bower init / editar bower.json / bower install angular --save-dev / bower install bootstrap --save-dev
+			Server en index.js: ejecutar con > node index.js
+		- Model bindings	- Repeaters, module, controller		- Filters: uppercase, orderBy, json, filter
+		- Scope functions	- Partial views (ngInclude)		- Routers (bower install angular-route --save-dev / agregar script en index, y ngRoute como dependencia del module)
+		- Services	(bower install angular-resource --save-dev / agregar script en index, y ngResource como dependencia del module): 
+			Crear mediante factory. Usa $resource para obtener data del server (Express): return $resource('/movies');	 Service.query()	
+		- Post data (book tickets) al server con $http. **Form validation**	(Ver bookTickets.html y bookTicketsController en app.js)  <==================================================
+			Agrega método post() en server Express. Se guarda en un arreglo los post que va recibiendo
+		- Fetch data (Show Booking Details) del server con otro service, usando $resource:  return $resource('/bookings');  Luego a ese service se le pide query()
+		- **$location**: usado para saber en qué parte de la app está y poner estado de activo en el header, y para redireccionar a otra seccion desde un controller
+	
 				
 ** Ejemplos del sitio home oficial	https://angularjs.org/
 ->ejemplos/angular/basics		>>> VER COMENTARIOS EXPLICATIVOS EN EL CÓDIGO						OK
 	** The Basics: Hello World	> Video: http://youtu.be/uFTFsKmkQnQ  (compara JQuery vs Angular)
-		->helloworld.html
+		->0-helloworld.html
 	** Add Some Control: ToDo	> Video: http://youtu.be/WuiHuZq_cg4
-		->todo.html
+		->1-todo.html
 			- Data binding, controller 
 	** Wire up a Backend				<---- VER
-		->projects.html
-			- Backend (con Firebase), routing - **deep linking, services, form validation**
+		->2-projects.html
+			- Backend (con Firebase), routing - **deep linking**, **services**, **form validation**
 	** Create Components				<---- VER
-		->localization-pluralization.html
+		->3-localization-pluralization.html
 			- Directivas: etiquetas personalizadas (reusable components). Localizacion y pluralizacion (idiomas). 
 				**CUSTOM DIRECTIVES**, y controlador en dos modulos distintos
 				
 ** Ejemplos guía oficial	- Conversión de monedas	https://docs.angularjs.org/guide	
 ->ejemplos/angular/basics/guide																		OK
 	** Data-binding basico 	https://docs.angularjs.org/guide/concepts#a-first-example-data-binding
-		->data-binding-basic.html
+		->0-data-binding-basic.html
 	** Adding UI logic: Controllers	https://docs.angularjs.org/guide/concepts#adding-ui-logic-controllers
-		->controller.html
+		->1-controller.html
 			- Controlador contiene toda la lógica
 	** View independent business logic: Services	https://docs.angularjs.org/guide/concepts#view-independent-business-logic-services
-		->services.html
+		->2-services.html
 			- Conversión de monedas en un servicio - Dependency injection
 	** Accessing the backend	https://docs.angularjs.org/guide/concepts#accessing-the-backend	
-		->backend.html	
+		->3-backend.html	
 			- Servicio de conversión de monedas: usa API de Yahoo
-			
-*** Angularjs – A Hands On tutorial	: MovieStub  (Online Movie Ticket Booking) -  Server side Express   <================
-->ejemplos/angular/movieStub
-	Blog: http://thejackalofjavascript.com/angularjs-hands-on-tutorial/
-	Repo: https://github.com/arvindr21/ngMovieStub
-		Paso a paso: https://github.com/arvindr21/ngMovieStub/tree/master/tutorial-parts
-	Demo: http://moviestub.cloudno.de/
-		- Angularjs Boilerplate desde 0.
-			Crear package.json / npm install express --save-dev 
-			bower init / editar bower.json / bower install angular --save-dev / bower install bootstrap --save-dev
-		
-	
 
 *** ToDoMVC	http://todomvc.com/		<===================
 	* AngularJS • TodoMVC
