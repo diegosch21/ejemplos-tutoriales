@@ -51,6 +51,7 @@ EJEMPLOS Y TUTORIALES -  Ver AngularJS - ejemplos-tutoriales.txt.
 		* Data Binding 	https://docs.angularjs.org/guide/databinding
 			Data-binding is an automatic way of updating the view whenever the model changes, as well as updating the model whenever the view changes. 
 			This is awesome because it eliminates DOM manipulation from the list of things you have to worry about	
+			"El data binding es una solución elegante para una de las tareas más complejas de construir cualquier aplicación web rica: mantener varios valores sincronizados entre el modelo y el DOM"
 		* Controller 
 			Controllers are the behavior behind the DOM elements.
 			AngularJS lets you express the behavior in a clean readable form without the usual boilerplate of updating the DOM, registering callbacks or watching model changes	
@@ -144,6 +145,13 @@ EJEMPLOS Y TUTORIALES -  Ver AngularJS - ejemplos-tutoriales.txt.
 		Games and GUI editors are examples of applications with intensive and tricky DOM manipulation. These kinds of apps are different from CRUD apps, and as a result are probably not a good fit for Angular. 
 		In these cases it may be better to use a library with a lower level of abstraction, such as jQuery.
 	
+		Traducc:
+   --->		"Angular simplifica el desarrollo de aplicaciones proporcionando un alto nivel de abstracción al desarrollador. Como cualquier abstracción, tiene un coste en cuanto a flexibilidad. 
+			En otras palabras no todas las aplicaciones encajan bien con Angular. Angular se creó con las aplicaciones CRUD en mente. Afortunadamente, las aplicaciones CRUD representan la gran mayoría. 
+			Pero para entender para qué es bueno Angular, también hay que entender cuando una aplicación no encaja bien con Angular.
+			Los juegos y los editores de GUI (Interfaz gráfica de Usuario) son ejemplos de aplicaciones con un uso intensivo, o incluso arriesgado, de manipulación del DOM. 
+			Estos tipos de aplicaciones son diferentes a las aplicaciones CRUD, y como resultado probablemente Angular no sea la mejor opción. En esos casos puede ser mejor utilizar una librería de más bajo nivel de abstracción como jQuery"
+		
 	** Las ideas de Angular	https://docs.angularjs.org/guide/introduction#the-zen-of-angular
 		- declarative code is better than imperative when it comes to building UIs and wiring software components together, while imperative code is excellent for expressing business logic
 		- decouple DOM manipulation from app logic (ayuda para testing)
@@ -162,18 +170,32 @@ EJEMPLOS Y TUTORIALES -  Ver AngularJS - ejemplos-tutoriales.txt.
 			* Writing tons of initialization code just to get started: 
 				With Angular you can bootstrap your app easily using services, which are auto-injected into your application in a Guice-like dependency-injection style
 
-********* CONCEPTUAL OVERVIEW - ESTRUCTURA	*****************************************************************************************************			
+===> En castellano	https://github.com/jacarma/ngpro/wiki/Tutorial-de-Angular.js
+	** Filosofía de Angular 
+		* HTML mejorado
+			HTML funciona bien cuando se utiliza para describir documentos estáticos, pero se queda corto cuando se utiliza para describir una aplicación web rica, simplemente no se ha diseñado para soportar eso. 
+			La mayoría de los frameworks de JavaScript abordan esta limitación o bien abstrayendo el código HTML o bien exigen una gran dosis de manipulación artesanal del DOM con código JavaScript. 
+			AngularJS tiene un enfoque diferente. En vez de ocultar HTML, abraza sus puntos fuertes y los extiende para que sean adecuados para la descripción de las vistas dinámicas. 
+			El resultado es un flujo de trabajo que debe resultar familiar para cualquier desarrollador web con un estilo de programación JavaScript que es sorprendentemente breve, claro y enfocado.
+		* Simple pero escalable
+			Otra característica distintiva de AngularJS es que es muy accesible para los recién llegados, sin embargo, ofrece características poderosas y sofisticadas para los desarrolladores con necesidades más complejas. 
+			Otros frameworks bien se centran en la simplicidad sin ofrecer mucha ayuda en la creación de aplicaciones complejas u ofrecen características avanzadas, pero requieren mucho código repetitivo incluso para las aplicaciones más simples.
+		
+********* CONCEPTUAL OVERVIEW - COMPONENTES - ESTRUCTURA	*****************************************************************************************************			
 
-https://docs.angularjs.org/guide/concepts		<=== VER		
-VER Investigacion/AngularJS/Concepts-estructura.png
-http://mean-workshop.herokuapp.com/resources/day4/presentation/#/
+==> https://docs.angularjs.org/guide/concepts		<=== VER		
+=> VER Investigacion/AngularJS/Concepts-estructura.png
+
+--> http://mean-workshop.herokuapp.com/resources/day4/presentation/#/
+==> https://github.com/jacarma/ngpro/wiki/Tutorial-de-Angular.js		<== EN CASTELLANO
+-> Links conceptos generales	https://github.com/jmcunningham/AngularJS-Learning/blob/master/ES-ES.md
 
 >> TEMPLATES - https://docs.angularjs.org/guide/templates
 	HTML with additional markup (Angular-specific elements and attributes)
 	Angular combines the template with information from the model and controller to render the dynamic view that a user sees in the browser.	
 	
 Kinds of new markup...
-	>> DIRECTIVES - https://docs.angularjs.org/guide/directive
+	>> DIRECTIVES - https://docs.angularjs.org/guide/directive		https://github.com/angular/angular.js/wiki/Understanding-Directives
 		extend HTML with custom attributes and elements
    ---> At a high level, directives are markers on a DOM element (such as an attribute, element name, or CSS class) 
 		that tell AngularJS’s HTML compiler ($compile) to attach a specified behavior to that DOM element or even transform the DOM element and its children.
@@ -212,17 +234,25 @@ Kinds of new markup...
 >> VIEW
 	what the user sees (the rendered DOM)	
 	is a projection of the model through the HTML template
+	"Las vistas juegan dos papeles importantes. En primer lugar, son responsables de la presentación de los datos de los modelos al usuario de forma útil y visual. 
+	En segundo lugar, intercepta las interacciones típicas con el usuario incluyendo clics, selecciones en listas desplegables, etc. y las traducen en acciones específicas de la aplicación. 
+	Las vistas en AngularJS se definen de forma declarativa utilizando HTML y CSS."
 
 >> MODEL 
 	the data shown to the user in the view and with which the user interacts - values that are stored in variables on the scope	
+	"Los modelos son objetos JavaScript que representan los datos a los que la aplicación puede acceder. Los modelos se utilizan para representar el estado actual de la aplicación."
 
->> SCOPE - https://docs.angularjs.org/guide/scope
+>> SCOPE - https://docs.angularjs.org/guide/scope	<== VER
+		https://github.com/angular/angular.js/wiki/Understanding-Scopes  <==
 	- context where the model is stored so that controllers, directives and expressions can access it
 	- scope is an object that refers to the application model. It is an execution context for expressions 
 	- exposes model to templates -> In HTML, values inside {{ variable }} get resolved at runtime from $scope
 	- A scope can be seen as the glue which allows the template, model and controller to work together.
 	  Angular uses scopes, along with the information contained in the template, data model, and controller, to keep models and views separate, but in sync
 
+	" $scope es un objeto especial que se pasa al controller por el propio framework AngularJS. Su función es servir como un puente entre el controlador y la vista, por lo tanto es uno de los tipos más importantes de objetos que utilizaremos en AngularJS. 
+	Las propiedades que se agregan al $scope serán accesibles directamente por la vista, por lo que, naturalmente, es el lugar perfecto para almacenar referencias a los objetos del modelo"
+	  
 	--> With the concept of scoping, we are for sure not polluting the global name space, Ensuring clean maintainable code.  
 	-  If we spawn any new scopes inside a controller, the current scope will be inherited.
 	  
@@ -239,17 +269,33 @@ Kinds of new markup...
 		<a href="javascript:" data-ng-click="miFuncion(miVariable)">..</a>;
 
 	- "Controller as name"  o "injectar $scope"		http://codetunnel.io/angularjs-controller-as-or-scope/
+	
+	>> $watch, $apply, $digest
+		https://docs.angularjs.org/guide/scope#scope-life-cycle	<=========== VER
+		
+		http://jimhoskins.com/2012/12/17/angularjs-and-apply.html	<===========
+		http://www.sitepoint.com/understanding-angulars-apply-digest/
+		http://tutorials.jenkov.com/angularjs/watch-digest-apply.html
+		http://www.benlesh.com/2013/08/angularjs-watch-digest-and-apply-oh-my.html	
+		
+		https://github.com/angular/angular.js/wiki/When-to-use-%24scope.%24apply%28%29	<=========
+	
 		
 >> DATA BINDING - https://docs.angularjs.org/guide/databinding
 	sync data between the model and the view - the DOM will be automatically updated whenever the model changes (variables or result of functions)
 	Cuando el modelo correspondiente al scope de determinada vista cambia, se actualiza el DOM, sin necesidad de escribir código de manipulación de DOM.
 	Ese binding se hace mediante directivas en el HTML, que a su vez pueden usar un controlador que manipula el scope de la vista
 
+	Comparación data binding, con listeners de eventos (Backbone o Knockout): 
+		https://github.com/jacarma/ngpro/wiki/Algunas%20cosas%20peliagudas%20de%20Angular
+	
 >> CONTROLLER - https://docs.angularjs.org/guide/controller 
 	the business logic behind views - The purpose of controllers is to expose variables and functionality to expressions and directives.
 -->	a Controller is a JavaScript constructor function that is used to augment the Angular Scope.
 	- When a Controller is attached to the DOM via the ng-controller directive, Angular will instantiate a new Controller object, using the specified Controller's constructor function
 	- A new child scope will be available as an injectable parameter to the Controller's constructor function as $scope
+	"Los controladores definen el comportamiento de la aplicación y juegan un papel clave en la conexión de los modelos con las vistas."
+	
 	USAR CONTROLLER PARA...
 		- Set up the initial state of the $scope object
 		- Add behavior to the $scope object.
@@ -305,6 +351,10 @@ http://blog.koalite.com/2013/05/angularjs-servicios-inyeccion-de-dependencias-y-
 	Reusable business logic independent of views - When the application grows it is a good practice to move view independent logic from the controller into a so called "service"
 --> Angular services are substitutable objects that are wired together using dependency injection (DI).
 	You can use services to organize and share code across your app.
+	
+	"Los servicios son objetos especializados que realizan el trabajo en nombre de otros objetos. 
+	Los servicios tienen muchos usos, pueden ir a buscar los datos remotos o proporcionar una implementación de un algoritmo.
+	Los servicios están destinados a ser altamente reutilizables, están diseñados para ser intercambiados fácilmente con otros servicios similares."
 
 -->	Angular services are:
 		- **Lazily instantiated** – Angular only instantiates a service when an application component depends on it.
@@ -360,8 +410,10 @@ http://blog.koalite.com/2013/05/angularjs-servicios-inyeccion-de-dependencias-y-
 	Providers are objects that provide (create) instances of services and expose configuration APIs that can be used to control the creation and runtime behavior of a service.
 		In case of the $route service, the $routeProvider exposes APIs that allow you to define routes for your application.
 		Providers can only be injected into config functions. Thus you could not inject $routeProvider into controller.
+
 		
 >> ANIMATIONS	https://docs.angularjs.org/guide/animations		
+
 		
 ** TESTING
 	> Unit testing https://docs.angularjs.org/guide/unit-testing
@@ -384,9 +436,16 @@ http://blog.koalite.com/2013/05/angularjs-servicios-inyeccion-de-dependencias-y-
 ** PRODUCCION: https://docs.angularjs.org/guide/production
 	
 	
-******* LINKS útiles, características  *********************************************************************************************************************	
+******* LINKS útiles, características, INFO  *********************************************************************************************************************	
 
 =====>>> https://docs.angularjs.org/guide <<<==========
+
+==> Angular a producción   	https://github.com/jacarma/ngpro/wiki	<======================================== VER
+	Workflow - Tutorial Angular - Yeoman - Calidad - Testing - Empaquetado
+
+===>>>> STYLE-GUIDE: https://github.com/toddmotto/angularjs-styleguide	<<<============
+
+Varios links (de Globant): https://github.com/globant-ui/angular-lab Incluye ejercicio
 
 ==> Características, features, ventajas, razones para usar
 	http://www.wintellect.com/devcenter/jlikness/10-reasons-web-developers-should-learn-angularjs
@@ -420,16 +479,12 @@ http://blog.koalite.com/2013/05/angularjs-servicios-inyeccion-de-dependencias-y-
 			- Angular.js + Express.js example
 			- Angular.js + Express.js + Node.js + MongoDB example
 
-==> Angular a producción   	https://github.com/jacarma/ngpro/wiki	<======================================== VER
-	Workflow - Tutorial Angular - Yeoman - Testing - Empaquetado
-	
--> Links conceptos generales	https://github.com/jmcunningham/AngularJS-Learning/blob/master/ES-ES.md
 
 => ¿Qué es AngularJS? http://carlosazaustre.es/blog/empezando-con-angular-js/ <==
 =>	Primeros pasos para aprenderlo	http://joelhooks.com/blog/2013/08/03/learn-angularjs-in-a-weekend/
 		1. Tutorial Oficial	~4hrs		http://docs.angularjs.org/tutorial
 		2. Video-Tutoriales de Egghead.io. ~3hrs	https://egghead.io/technologies/angularjs
-		3. Un vistazo a una Aplicación AngularJS real ~4hrs		https://github.com/angular-app/angular-app
+		3. Un vistazo a una Aplicación AngularJS real ~4hrs		https://github.com/angular-app/angular-app	<== VER
 			- Folder structure (important!) - Modules (very important!) - Testing (super important!)
 			- RESTful services - Navigation - Security
 			Aplicación 100% MEAN !:)
@@ -443,13 +498,24 @@ http://blog.koalite.com/2013/05/angularjs-servicios-inyeccion-de-dependencias-y-
 
 ====> CONTRAS DE ANGULARJS  	https://medium.com/@mnemon1ck/why-you-should-not-use-angularjs-1df5ddf6fc99	<====================
 		(Ver links al final)
+====> CRITICAS ANGULAR: http://tutorials.jenkov.com/angularjs/critique.html	<============== VER
+		
+	PROS Y CONTRAS:  http://miceplans.net/node/36		<=============		 VER
+
+==> Tips, good practices...										
+	http://www.artandlogic.com/blog/2013/05/ive-been-doing-it-wrong-part-1-of-3/		<========= VER!
+	http://leftshift.io/8-tips-for-angular-js-beginners/		<================== VER	
+	http://pabloleone.com/2014/05/angularjs-good-practices/
+	https://github.com/angular/angular.js/wiki/Best-Practices
+
+-> Anti patrones: https://github.com/angular/angular.js/wiki/Anti-Patterns
+
 
 ==> Pensar en AngularJS teniendo un background de JQuery 	<=====	VER
 		http://stackoverflow.com/questions/14994391/thinking-in-angularjs-if-i-have-a-jquery-background
+	http://www.artandlogic.com/blog/2013/03/angularjs-for-jquery-developers/	
 	
--> Tips, good practices...										
-	http://leftshift.io/8-tips-for-angular-js-beginners/		<================== VER	
-	http://pabloleone.com/2014/05/angularjs-good-practices/
+	
 ==> Top 10 mistakes https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make 	<===================================== VER	
 	
 -> Slides	AngularJS 101 - Everything you need to know to get started
@@ -460,6 +526,10 @@ http://blog.koalite.com/2013/05/angularjs-servicios-inyeccion-de-dependencias-y-
 
 -> http://ng-course.org/demos/index.html	
 
+*************** Seeds, Boilerplates *******************************************
+=> generator-angular-phonegap-seed
+	https://github.com/thewildpendulum/gaps
+	https://github.com/thewildpendulum/angular-phonegap-seed
 
 
 ***************** ELEMENTOS, FUNCIONES, FUNCIONAMIENTO ************************************************
@@ -514,8 +584,12 @@ http://blog.koalite.com/2013/05/angularjs-servicios-inyeccion-de-dependencias-y-
 	=> ng-submit="funcion()"
 		Intercepts form submission and instead calls funcion(). 
 		
-	-> ng-class:"{clase: condition1 && condition2}"
-		Agrega al elemento la clase class cuando se cumple la condicion
+	-> ng-class:
+		ng-class="{miclase: condition1 && condition2}" 
+			Agrega al elemento la clase miclase cuando se cumple la condicion
+		ng-class="[style1, style2, style3]"   otros elem... ng-model="style1" ng-model=style2   
+			Evalua las variables y las agrega como clases
+		
 		
 	-> ng-show:"condition1 && condition2"
 		Muestra <element> cuando se cumple una condicion. (por ej, las variables condition1 y condition2 son true)
@@ -664,7 +738,11 @@ Investigacion/AngularJS/Advanced tips & tricks using AngularJS.pdf  (http://es.s
 	1. PERFOMANCE - How do I prevent performance bottlenecks?	
 		....
 
-*******************  DEBUGGING  ********************************
+		
+==> Best Practice Recommendations for Angular App Structure
+	https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub		
+		
+*******************  DEBUGGING  *********************************************************
 
 Extension de Chrome: Batarang  https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk?hl=en
 			https://github.com/angular/angularjs-batarang
@@ -673,6 +751,7 @@ Extension de Chrome: Batarang  https://chrome.google.com/webstore/detail/angular
 
 UNIT TESTS: 
 	https://docs.angularjs.org/guide/unit-testing	<== VER
+	https://github.com/jacarma/ngpro/wiki/Tests%20Unitarios
 	Escribir tests con sintaxis Jasmine. Ejecutar con Karma (abre una instancia del Chrome.. resultados en consola)			
 	Unit tests are perfect for testing controllers and other components of our application written in JavaScript
 	
@@ -706,4 +785,4 @@ END TO END TEST	 - Protractor http://angular.github.io/protractor/#/
 	http://docs.angularjs.org/guide/dev_guide.e2e-testing
 	Protractor is an end-to-end test framework for AngularJS applications. 
 	Protractor runs tests against your application running in a real browser, interacting with it as a user would.
-	
+	https://github.com/jacarma/ngpro/wiki/Test%20e2e
