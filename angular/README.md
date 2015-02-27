@@ -1,7 +1,7 @@
 AngularJS: TUTORIALES - EJEMPLOS
 ==================================================
 
-### [TUTORIAL OFICIAL - angular-phonecat](https://docs.angularjs.org/tutorial) ***** -OK- ###
+### [TUTORIAL OFICIAL - angular-phonecat](https://docs.angularjs.org/tutorial) ***** 	-OK- ###
 
 - */ejemplos/angular/angular-phonecat*
 - [localhost](http://localhost/ejemplos/angular/angular-phonecat/app/)
@@ -104,7 +104,8 @@ AngularJS: TUTORIALES - EJEMPLOS
             - Se definen dos callbacks (addClass y removeClass) que se ejecutará cada vez que se agregue o remueva una clase en el elemento
             - En el elemento: ng-class, que agrega clase cuando se cumple condicion	
 
-### Angularjs – A Hands On tutorial	: MovieStub **** -OK!!- ###
+--------------------------------------------------------------------			
+### Angularjs – A Hands On tutorial	: MovieStub 		**** 						-OK!!- ###
 **(Online Movie Ticket Booking) - CRUD (fetch & post data) -  Server side Express**
 
 - *ejemplos/angular/movieStub	*
@@ -132,15 +133,16 @@ AngularJS: TUTORIALES - EJEMPLOS
     - Fetch data (Show Booking Details) del server con otro service, usando $resource:  return $resource('/bookings');  Luego a ese service se le pide query()
     - **$location**: usado para saber en qué parte de la app está y poner estado de activo en el header, y para redireccionar a otra seccion desde un controller
 	
-	
-### Tutorial en castellano - Photo App  (básico: 1 controlador, 1 servicio) ** -OK- ###
+--------------------------------------------------------------------	
+### Tutorial en castellano - Photo App  (básico: 1 controlador, 1 servicio) 	** 		-OK- ###
 - **ver service creado con factory**
 - *ejemplos/angular/photoApp*
 - [Wiki](https://github.com/jacarma/ngpro/wiki/Tutorial-de-Angular.js) (explicación paso a paso, código en plunker)
 - [Original](http://www.adobe.com/devnet/archive/html5/articles/getting-started-with-angularjs.html)
 -	[Demo](http://embed.plnkr.co/Sr7duFhXxyPz2AEus9MK/preview)
 	
-### [Ejemplos del sitio home oficial](https://angularjs.org/) ** -OK- ###
+--------------------------------------------------------------------	
+### [Ejemplos del sitio home oficial](https://angularjs.org/) 	** 				-OK- ###
 - **VER COMENTARIOS EXPLICATIVOS EN EL CÓDIGO**
 - *ejemplos/angular/basics*			
 	* The Basics: Hello World	> Video: http://youtu.be/uFTFsKmkQnQ  (compara JQuery vs Angular)
@@ -155,8 +157,9 @@ AngularJS: TUTORIALES - EJEMPLOS
 		- *3-localization-pluralization.html*
 		- Directivas: etiquetas personalizadas (reusable components). Localizacion y pluralizacion (idiomas). 
 		- **CUSTOM DIRECTIVES**, y controlador en dos modulos distintos
-				
-### [Ejemplos guía oficial	- Conversión de monedas](https://docs.angularjs.org/guide ) ** -OK- ###
+
+--------------------------------------------------------------------
+### [Ejemplos guía oficial	- Conversión de monedas](https://docs.angularjs.org/guide ) ** 		-OK- ###
 - *ejemplos/angular/basics/guide*
 	* [Data-binding basico](https://docs.angularjs.org/guide/concepts#a-first-example-data-binding)
 		- *0-data-binding-basic.html*
@@ -170,8 +173,9 @@ AngularJS: TUTORIALES - EJEMPLOS
 		- *3-backend.html*	
 		- Servicio de conversión de monedas: usa API de Yahoo
 
-### [ToDoMVC](http://todomvc.com/)	*** -OK- ###
-#### AngularJS • TodoMVC   -OK- ####
+--------------------------------------------------------------------
+### [ToDoMVC](http://todomvc.com/)			*** 			-OK- ###
+#### AngularJS • TodoMVC   						-OK- ####
   - *ejemplos/angular/todomvc/angularjs*
   - [Demo](http://todomvc.com/examples/angularjs)
   - [Repo](https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs)
@@ -213,13 +217,13 @@ AngularJS: TUTORIALES - EJEMPLOS
       - No usa scope.$watch del array para actualizar en localstorage, si no que hace put en localStorage en cada funcion que modifica el arreglo (add, remove, complete..)
 			
 
-#### AngularJS & RequireJS • TodoMVC   -OK- ####
+#### AngularJS & RequireJS • TodoMVC   				-OK- ####
   - *ejemplos/angular/todomvc/angularjs_require*
   - [Demo](http://todomvc.com/examples/angularjs_require)
   -	[Repo](https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs_require)
   - Módulos con RequireJS: usa angular.bootstrap en main.js. Cada módulo con define
 		
-#### Firebase & AngularJS Realtime	• TodoMVC  -OK- ####
+#### Firebase & AngularJS Realtime	• TodoMVC  		-OK- ####
   - *ejemplos/angular/todomvc/firebase-angular*
   - [Demo](http://todomvc.com/examples/firebase-angular)
   -	[Repo](https://github.com/tastejs/todomvc/tree/gh-pages/examples/firebase-angular)
@@ -227,6 +231,7 @@ AngularJS: TUTORIALES - EJEMPLOS
     - En lugar de router, en app.js usa filter con $location.path para ver completed o active. Usa el filter en el ng-repeat del template
     - Hace binding del array $scope.todos con $firebase
 		
+--------------------------------------------------------------------		
 ### AngularJS CRUD application demo		***		<================ VER ###
 	Repo: https://github.com/angular-app/angular-app	
 	> Stack
@@ -242,12 +247,14 @@ AngularJS: TUTORIALES - EJEMPLOS
 		- Twitter's bootstrap with LESS templates processing integrated into the build
 		- Travis-CI integration
 
+--------------------------------------------------------------------
 ### MEAN workshop - Angular day - Hands on Examples * ###
 	Ejemplos movie list. Integración con server Node+Express (STACK MEAN)	
 http://mean-workshop.herokuapp.com/#/day4														VISTO
 Repo: https://github.com/arvindr21/MEAN-Workshop/tree/master/resources/day4/examples
 	Ejemplos: setupBasico, modelBinding, repeaters, filters, scopeFunctions, ngInclude, routers, Service: integrar con Express
 
+--------------------------------------------------------------------	
 ### Angularjs, Material Design and Twitter Streams – A Twitter Live Search App * ###
 	http://thejackalofjavascript.com/twitter-live-search/
 		--> MATERIAL DESIGN en Angular: https://material.angularjs.org/#/
@@ -257,21 +264,26 @@ Repo: https://github.com/arvindr21/MEAN-Workshop/tree/master/resources/day4/exam
 		- Socket.io
 		- Angularjs
 		- Material Design
-	
+
+--------------------------------------------------------------------		
 ### Tutorial de AngularJS. Ejemplo de aplicación web conectada a una API REST con Node * ###
 	Blog: http://carlosazaustre.es/blog/tutorial-ejemplo-de-aplicacion-web-con-angular-js-y-api-rest-con-node/
-		
+
+--------------------------------------------------------------------	
 ### [Tutoriales varios](http://angular.org.il/tutorials/ ) * ###
-	
+
+--------------------------------------------------------------------	
 ### End to End Testing with Protractor * ###
 	Blog: http://thejackalofjavascript.com/end-to-end-testing-with-protractor
 		Con explicaciones de testing			
-	
+
+--------------------------------------------------------------------		
 ### Wine Cellar  (versión vieja Angular) * ###
 	Blog: http://coenraets.org/blog/2012/02/sample-application-with-angular-js/
 	Repo: https://github.com/ccoenraets/angular-cellar
 	Demo: http://coenraets.org/angular-cellar
 
+--------------------------------------------------------------------
 ### Employee Directory ### 
 #### AngularJS: Sample Mobile Application with AngularJS * ####
 		Blog: http://coenraets.org/blog/2013/11/sample-mobile-application-with-angularjs/
@@ -283,7 +295,8 @@ Repo: https://github.com/arvindr21/MEAN-Workshop/tree/master/resources/day4/exam
 		Blog: http://coenraets.org/blog/2014/02/sample-mobile-application-with-ionic-and-angularjs/
 		Repo: https://github.com/ccoenraets/directory-angular-ionic
 		Demo: http://coenraets.org/apps/directory-angular-ionic/#/employees
-		
+
+--------------------------------------------------------------------		
 ### AngularJS + Ratchet 2.0: Sample Mobile App built with AngularJS and Ratchet 2.0 ** ###
 	Blog: http://vicentegarcia.com/blog/aplicacion-movil-ratchet-angularjs/
 	Repo: https://github.com/vicentegarcia/app-mobile-angularjs-ratchet2
