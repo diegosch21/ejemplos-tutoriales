@@ -1,10 +1,11 @@
 # AngularJS #
----
+
 **Framework MVW Javascript** *HTML enhanced for web apps!*
 
 - [Sitio oficial](https://angularjs.org/)
 - [Guía](https://docs.angularjs.org/guide)
 - [API](http://docs.angularjs.org/api)
+- [Aplicaciones hechas con Angular](https://builtwith.angularjs.org/)
 				
 >  - Superheroic JavaScript MVW Framework
 >  - A complete client-side solution
@@ -272,8 +273,22 @@
   	3. Bind directive with $scope
   	4. Render the generated DOM
   - **Custom directives to access the DOM**: In Angular, the only place where an application should access the DOM is within directives. 
-  If you need to access the DOM directly you should write a custom directive for this
-		
+    If you need to access the DOM directly you should write a custom directive for this
+    
+  - Propiedades de las directivas
+    + restrict: usage, Attribute/Element,etc.
+      This goes back to usage, how do we restrict the element's usage? If you're using a project that needs legacy IE support, you'll probably need attribute/class declarations. 
+      Restricting as 'A' means you restrict it as an Attribute. 'E' for Element, 'C' for Class and 'M' for Comment. These have a default as 'EA'. Yes, you can restrict to multiple use cases.
+    + replace: replaces declarative node.
+      This replaces the markup in the DOM that defines the directive, used in the example, you'll notice how initial DOM is replaced with the Directive's template.
+    + transclude: inject existing DOM (text) inside
+      Put simply, using transclude allows for existing DOM content to be copied into the directive. You'll see the words 'Click me' have 'moved' into the Directive once rendered.
+    + template: A template (as above) allows you to declare markup to be injected. It's a good idea to use this for tiny pieces of HTML only. 
+      Injected templates are all compiled through Angular, which means you can declare the handlebar template tags in them too for binding.
+    + templateUrl: Similar to a template, but kept in it's own file or <script> tag. 
+      You can do this to specify a template URL, which you'll want to use for manageable chunks of HTML that require being kept in their own file, just specify the path and filename, preferably kept inside their own templates directory.
+    + link: Events, custom manipulation
+
 ### {{ expression | filter }}    (interpolation directive) ###
 Angular uses HTML markups as templates. Dynamic values are represented with `{{ variable }}`.
 When the compiler encounters this markup, it will replace it with the evaluated value of the markup
@@ -337,7 +352,7 @@ When the compiler encounters this markup, it will replace it with the evaluated 
 
 	- ["Controller as name"  o "injectar $scope"](http://codetunnel.io/angularjs-controller-as-or-scope/)
 	
-  - ***$watch, $apply, $digest***
+  - ***$watch, $apply, $digest***	<======================================
     -	**https://docs.angularjs.org/guide/scope#scope-life-cycle**
     - $scope.$watch() function creates a watch of some variable
     - $scope.$digest() function iterates through all the watches in the $scope object, and its child $scope objects
@@ -358,10 +373,12 @@ When the compiler encounters this markup, it will replace it with the evaluated 
         - The $scope.$apply() function is used to execute some code, and then call $scope.$digest() after that, so all watches are checked and the corresponding watch listener functions are called.
         - That makes it easier for you to make sure that all watches are checked, and thus all data bindings refreshed
         - The $apply() function is useful when integrating AngularJS with other code.
-    - **http://jimhoskins.com/2012/12/17/angularjs-and-apply.html**
-    - http://www.sitepoint.com/understanding-angulars-apply-digest/
-    - http://www.benlesh.com/2013/08/angularjs-watch-digest-and-apply-oh-my.html	
-    - **https://github.com/angular/angular.js/wiki/When-to-use-%24scope.%24apply%28%29**	
+    - Links:    
+      - **http://jimhoskins.com/2012/12/17/angularjs-and-apply.html**
+      - http://www.sitepoint.com/understanding-angulars-apply-digest/
+      - http://www.benlesh.com/2013/08/angularjs-watch-digest-and-apply-oh-my.html	
+      - **https://github.com/angular/angular.js/wiki/When-to-use-%24scope.%24apply%28%29**	
+      - http://onehungrymind.com/notes-on-angularjs-scope-life-cycle/
 	
 		
 ### [DATA BINDING](https://docs.angularjs.org/guide/databinding) ###
@@ -374,6 +391,8 @@ When the compiler encounters this markup, it will replace it with the evaluated 
       - The two-way data binding in AngularJS kind of gets in the way of creating this data flow. 
       - You will end up binding your form fields to model variables that are separate from your model data objects, to avoid polluting your data objects. 
       - That way you copy data from a model object into form field model properties, further into form fields, then back into form field model properties, then send them to the server, and if that succeeds, you can update your original model data object							
+  - Two-way data-binding is best described as a full-circle of synchronised data: update the Model and it updates the View, update the View and it updates the Model. 
+    This means that data is kept in sync without making any fuss. If I bind an ng-model to an <input> and start typing, this creates (or updates an existing) model at the same time.    
 	
 ### [CONTROLLER](https://docs.angularjs.org/guide/controller) ###
   - the business logic behind views - The purpose of controllers is to expose variables and functionality to expressions and directives.
@@ -424,7 +443,7 @@ When the compiler encounters this markup, it will replace it with the evaluated 
   - As opposed to AMD or require.js modules, Angular modules don't try to solve the problem of script load ordering or lazy script fetching. 
   - These goals are totally independent and both module systems can live side by side and fulfill their goals.
 	
-  - [Tipos de módulos, que se pueden injectar](http://tutorials.jenkov.com/angularjs/dependency-injection.html)
+  - [Tipos de módulos, que se pueden injectar](http://tutorials.jenkov.com/angularjs/dependency-injection.html)		<----
     - **VALUES**
       - It can be a number, string or JavaScript object. Values are typically used as configuration which is injected into factories, services or controllers
     - **FACTORY**
@@ -437,20 +456,68 @@ When the compiler encounters this markup, it will replace it with the evaluated 
       - The functions contain whatever logic is necessary for the service to carry out its work.
       - Services in AngularJS are created using the new keyword. Thus, AngularJS will do this internally: new MyService();
     - **FACTORY vs SERVICE**: Ver más abajo en [Services](#services)
-    - **PROVIDER**
+    - **PROVIDER**: Ver a continuación en [providers - recipes] (#providers-recipes) 
+	  - The JavaScript provider object contains a single $get() function. 
+	  - This is the factory function of the provider. In other words, the $get() function creates whatever the provider creates (service, value etc.).
+	  - The object created by the provider's $get() function will be injected.
+	  
+	- **EJEMPLO (minification safe dependency)**:
+	
+			var myutil = angular.module("myutil", []);
+			/* VALUE */
+			myutil.value("safeValue", "a safe value");
+			
+			/* FACTORY (dependencia: value safeValue) */
+			myutil.factory("safeFactory", ['safeValue', function(p1) {
+				return { value : p1 };
+			}]);
+			
+			/* SERVICE (dependencia: service safeFactory */
+			function MySafeService(p1){
+				this.doIt = function() {
+					return "MySafeService.doIt() called: " + p1.value;
+				}
+			}
+			myutil.service("safeService", ['safeFactory', MySafeService]);
+	
+			/* PROVIDER ( dependencia: service safeService) */
+			myutil.provider("safeService2", function() {
+				var provider = {};
+				provider.$get = ['safeService', function(p1) {
+					var service = {};
+
+					service.doService = function() {
+						console.log("safeService from provider: " + p1.doIt());
+					}
+					return service;
+				}];
+
+				return provider;
+			});
+			
+			/* CONTROLLER (dependencia: $scope y service safeService2 creado con provider) */
+			myapp.controller("AController", ['$scope', 'safeService2', function(p1, p2) {
+				p1.myvar = "the value";
+				p2.doService();		// se inyectó el objeto creado por $get del provider
+			}]);
+	
 	
 #### [PROVIDERS - RECIPES](https://docs.angularjs.org/guide/providers) ####
   - https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
+  - http://tutorials.jenkov.com/angularjs/dependency-injection.html
   - The injector uses recipes to create two types of objects: services and special purpose objects
   - There are five recipe types that define how to create objects: Value, Factory, Service, Provider and Constant.
   - Factory and Service are the most commonly used recipes.
-  - 	The only difference between them is that the Service recipe works better for objects of a custom type, while the Factory can produce JavaScript primitives and functions.
+	- The only difference between them is that the Service recipe works better for objects of a custom type, while the Factory can produce JavaScript primitives and functions.
   - The Provider recipe is the core recipe type and all the other ones are just syntactic sugar on it.
   - Provider is the most complex recipe type. You don't need it unless you are building a reusable piece of code that needs global configuration.	
   - All special purpose objects except for the Controller are defined via Factory recipes.	
   - Providers are objects that provide (create) instances of services and expose configuration APIs that can be used to control the creation and runtime behavior of a service.
-  - 	In case of the $route service, the $routeProvider exposes APIs that allow you to define routes for your application.
-  - 	Providers can only be injected into config functions. Thus you could not inject $routeProvider into controller.
+	  - In case of the $route service, the $routeProvider exposes APIs that allow you to define routes for your application.
+	  - Providers can only be injected into config functions. Thus you could not inject $routeProvider into controller.
+	  
+  - EJEMPLO value, 	  
+	  
 
 #### INJECTOR ####
   - dependency injection container
@@ -462,12 +529,11 @@ When the compiler encounters this markup, it will replace it with the evaluated 
    	- when asked to do so, inject a specified function and any necessary dependencies (services) that it lazily instantiates via their Providers.
 
 	
-	
 ### [SERVICES](https://docs.angularjs.org/guide/services) ###
   - Reusable business logic independent of views - When the application grows it is a good practice to move view independent logic from the controller into a so called "service"
   - **Angular services are substitutable objects that are wired together using dependency injection (DI).**
   - You can use services to organize and share code across your app.
-  - 
+  
     > "Los servicios son objetos especializados que realizan el trabajo en nombre de otros objetos. 
     > Los servicios tienen muchos usos, pueden ir a buscar los datos remotos o proporcionar una implementación de un algoritmo.
     > Los servicios están destinados a ser altamente reutilizables, están diseñados para ser intercambiados fácilmente con otros servicios similares."
@@ -475,11 +541,12 @@ When the compiler encounters this markup, it will replace it with the evaluated 
     - **Lazily instantiated** – Angular only instantiates a service when an application component depends on it.
     - **Singletons** – Each component dependent on a service gets a reference to the single instance generated by the service factory.
   
-
   - Angular offers several useful services (like $http), but for most applications you'll also want to create your own.
     - Like other core Angular identifiers, built-in services always start with $ (e.g. $http). (*Los servicios provistos por Angular empiezan con $.*)
  
-  - There are multiple ways to define their factory - **[Creacion mediante service o factory:](http://viralpatel.net/blogs/angularjs-service-factory-tutorial/)**
+  - **http://jonathancreamer.com/understanding-angular-js-services-the-easy-way/**
+  - There are multiple ways to define their factory 
+  - **[Creacion mediante service o factory:](http://viralpatel.net/blogs/angularjs-service-factory-tutorial/)** <==== VER
     - In .service we create service methods using this.methodname. 
     - In .factory we create a factory object and assigne the methods to it.
     - **SERVICE**:
@@ -492,10 +559,16 @@ When the compiler encounters this markup, it will replace it with the evaluated 
             		//..
             	}
             });
+			
+			angular.factory('MyService', function MyService() {  
+				this.doSomething = function() {
+					/* DO IT, DO IT NAOW */
+				}
+			});
     
       - Al inyectarlo en un controlador:
-          - When declaring serviceName as an injectable argument you will be provided with an instance of the function. 
-          - In other words new FunctionYouPassedToService(). This object instance becomes the service object that AngularJS registers and injects later to other services / controllers if required.
+          - When declaring *serviceName* as an injectable argument you will be provided with an instance of the function. 
+          - In other words `new FunctionYouPassedToService()`. This object instance becomes the service object that AngularJS registers and injects later to other services / controllers if required.
 	
     - **FACTORY**: 
     
@@ -509,26 +582,44 @@ When the compiler encounters this markup, it will replace it with the evaluated 
               }
               return factory;
             });
+			
+			angular.factory('MyService2', function MyService2() {  
+				return {
+					doSomething: function() { /* ... */}
+				};
+			});
+			
       - Al inyectarlo en un controlador:
-          - When declaring factoryName as an injectable argument you will be provided with the value that is returned by invoking the function reference passed to module.factory
+          - When declaring *factoryName* as an injectable argument you will be provided with the value that is returned by invoking the function reference passed to module.factory
+		  
+				app.controller('HomeController', function(MyService2) {  
+					MyService2.doSomething();
+				});
   
+  - Services are often a confusing point. From experience and research, they're more a stylistic design pattern rather than providing much functional difference. 
+    After digging into the Angular source, they look to run through the same compiler and they share a lot of functionality. 
+    From my research, you should use Services for singletons, and Factories for more complex functions such as Object Literals and more complicated use cases.
+    (http://toddmotto.com/ultimate-guide-to-learning-angular-js-in-one-day/)
+
   - [Ejemplo de services](http://mean-workshop.herokuapp.com/resources/day4/presentation/#/78)
 	
 	
 - [¿Cuándo usar Controllers, Services or Directives?](http://kirkbushell.me/when-to-use-directives-controllers-or-services-in-angular/)	
+
 ### [ROUTING](http://mean-workshop.herokuapp.com/resources/day4/presentation/#/71) ###
 	
-- Módulo ngRoute  (angular-route.js)
+  - Módulo ngRoute  (angular-route.js)
+  - Config servicio $routeProvider
 
 		var myApp = angular.module('myApp', ['ngRoute','myController']);
 		myApp.config(phonecatApp.config(['$routeProvider',
 			function($routeProvider) {
 				$routeProvider.
-					when(url, {
+					when('url', {
 						templateUrl: 'partials/miTemplate.html',
 						controller: 'miCtrl'
 					  }).
-					  when('otroUrl', {
+					  when('otroUrl/:param', {
 						templateUrl: 'partials/otroTemplate.html',
 						controller: 'otroCtrl'
 					  }).
@@ -536,6 +627,16 @@ When the compiler encounters this markup, it will replace it with the evaluated 
 						redirectTo: 'url'
 					  });
 				 }]);
+				 
+  - Parámetro en route: ( **servicio $routeParams** )
+		
+		module.controller("RouteController", function($scope, $routeParams) {
+			$scope.param = $routeParams.param;
+		})
+	
+  - Directiva `ng-view`	`<div ng-view></div>`
+		- Inside the div with the ngView directive the HTML template specific to the given route will be displayed
+	
 	
 ### [ANIMATIONS](https://docs.angularjs.org/guide/animations) ###
 		
@@ -561,23 +662,14 @@ When the compiler encounters this markup, it will replace it with the evaluated 
 	
 	
 ************************************************************************	
-## LINKS útiles, características, INFO  ##
+## LINKS útiles...  ##
 
 - **[Guía](https://docs.angularjs.org/guide)**
 - **[Angular a producción](https://github.com/jacarma/ngpro/wiki)**
   - Workflow - Tutorial Angular - Yeoman - Calidad - Testing - Empaquetado
 - [STYLE-GUIDE](https://github.com/toddmotto/angularjs-styleguide)
 - [Varios links (de Globant)](https://github.com/globant-ui/angular-lab) Incluye ejercicio
-- Características, features, ventajas, razones para usar
-  - 	http://www.wintellect.com/devcenter/jlikness/10-reasons-web-developers-should-learn-angularjs
-  - http://www.sitepoint.com/10-reasons-use-angularjs/
-  - **http://code.tutsplus.com/tutorials/5-awesome-angularjs-features--net-25651**
-      - Two Way Data-Binding
-      - Templates 
-      - MVC (MVVM). Model - ViewModel - Controller - View
-      - Dependency Injection
-      - Directives
-      - Testing
+- **[Reference application for AngularJS](https://github.com/angular-app/angular-app/)**
 - http://arvindr21.github.io/ng-overview/#/
     - S.P.A. (Single Page Application)
     - MVC vs MVP vs MVVM  (ver imagenes en Investigacion/MVW)
@@ -586,7 +678,7 @@ When the compiler encounters this markup, it will replace it with the evaluated 
     - FILTERS - [Ejemplo](http://arvindr21.github.io/ng-overview/examples/example3.html)
     - TEMPLATING & ROUTING - [Ejemplo]( http://arvindr21.github.io/ng-overview/examples/example4.html)
     - SERVICES & FACTORY - [Ejemplo]( http://arvindr21.github.io/ng-overview/examples/example5.html)
--	**[Parte del workshop de MEAN](http://mean-workshop.herokuapp.com/#/day4)** - We will go through the basics of Angularjs:
+- **[Parte del workshop de MEAN](http://mean-workshop.herokuapp.com/#/day4)** - We will go through the basics of Angularjs:
     - What & Why of Angularjs
     - Understanding that Angularjs is a framework and not a "2 way data binding library"
     - Understanding Filters, Routers, Controllers and Factories
@@ -623,40 +715,111 @@ When the compiler encounters this markup, it will replace it with the evaluated 
 
 ## FLUJO DE EJECUCION ##
 - [AngularJS Application Execution](http://tutorials.jenkov.com/angularjs/index.html#angularjs-application-execution)
-	
 
 ************************************************************************
+## Ventajas, razones para usar AngularJS, interesting features ##
+ 
+  - http://www.wintellect.com/devcenter/jlikness/10-reasons-web-developers-should-learn-angularjs
+  - http://www.sitepoint.com/10-reasons-use-angularjs/
+  - **http://code.tutsplus.com/tutorials/5-awesome-angularjs-features--net-25651**
+      - Two Way Data-Binding
+      - Templates 
+      - MVC (MVVM). Model - ViewModel - Controller - View
+      - Dependency Injection
+      - Directives
+      - Testing
+  - http://code.tutsplus.com/tutorials/3-reasons-to-choose-angularjs-for-your-next-project--net-28457	
+	1. It Was Developed by Google
+	2. It's Comprehensive
+		+ REST Easy
+		+ MVVM to the Rescue: *Models talk to ViewModel objects (through something called the $scope object), which listen for changes to the Models.*
+		+ Data Binding and Dependency Injection.
+		+ Extends HTML
+		+ Makes HTML your Template
+		+ Enterprise-level Testing
+	3. AngularJS is quickly becoming the dominant JavaScript framework for professional web development.	
+		
+	
+	
+************************************************************************
+## COMPARACIONES ##
+* **Curva de aprendizaje**
+	+ vs Backbone.js	
+	
+	>	Angular.js has a very different learning curve from Backbone.js. 
+	>	Backbone.js has a steep learning curve up front: to write a simplest app, you need to know pretty much everything about it. 
+	>	And after you have nailed it, there is pretty much nothing other than some common building blocks and best practices.
+	>	
+	>	However, Angular.js is very different. The initial barrier to get started is very low: after going through the examples on homepage, you should be good to go. 
+	>	You don’t need to understand all core concepts like module, service, dependency injection, scope. Controller and some directives can get you started. And the documentation for quick start is good enough.
+	>
+	>	The problem is when you dive into Angular.js and start to write some serious app, the learning curve suddenly becomes very steep and its documentations are either incomplete or cumbersome. It took quite some time to get over this stage and started to benefit from all these learning.
+	>	This is the first thing I wish I were told - so that I would not feel frustrated when I had all these problems.
 
+************************************************************************
 ## CRÍTICAS, CONTRAS DE ANGULAR ##
-- **[CONTRAS DE ANGULARJS](https://medium.com/@mnemon1ck/why-you-should-not-use-angularjs-1df5ddf6fc99)**
-    - (Ver links al final)
+
+- **[AngularJS: The Bad Parts](http://larseidnes.com/2014/11/05/angularjs-the-bad-parts/)** <======== VER
+	+ **The digest loop**
+	
+		> Angular supports **two-way databinding**, and this is how it does it: It scans through everything that has such a binding, and sees if it has changed by comparing its value to a stored copy of its value. 
+		> If a change is found, it triggers the code listening for such a change. It then scans through everything looking for changes again. This keeps going until no more changes are detected.
+		>
+		> The problem with this is that it is tremendously expensive. Changing anything in the application becomes an operation that triggers hundreds or thousands of functions looking for changes. 
+		> **This is a fundamental part of what Angular is, and it puts a hard limit on the size of the UI you can build in Angular while remaining performant.**
+
+- **[CONTRAS DE ANGULARJS](https://medium.com/@mnemon1ck/why-you-should-not-use-angularjs-1df5ddf6fc99)**	<====
+	+ **Ver links al final del artículo**  (algunos se incluyen en esta lista)
+
 - [CRITICAS ANGULAR](http://tutorials.jenkov.com/angularjs/critique.html)
-> - The AngularJS directives are a suboptimal choice for HTML generation. - AngularJS Directives And The Declarative / Imperative Paradigm Mismatch
->
->   - The Intrusiveness of AngularJS Directives
->
->         (ver explicacion previa en articulo del balance entre declarativo e imperativo en HTML)
->         As already mentioned earlier, AngularJS directives are intrusive on your HTML template, just like JSP tag libraries etc. were. 
->         In order to "teach HTML new tricks" you end up with HTML full of non-HTML elements and attributes. 
->         Think about it for a while. When you need to teach HTML new tricks, that is a pretty good sign it is time to change to the imperative paradigm (JavaScript), except perhaps for very simple tricks.
-> 
->         Another example of how the templating mechanism is intrusive is when you look at how many function calls that can (and will) be embedded in the HTML. Function calls on the $scope object. 
->         Before AngularJS it was "best practice" to keep function calls out of the HTML. For instance, you should not use the onclick event attributes on HTML elements, but rather attach event listeners via JavaScript. 
->         Somehow that was forgotten with AngularJS, and now we are back to embedding JavaScript function calls in the HTML.
-> - **[The 2-way data binding is not always that useful](http://tutorials.jenkov.com/angularjs/critique.html#two-data-binding)**
->   - Comparación data flow común con angular:
->      *VER Investigacion/AngularJS/angularjs-critique-common-data-flow-in-web-app* y *angularjs-critique-data-flow-in-angular-2waydatabinding*			
-> - **Resumen de la crítica de este chabón**
->     - We do indeed need better frameworks to make it easier to develop larger HTML / JavaScript applications, but I don't feel that AngularJS has chosen the right approach. 
->     - We do need to find a balance between the declarative HTML and the imperative JavaScript, but I feel that AngularJS has gone too far in the declarative direction. 
->     - We do need to find ways to bind data to HTML elements / GUI components, but the one-way data binding in the AngularJS directives and two-way data binding in forms can be done better. 
->     - But this is just my opinion. The whole purpose of this article was to help you form your own opinion.
+    >- The AngularJS directives are a suboptimal choice for HTML generation. - AngularJS Directives And The Declarative / Imperative Paradigm Mismatch
+    >
+    >  - The Intrusiveness of AngularJS Directives
+    >
+    >         (ver explicacion previa en articulo del balance entre declarativo e imperativo en HTML)
+    >         As already mentioned earlier, AngularJS directives are intrusive on your HTML template, just like JSP tag libraries etc. were. 
+    >         In order to "teach HTML new tricks" you end up with HTML full of non-HTML elements and attributes. 
+    >         Think about it for a while. When you need to teach HTML new tricks, that is a pretty good sign it is time to change to the imperative paradigm (JavaScript), except perhaps for very simple tricks.
+    > 
+    >         Another example of how the templating mechanism is intrusive is when you look at how many function calls that can (and will) be embedded in the HTML. Function calls on the $scope object. 
+    >         Before AngularJS it was "best practice" to keep function calls out of the HTML. For instance, you should not use the onclick event attributes on HTML elements, but rather attach event listeners via JavaScript. 
+    >         Somehow that was forgotten with AngularJS, and now we are back to embedding JavaScript function calls in the HTML.
+    >- **[The 2-way data binding is not always that useful](http://tutorials.jenkov.com/angularjs/critique.html#two-data-binding)**
+    >  - Comparación data flow común con angular:
+    >      *VER Investigacion/AngularJS/angularjs-critique-common-data-flow-in-web-app* y *angularjs-critique-data-flow-in-angular-2waydatabinding*			
+    >- **Resumen de la crítica de este chabón**
+    >   - We do indeed need better frameworks to make it easier to develop larger HTML / JavaScript applications, but I don't feel that AngularJS has chosen the right approach. 
+    >   - We do need to find a balance between the declarative HTML and the imperative JavaScript, but I feel that AngularJS has gone too far in the declarative direction. 
+    >   - We do need to find ways to bind data to HTML elements / GUI components, but the one-way data binding in the AngularJS directives and two-way data binding in forms can be done better. 
+    >   - But this is just my opinion. The whole purpose of this article was to help you form your own opinion.
+
+- [What’s wrong with Angular.js](https://medium.com/este-js-framework/whats-wrong-with-angular-js-97b0a787f903)
 		
 - **[PROS Y CONTRAS](http://miceplans.net/node/36)**	<=====
+
+	
+
+- [Alternativas de Angular para distintas partes del stack](https://medium.com/@mnemon1ck/why-you-should-not-use-angularjs-1df5ddf6fc99)
+
+- [The reason Angular JS will fail](http://okmaya.com/2014/03/12/the-reason-angular-js-will-fail/): Comparación con jQuery
+	 
+- [2 years with Angular](http://www.fse.guru/2-years-with-angular)	
+  > Angular.js is "good enough" for majority of projects, but it is not good enough for professional web app development. 
+  - The bad parts:
+	- [Bad Abstractions](http://www.fse.guru/angular-bad-parts-part-1) 
+	- **[Bad perfomance](http://www.fse.guru/angular-bad-parts-part-2)	<--- VER ($apply, $digest)**
+	- [Name clashes](http://www.fse.guru/angular-bad-parts-part-3)
+	- [Complexity](http://www.fse.guru/angular-bad-parts-part-4)
+	- [3rd party modules are crappy](http://www.fse.guru/angular-bad-parts-part-5)
 	
 ************************************************************************	
 	
 ## TIPS & TRICKS ##
+
+- Thinking Angular (https://speakerdeck.com/toddmotto/angularjs-in-one-day)
+  + Scopes and data, not DOM, no add/remove classes, ever. Angular does this all for you based on data
+  + Let the data do the work, keep code as minimal as possible.
+  + Abstract, abstract, abstract. Keep abstracting into different files for better management and copying individual files into new projects, premade working code
 
 -	**http://www.artandlogic.com/blog/2013/05/ive-been-doing-it-wrong-part-1-of-3/**		<========= VER!
 -	**http://leftshift.io/8-tips-for-angular-js-beginners/**		<================== VER	
@@ -668,6 +831,9 @@ When the compiler encounters this markup, it will replace it with the evaluated 
 - **[Top 10 mistakes](https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make)** <================================= VER	
 
 - [Best Practice Recommendations for Angular App Structure](https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub)
+
+- [Things I Wish I Were Told About Angular.js](http://ruoyusun.com/2013/05/25/things-i-wish-i-were-told-about-angular-js.html)
+	+ Curva de aprendizaje
 
 - *[Investigacion/AngularJS/Advanced tips & tricks using AngularJS.pdf](http://es.slideshare.net/simonguest/advanced-tips-tricks-for-using-angular-js)*
 //ToDo ///////////////////////
@@ -708,6 +874,13 @@ When the compiler encounters this markup, it will replace it with the evaluated 
 	1. PERFOMANCE - How do I prevent performance bottlenecks?	
 		....
 
+************************************************************************
+## UI - Plugins - Directivas ##		
+		
+- [AngularUI](http://angular-ui.github.io/)		
+- [Angular UI Bootstrap](http://angular-ui.github.io/bootstrap/) - Native AngularJS (Angular) directives for Bootstrap.
+- [Angular Google Maps](http://angular-ui.github.io/angular-google-maps) - AngularJS directives to integrate Google Maps into your applications.
+		
 		
 ************************************************************************	
 	
