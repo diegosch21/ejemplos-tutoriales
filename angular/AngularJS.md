@@ -456,10 +456,10 @@ When the compiler encounters this markup, it will replace it with the evaluated 
       - The functions contain whatever logic is necessary for the service to carry out its work.
       - Services in AngularJS are created using the new keyword. Thus, AngularJS will do this internally: new MyService();
     - **FACTORY vs SERVICE**: Ver más abajo en [Services](#services)
-    - **PROVIDER**: Ver a continuación en [providers - recipes] (#providers-recipes) 
-	  - The JavaScript provider object contains a single $get() function. 
-	  - This is the factory function of the provider. In other words, the $get() function creates whatever the provider creates (service, value etc.).
-	  - The object created by the provider's $get() function will be injected.
+    - **PROVIDER**: Ver a continuación en [providers - recipes](#providers-recipes) 
+	   - The JavaScript provider object contains a single $get() function. 
+	   - This is the factory function of the provider. In other words, the $get() function creates whatever the provider creates (service, value etc.).
+	   - The object created by the provider's $get() function will be injected.
 	  
 	- **EJEMPLO (minification safe dependency)**:
 	
@@ -503,8 +503,10 @@ When the compiler encounters this markup, it will replace it with the evaluated 
 	
 	
 #### [PROVIDERS - RECIPES](https://docs.angularjs.org/guide/providers) ####
+  - **[AngularJS Providers: Constant/Value/Service/Factory/Decorator/Provider](https://gist.github.com/demisx/9605099)**  <=== VER
   - https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection
   - http://tutorials.jenkov.com/angularjs/dependency-injection.html
+  - All the providers are instantiated only once. That means that they are all singletons.
   - The injector uses recipes to create two types of objects: services and special purpose objects
   - There are five recipe types that define how to create objects: Value, Factory, Service, Provider and Constant.
   - Factory and Service are the most commonly used recipes.
@@ -516,8 +518,20 @@ When the compiler encounters this markup, it will replace it with the evaluated 
 	  - In case of the $route service, the $routeProvider exposes APIs that allow you to define routes for your application.
 	  - Providers can only be injected into config functions. Thus you could not inject $routeProvider into controller.
 	  
-  - EJEMPLO value, 	  
-	  
+        	Provider Singleton Instantiable  Configurable
+          Constant    Yes         No          No
+          Value       Yes         No          No
+          Service     Yes         No          No
+          Factory     Yes         Yes         No
+          Decorator   Yes         No?         No
+          Provider    Yes         Yes         Yes  
+    	 
+    - A constant is a value that can be injected everywhere. The value of a constant can never be changed.
+    - A value is just a simple injectable value.
+    - A service is an injectable constructor.
+    - A factory is an injectable function.    
+    - A decorator can modify or encapsulate other providers except a constant.
+    - A provider is a configurable factory.
 
 #### INJECTOR ####
   - dependency injection container
@@ -637,6 +651,13 @@ When the compiler encounters this markup, it will replace it with the evaluated 
   - Directiva `ng-view`	`<div ng-view></div>`
 		- Inside the div with the ngView directive the HTML template specific to the given route will be displayed
 	
+
+  * Alternativa: **[UI-router](http://angular-ui.github.io/ui-router/)**
+    + Soporta **Nested States & Views** y **Multiple & Named Views**
+    - [Wiki](https://github.com/angular-ui/ui-router/wiki) <--- VER
+    - [API](http://angular-ui.github.io/ui-router/site/#/api/ui.router)
+    - [Ejemplo](http://angular-ui.github.io/ui-router/sample/)
+
 	
 ### [ANIMATIONS](https://docs.angularjs.org/guide/animations) ###
 		
@@ -703,6 +724,8 @@ When the compiler encounters this markup, it will replace it with the evaluated 
 - [Slides	AngularJS 101 - Everything you need to know to get started](http://www.slideshare.net/sbegaudeau/angular-js-101-everything-you-need-to-know-to-get-started)
 - [Slides AngularJS Architecture](http://www.slideshare.net/EyalV/angularjs-architecture)	
 - http://ng-course.org/demos/index.html	
+
+* **[Tools for Scaffolding, Building, and Testing](http://www.toptal.com/angular-js/your-first-angularjs-app-part-2-scaffolding-building-and-testing)**: Karma, Jasmine, Grunt, Bower, Yeoman… What are all these tools?
 
 ************************************************************************
 ## Seeds, Boilerplates  ##
@@ -881,6 +904,11 @@ When the compiler encounters this markup, it will replace it with the evaluated 
 - [Angular UI Bootstrap](http://angular-ui.github.io/bootstrap/) - Native AngularJS (Angular) directives for Bootstrap.
 - [Angular Google Maps](http://angular-ui.github.io/angular-google-maps) - AngularJS directives to integrate Google Maps into your applications.
 		
+
+#### MATERIAL DESIGN ####
+  * https://material.angularjs.org/#/    
+
+  - Angular Material provides a grid system that is built on top of [Flex box](https://css-tricks.com/snippets/css/a-guide-to-flexbox/). You can find more info on the grid system [here](https://material.angularjs.org/#/layout/grid).
 		
 ************************************************************************	
 	
@@ -1118,10 +1146,17 @@ Por ejemplo:
 	
 ### END TO END TEST	 - Protractor ###
 
-http://angular.github.io/protractor/#/
+  - http://angular.github.io/protractor/#/
 
-http://docs.angularjs.org/guide/dev_guide.e2e-testing
+  - http://docs.angularjs.org/guide/dev_guide.e2e-testing
 	
-Protractor is an end-to-end test framework for AngularJS applications. 
-Protractor runs tests against your application running in a real browser, interacting with it as a user would.
-https://github.com/jacarma/ngpro/wiki/Test%20e2e
+  - Protractor is an end-to-end test framework for AngularJS applications. 
+  - Protractor runs tests against your application running in a real browser, interacting with it as a user would.
+
+  * https://github.com/jacarma/ngpro/wiki/Test%20e2e
+
+  * **EJEMPLO - TUTORIAL** : *End to End Testing with Protractor* <== VER
+    - [Blog](http://thejackalofjavascript.com/end-to-end-testing-with-protractor)
+  
+
+

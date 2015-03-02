@@ -1,36 +1,65 @@
 AngularJS: TUTORIALES - EJEMPLOS
 ==================================================
 
+###  [Angular-app: AngularJS CRUD application demo](https://github.com/angular-app/angular-app)   ***  VER  ###
+  **Aplicación para SCRUM realista, compleja, con backend usando nod.js y mongoDB, seguridad, etc - Excelente build system con grunt**
+  
+  - */ejemplos/angular/angular-app*
+  - [Repo](https://github.com/angular-app/angular-app)
+  - Leer README.md para instalacion, config, buid
+  - Run: `cd server` `node server.js` http://localhost:3000
+    - user: `admin@abc.com` pass: `qwerty`
+  - *Stack*
+    + Persistence store: **MongoDB** hosted on MongoLab
+    + Backend: **Node.js**
+    + Awesome **AngularJS** on the client
+    + CSS based on **Twitter's bootstrap**
+  - *Build*
+    + powered by **Grunt.js**
+    + test written using **Jasmine** syntax
+    + test are executed by **Karma Test Runner** (integrated with the Grunt.js build)
+    + build supporting JS, CSS and AngularJS templates **minification**
+    + Twitter's bootstrap with **LESS templates** processing integrated into the build
+    + **Travis-CI** integration
+  - **Cosas destacadas para ver** 
+    + Folder structure (important!)
+    + Modules (very important!)
+    + Testing (super important!)
+    + RESTful services
+    + Navigation
+    + Security
+
+-------------------------------------------------------------------   
 ### [Ejemplos del sitio home oficial](https://angularjs.org/) 	** 				-OK- ###
   - **VER COMENTARIOS EXPLICATIVOS EN EL CÓDIGO**
-  - *ejemplos/angular/basics*			
-	* The Basics: Hello World	> Video: http://youtu.be/uFTFsKmkQnQ  (compara JQuery vs Angular)
-	   - */0-helloworld.html*
-	* Add Some Control: ToDo	> Video: http://youtu.be/WuiHuZq_cg4
-		- */1-todo.html*
-		- Data binding, controller 
-	* Wire up a Backend				<---- VER
-		- */2-projects.html*
-		- Backend (con Firebase), routing - **deep linking**, **services**, **form validation**
-	* Create Components				<---- VER
-		- */3-localization-pluralization.html*
-		- Directivas: etiquetas personalizadas (reusable components). Localizacion y pluralizacion (idiomas). 
-			+ **CUSTOM DIRECTIVES**, y controlador en dos modulos distintos
+  - */ejemplos/angular/basics*			
+    * The Basics: Hello World	> Video: http://youtu.be/uFTFsKmkQnQ  (compara JQuery vs Angular)
+  	  - */0-helloworld.html*
+    * Add Some Control: ToDo	> Video: http://youtu.be/WuiHuZq_cg4
+  		- */1-todo.html*
+  		- Data binding, controller 
+    * Wire up a Backend				<---- VER
+  		- */2-projects.html*
+  		- Backend (con Firebase), routing - **deep linking**, **services**, **form validation**
+    * Create Components				<---- VER
+  		- */3-localization-pluralization.html*
+  		- Directivas: etiquetas personalizadas (reusable components). Localizacion y pluralizacion (idiomas). 
+  			+ **CUSTOM DIRECTIVES**, y controlador en dos modulos distintos
 
 --------------------------------------------------------------------
 ### [Ejemplos guía oficial - Conversión de monedas](https://docs.angularjs.org/guide ) ** 		-OK- ###
-  - *ejemplos/angular/basics/guide*
-  	* [Data-binding basico](https://docs.angularjs.org/guide/concepts#a-first-example-data-binding)
-  		- */0-data-binding-basic.html*
-  	* [Adding UI logic: Controllers](https://docs.angularjs.org/guide/concepts#adding-ui-logic-controllers)
-  		- */1-controller.html*
-  		- Controlador contiene toda la lógica
-  	* [View independent business logic: Services](https://docs.angularjs.org/guide/concepts#view-independent-business-logic-services)
-  		- */2-services.html*
-  		- Conversión de monedas en un servicio - Dependency injection
-  	* [Accessing the backend](https://docs.angularjs.org/guide/concepts#accessing-the-backend )
-  		- */3-backend.html*	
-  		- Servicio de conversión de monedas: usa API de Yahoo
+  - */ejemplos/angular/basics/guide*
+  * [Data-binding basico](https://docs.angularjs.org/guide/concepts#a-first-example-data-binding)
+  	- */0-data-binding-basic.html*
+  * [Adding UI logic: Controllers](https://docs.angularjs.org/guide/concepts#adding-ui-logic-controllers)
+  	- */1-controller.html*
+  	- Controlador contiene toda la lógica
+  * [View independent business logic: Services](https://docs.angularjs.org/guide/concepts#view-independent-business-logic-services)
+  	- */2-services.html*
+  	- Conversión de monedas en un servicio - Dependency injection
+  * [Accessing the backend](https://docs.angularjs.org/guide/concepts#accessing-the-backend )
+  	- */3-backend.html*	
+  	- Servicio de conversión de monedas: usa API de Yahoo
 
 --------------------------------------------------------------------	
 ### [TUTORIAL OFICIAL - angular-phonecat](https://docs.angularjs.org/tutorial) ***** 			-OK- ###
@@ -42,26 +71,26 @@ AngularJS: TUTORIALES - EJEMPLOS
     - [fork](https://github.com/diegosch21/angular-phonecat)
   - [Demo](http://angular.github.io/angular-phonecat/step-12/app/#/phones)
   - Para aprender a...
-      - Create a dynamic application that works in all modern browsers
-      - Use data binding to wire up your data model to your views.
-      - Create and run unit tests, with Karma.
-      - Create and run end to end tests, with Protractor.
-      - Move application logic out of the template and into Controllers.
-      - Get data from a server using Angular services. - how to use dependency injection and services to make common web tasks, such as getting data into your app
-      - Apply animations to your application, using ngAnimate.
+    - Create a dynamic application that works in all modern browsers
+    - Use data binding to wire up your data model to your views.
+    - Create and run unit tests, with Karma.
+    - Create and run end to end tests, with Protractor.
+    - Move application logic out of the template and into Controllers.
+    - Get data from a server using Angular services. - how to use dependency injection and services to make common web tasks, such as getting data into your app
+    - Apply animations to your application, using ngAnimate.
   -  Tools:		`npm install`
-      - Bower - client-side code package manager
-      - Http-Server - simple local static web server 	-->  `npm start` --> http://localhost:8000/app/index.html
-      - Karma - unit test runner	 	-->	 `npm test`
-          - open up a Chrome browser and connect it to Karma
-          - execute all the unit tests in this browser
-          - report the results of these tests in the terminal/command line window
-          - watch all the project's JavaScript files and re-run the tests whenever any of these change
-      - Protractor - end to end (E2E) test runner 	-->  `npm run protractor`
-          - open up a Chrome browser and connect it to the application
-          - execute all the End to End tests in this browser
-          - report the results of these tests in the terminal/command line window
-          - close down the browser and exit
+    - Bower - client-side code package manager
+    - Http-Server - simple local static web server 	-->  `npm start` --> http://localhost:8000/app/index.html
+    - Karma - unit test runner	 	-->	 `npm test`
+        - open up a Chrome browser and connect it to Karma
+        - execute all the unit tests in this browser
+        - report the results of these tests in the terminal/command line window
+        - watch all the project's JavaScript files and re-run the tests whenever any of these change
+    - Protractor - end to end (E2E) test runner 	-->  `npm run protractor`
+        - open up a Chrome browser and connect it to the application
+        - execute all the End to End tests in this browser
+        - report the results of these tests in the terminal/command line window
+        - close down the browser and exit
   - Pasos:	`git checkout -f step-n  (n: # paso)`		
   	- [Funcionalidades por paso](https://github.com/angular/angular-phonecat/#commits--tutorial-outline)
   	-	0) Bootstrapping
@@ -156,185 +185,238 @@ AngularJS: TUTORIALES - EJEMPLOS
 ### [MovieStub - A Hands On tutorial](http://thejackalofjavascript.com/angularjs-hands-on-tutorial/) **** 	-OK!!- ###
   **(Online Movie Ticket Booking) - CRUD (fetch & post data) -  Server side Express**
 
-  - *ejemplos/angular/movieStub	*
+  - */ejemplos/angular/movieStub*
       - En terminal: `node index.js` (Ejecuta servidor node + express para que funcione API REST)
       - En Browser: http://localhost:2595/
   - [Blog](http://thejackalofjavascript.com/angularjs-hands-on-tutorial/)
   - [Repo](https://github.com/arvindr21/ngMovieStub)
       - [Paso a paso](https://github.com/arvindr21/ngMovieStub/tree/master/tutorial-parts)
   - [Demo](http://moviestub.cloudno.de/)
-
-      - Angularjs Boilerplate desde 0:
-      
-          	npm init / editar package.json / npm install express --save-dev 
-          	bower init / editar bower.json / bower install angular --save-dev / bower install bootstrap --save-dev
-          	Server en index.js: ejecutar con > node index.js
-      - Model bindings
-      - Repeaters, module, controller
-      - Filters: uppercase, orderBy, json, filter
-      - Scope functions	- Partial views (ngInclude)
-      - Routers (bower install angular-route --save-dev / agregar script en index, y ngRoute como dependencia del module)
-      - Services	(bower install angular-resource --save-dev / agregar script en index, y ngResource como dependencia del module): 
-          - Crear mediante factory. Usa $resource para obtener data del server (Express): return $resource('/movies');	 Service.query()	
-      - Post data (book tickets) al server con $http. **Form validation**	*(Ver bookTickets.html y bookTicketsController en app.js)*  
-          - Agrega método post() en server Express. Se guarda en un arreglo los post que va recibiendo
-      - Fetch data (Show Booking Details) del server con otro service, usando $resource:  return $resource('/bookings');  Luego a ese service se le pide query()
-      - **$location**: usado para saber en qué parte de la app está y poner estado de activo en el header, y para redireccionar a otra seccion desde un controller
+  
+    * Angularjs Boilerplate desde 0:
+    
+        	npm init / editar package.json / npm install express --save-dev 
+        	bower init / editar bower.json / bower install angular --save-dev / bower install bootstrap --save-dev
+        	Server en index.js: ejecutar con > node index.js
+    * Model bindings
+    * Repeaters, module, controller
+    * Filters: uppercase, orderBy, json, filter
+    * Scope functions	- Partial views (ngInclude)
+    * Routers (bower install angular-route --save-dev / agregar script en index, y ngRoute como dependencia del module)
+    * Services	(bower install angular-resource --save-dev / agregar script en index, y ngResource como dependencia del module): 
+        - Crear mediante factory. Usa $resource para obtener data del server (Express): return $resource('/movies');	 Service.query()	
+    * Post data (book tickets) al server con $http. **Form validation**	*(Ver bookTickets.html y bookTicketsController en app.js)*  
+        - Agrega método post() en server Express. Se guarda en un arreglo los post que va recibiendo
+    * Fetch data (Show Booking Details) del server con otro service, usando $resource:  return $resource('/bookings');  Luego a ese service se le pide query()
+    * **$location**: usado para saber en qué parte de la app está y poner estado de activo en el header, y para redireccionar a otra seccion desde un controller
 	
 --------------------------------------------------------------------		
 ### [MediaExplorer - Fun with AngularJS](http://devgirl.org/2013/03/21/fun-with-angularjs/) ****	-OK-	###
-  - *ejemplos/angular/mediaExplorer*
+  - */ejemplos/angular/mediaExplorer*
   - [Blog](http://devgirl.org/2013/03/21/fun-with-angularjs/)
   - [Repo](https://github.com/hollyschinsky/MediaExplorer)
   - [Demo](http://devgirl.org/files/MediaExplorer)
-	- **iTunes Media Search API	<-- VER service, con JSONP**
-	- Custom filter
-	- **Custom directives**		<--- VER
-	- Modal con video html5 - Directiva videoLoader
-		- cuando cambia el url `scope.$watch("url"...)` cargar y hacer play al video
-		- cuando se cierra el modal hace pausa del video haciendo watch a un flag
+    * **iTunes Media Search API	<-- VER service, con JSONP**
+  	* Custom filter
+  	* **Custom directives**		<--- VER
+  	* Modal con video html5 - Directiva videoLoader
+  		- cuando cambia el url `scope.$watch("url"...)` cargar y hacer play al video
+  		- cuando se cierra el modal hace pausa del video haciendo watch a un flag
 
 --------------------------------------------------------------------	
 ### [Photo App - Tutorial en castellano](https://github.com/jacarma/ngpro/wiki/Tutorial-de-Angular.js) 	** 		-OK- ###
-  - *ejemplos/angular/photoApp*
+  - */ejemplos/angular/photoApp*
   - [Wiki](https://github.com/jacarma/ngpro/wiki/Tutorial-de-Angular.js) (explicación paso a paso, código en plunker)
   - [Original](http://www.adobe.com/devnet/archive/html5/articles/getting-started-with-angularjs.html)
   - [Demo](http://embed.plnkr.co/Sr7duFhXxyPz2AEus9MK/preview)
-  	- básico: 1 controlador, 1 servicio
-    - **ver service creado con factory**
+    * básico: 1 controlador, 1 servicio
+    * **ver service creado con factory**
 
 --------------------------------------------------------------------
 ### [ToDoMVC](http://todomvc.com/)												*** 			-OK- ###
 
 #### AngularJS • TodoMVC   											-OK- ####
-  - *ejemplos/angular/todomvc/angularjs*
+  - */ejemplos/angular/todomvc/angularjs*
   - [Demo](http://todomvc.com/examples/angularjs)
   - [Repo](https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs)
-  - Template inline:  `<script type="text/ng-template" id="todomvc-index.html">`
-    + Usa ng-pluralize, ng-cloak
-  - Router para ver sólo los completed o los active	
-  - Main Controller:
-    + retrieves and persists the model via the todoStorage service
-		+ usa $scope.$watch('todos',...) para guardar en localStorage y contar	(detecta cambios en la lista de todos, al agregar o actualizar)	 **<----VER ($watch)**
-		+ usa $filter para filtrar array en javascript
-    + exposes the model to the template and provides event handlers
-  - Service: todoStorage - Services that persists and retrieves TODOs from localStorage	**<----- VER (locaStorage service)**
-  - Directivas 	**<------------- VER (directivas)**
-    + todoEscape (atributo todo-escape en input para editar cada todo):
-		+ Directive that executes an expression when the element it is applied to gets an `escape` keydown event 
-		+ (para que al hacer escape se desactive el input)
-		+ (usa scope.$apply) **<----------- VER ($apply)**
-    + todoFocus	(atributo todo-focus en input para editar cada todo)
-		+ Directive that places focus on the element it is applied to when the expression it binds to evaluates to true
-		+ (le pone focus al input del todo que se vaa editar)
-		+ (usa scope.$watch) **<------------------ VER ($watch)**
-  - Tests unitarios: 
-    + controller  
-        + usa scope.$digest **<----- VER ($digest en testing)**
-    + directivas
+    * Template inline:  `<script type="text/ng-template" id="todomvc-index.html">`
+      + Usa ng-pluralize, ng-cloak
+    * Router para ver sólo los completed o los active	
+    * Main Controller:
+      + retrieves and persists the model via the todoStorage service
+  		+ usa $scope.$watch('todos',...) para guardar en localStorage y contar	(detecta cambios en la lista de todos, al agregar o actualizar)	 **<----VER ($watch)**
+  		+ usa $filter para filtrar array en javascript
+      + exposes the model to the template and provides event handlers
+    * Service: todoStorage - Services that persists and retrieves TODOs from localStorage	**<----- VER (locaStorage service)**
+    * Directivas 	**<------------- VER (directivas)**
+      + todoEscape (atributo todo-escape en input para editar cada todo):
+  		+ Directive that executes an expression when the element it is applied to gets an `escape` keydown event 
+  		+ (para que al hacer escape se desactive el input)
+  		+ (usa scope.$apply) **<----------- VER ($apply)**
+      + todoFocus	(atributo todo-focus en input para editar cada todo)
+  		+ Directive that places focus on the element it is applied to when the expression it binds to evaluates to true
+  		+ (le pone focus al input del todo que se vaa editar)
+  		+ (usa scope.$watch) **<------------------ VER ($watch)**
+    * Tests unitarios: 
+      + controller  
+          + usa scope.$digest **<----- VER ($digest en testing)**
+      + directivas
           
 #### AngularJS Performance Optimized • TodoMVC    -OK- ####
-  - *ejemplos/angular/todomvc/angularjs-perf*
+  - */ejemplos/angular/todomvc/angularjs-perf*
   - [Demo](http://todomvc.com/examples/angularjs-perf/#/)
   - [Repo](https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs-perf)
     
 	> "The normal AngularJS TodoMVC implementation performs deep watching of the todos array object. 
-    > This means that it keeps an in-memory copy of the complete array that is used for dirty checking in order to detect model mutations. 
-    > For smaller applications such as TodoMVC, this is completely fine as one trades off a little memory and performance for the sake of simplicity.
-    > In larger more complex applications however, where one might be working with 100s or 1000s of large objects one definitely should avoid using this approach. 
-    > This implementation of the AngularJS app demonstrates the correct way to approach this problem when working in larger apps."
+  > This means that it keeps an in-memory copy of the complete array that is used for dirty checking in order to detect model mutations. 
+  > For smaller applications such as TodoMVC, this is completely fine as one trades off a little memory and performance for the sake of simplicity.
+  > In larger more complex applications however, where one might be working with 100s or 1000s of large objects one definitely should avoid using this approach. 
+  > This implementation of the AngularJS app demonstrates the correct way to approach this problem when working in larger apps."
  
- - Diferencias con el anterior...
-      - No usa router, si no scope.$watch con $location.path para mostrar completeds o actives
-      - No usa scope.$watch del array para actualizar en localstorage, si no que hace put en localStorage en cada funcion que modifica el arreglo (add, remove, complete..)
+  - Diferencias con el anterior...
+    * No usa router, si no scope.$watch con $location.path para mostrar completeds o actives
+    * No usa scope.$watch del array para actualizar en localstorage, si no que hace put en localStorage en cada funcion que modifica el arreglo (add, remove, complete..)
 			
 #### AngularJS & RequireJS • TodoMVC   				-OK- ####
-  - *ejemplos/angular/todomvc/angularjs_require*
+  - */ejemplos/angular/todomvc/angularjs_require*
   - [Demo](http://todomvc.com/examples/angularjs_require)
   -	[Repo](https://github.com/tastejs/todomvc/tree/gh-pages/examples/angularjs_require)
-  - Módulos con RequireJS: usa angular.bootstrap en main.js. Cada módulo con define
+  * Módulos con RequireJS: usa angular.bootstrap en main.js. Cada módulo con define
 		
 #### Firebase & AngularJS Realtime	• TodoMVC  		-OK- ####
-  - *ejemplos/angular/todomvc/firebase-angular*
+  - */ejemplos/angular/todomvc/firebase-angular*
   - [Demo](http://todomvc.com/examples/firebase-angular)
   -	[Repo](https://github.com/tastejs/todomvc/tree/gh-pages/examples/firebase-angular)
   -	Diferencias con el original...
-    - En lugar de router, en app.js usa filter con $location.path para ver completed o active. Usa el filter en el ng-repeat del template
-    - Hace binding del array $scope.todos con $firebase
+    * En lugar de router, en app.js usa filter con $location.path para ver completed o active. Usa el filter en el ng-repeat del template
+    * Hace binding del array $scope.todos con $firebase
 
 --------------------------------------------------------------------
 ### [Ejemplo de service: CRUD Contacts](http://viralpatel.net/blogs/angularjs-service-factory-tutorial/) ###
   - [Blog + Code + Demo](http://viralpatel.net/blogs/angularjs-service-factory-tutorial/)
-  	+ Ver 6. End to End application using AngularJS Service
+    + Ver 6. End to End application using AngularJS Service
 
---------------------------------------------------------------------		
-### AngularJS CRUD application demo		***		<================ VER ###
-	- Repo: https://github.com/angular-app/angular-app	
-	> Stack
-		- Persistence store: MongoDB hosted on MongoLab
-		- Backend: Node.js
-		- Awesome AngularJS on the client
-		- CSS based on Twitter's bootstrap
-	> Build
-		- powered by Grunt.js
-		- test written using Jasmine syntax
-		- test are executed by Karma Test Runner (integrated with the Grunt.js build)
-		- build supporting JS, CSS and AngularJS templates minification
-		- Twitter's bootstrap with LESS templates processing integrated into the build
-		- Travis-CI integration
+*****************************************************************************************************
+*****************************************************************************************************
+## Con Backend (MEAN o PHP) - REST API ##
+
+### [MovieStub - A Hands On tutorial](http://thejackalofjavascript.com/angularjs-hands-on-tutorial/) ****   -OK!!- ###
+  *ver arriba*
 
 --------------------------------------------------------------------
-### MEAN workshop - Angular day - Hands on Examples * ###
-	Ejemplos movie list. Integración con server Node+Express (STACK MEAN)	
-http://mean-workshop.herokuapp.com/#/day4														VISTO
-Repo: https://github.com/arvindr21/MEAN-Workshop/tree/master/resources/day4/examples
-	Ejemplos: setupBasico, modelBinding, repeaters, filters, scopeFunctions, ngInclude, routers, Service: integrar con Express
+### [MEAN workshop - Angular day - Hands on Examples](http://mean-workshop.herokuapp.com/#/day4) * ###
+  **Ejemplos movie list. Integración con server Node+Express (STACK MEAN)**         VISTO
+                            
+  - [Repo](https://github.com/arvindr21/MEAN-Workshop/tree/master/resources/day4/examples)
+  - *Ejemplos*: setupBasico, modelBinding, repeaters, filters, scopeFunctions, ngInclude, routers, Service: integrar con Express
 
---------------------------------------------------------------------	
-### Angularjs, Material Design and Twitter Streams – A Twitter Live Search App * ###
-	http://thejackalofjavascript.com/twitter-live-search/
-		--> MATERIAL DESIGN en Angular: https://material.angularjs.org/#/
-		Arquitectura
-		- Node.js
-		- Twitter Streams
-		- Socket.io
-		- Angularjs
-		- Material Design
+--------------------------------------------------------------------    
+### Single Page Todo App - REST API con Node  * ###
+  - [Blog castellano](http://carlosazaustre.es/blog/tutorial-ejemplo-de-aplicacion-web-con-angular-js-y-api-rest-con-node/)
+  - [Original inglés - actualizado](https://scotch.io/collections/node-and-angular-to-do-app)
+    1. [Creating a Single Page To-do App with Node and Angular](https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular)
+    2. [Node Application Organization and Structure](https://scotch.io/tutorials/node-and-angular-to-do-app-application-organization-and-structure)
+    3. [Angular Modules: Controllers and Services](https://scotch.io/tutorials/node-and-angular-to-do-app-controllers-and-services)
+  * ToDo list simple
+  * Backend con Node + Express + Mongoose (driver para mongodb)  
 
---------------------------------------------------------------------		
-### Tutorial de AngularJS. Ejemplo de aplicación web conectada a una API REST con Node * ###
-	Blog: http://carlosazaustre.es/blog/tutorial-ejemplo-de-aplicacion-web-con-angular-js-y-api-rest-con-node/
+--------------------------------------------------------------------    
+### [Wine Cellar](http://coenraets.org/blog/2012/02/sample-application-with-angular-js/)  *  ###
+  **CON VERSIÓN VIEJA DE ANGULAR**
 
---------------------------------------------------------------------	
+  - */ejemplos/angular/wine-cellar*
+  - [Blog](http://coenraets.org/blog/2012/02/sample-application-with-angular-js/)
+  - [Repo](https://github.com/ccoenraets/angular-cellar)
+  - [Demo](http://coenraets.org/angular-cellar)
+    * Backend: **Slim PHP**
+
+--------------------------------------------------------------------
+### [Employee Directory - Sample Mobile Application with AngularJS](http://coenraets.org/blog/2013/11/sample-mobile-application-with-angularjs/) *** OK ###
+
+  - */ejemplos/angular/employee-directory*
+  - [Blog](http://coenraets.org/blog/2013/11/sample-mobile-application-with-angularjs/)
+  - [Repo](https://github.com/ccoenraets/angular-directory)
+  - [Demo](http://coenraets.org/apps/angular-directory/)  
+  * **Data services** - alternativas de persistencia de datos, ambas implementadas como servicios intercambiables:    <======= VER
+    + **Backend REST: Node + Express + MongoDB**. `node server`  http://localhost:3000
+      - En app.js (carga dedendencias del modulo), línea 8: `myApp.restServices`
+    + **Datos in memory en client**.
+      - En app.js (carga dedendencias del modulo), línea 8: `myApp.memoryServices`
+  * UI Framework: **Topcoat**
+
+
+*****************************************************************************************************
+*****************************************************************************************************
+## Con UI (de angular u otro framework) y plugins ##
+
+### [Employee Directory - Sample Mobile Application with AngularJS](http://coenraets.org/blog/2013/11/sample-mobile-application-with-angularjs/) *** OK ###
+  *ver arriba* - UI Framework: **Topcoat**
+
+--------------------------------------------------------------------    
+### AngularJS + Ratchet 2.0: Sample Mobile App built with AngularJS and Ratchet 2.0 **    OK   <=== VER ###
+  - */ejemplos/angular/app-mobile-angularjs-ratchet2*
+  - [Blog](http://vicentegarcia.com/blog/aplicacion-movil-ratchet-angularjs/)
+  - [Repo](https://github.com/vicentegarcia/app-mobile-angularjs-ratchet2)
+    * Lista de tareas - Localstorage
+    * UI Framework: **Ratchet** http://goratchet.com/ (sólo CSS)
+    * **Angular-UI Router**: *State-based routing for AngularJS*
+
+--------------------------------------------------------------------    
+### [ngTwitterApp: Twitter Live Search App - Angularjs, Material Design and Twitter Streams](http://thejackalofjavascript.com/twitter-live-search/) * ###
+  - */ejemplos/angular/ngTwitterApp*  - `node server.js` - http://localhost:3000
+  - [Blog](http://thejackalofjavascript.com/twitter-live-search/)
+  - [Repo](https://github.com/arvindr21/ngTwitterApp)
+  - **[MATERIAL DESIGN en Angular](https://material.angularjs.org/#/)**
+  * Arquitectura - Technologies
+    - Node.js 
+      - Express --> Para hacer el get del index
+      - Package [twit](https://www.npmjs.com/package/twit): Twitter API client for node (REST & Streaming)
+    - **Twitter Streams**
+      - [Twitter stream API](https://dev.twitter.com/streaming/overview)
+    - **Socket.io**
+    - Angularjs
+    - **Material Design**
+      + [Grid system](https://material.angularjs.org/#/layout/grid) -> to position the elements on the page
+      + [Tabs component](https://material.angularjs.org/#/demo/material.components.tabs) -> to build the search results interface `md-tabs`
+      + [Card component](https://material.angularjs.org/#/demo/material.components.card) -> to show a tweet  
+      + [Button component](https://material.angularjs.org/#/demo/material.components.button) -> to show the Tweet link.  `md-button`
+  * Uses Twitter’s Streaming API to access public stream with the help of a Node module named Twit and then filter the stream based on the search text a user enter.
+    Uses socket.io to keep the Node.js server in sync with the Angular client
+      - When a user establishes a new connection, we will dispatch a web page that consists of the initial view and we will start listening for a query event on the socket.
+      - When the user searches, we will create a new stream instance using the Twit API with the provided search keyword and then start listening for events on the stream. Whenever there is a new tweet on the stream, a Tweet event would be fired.
+      - Inside this event, we trigger our socket to emit the new tweet to the client. And then on the client, we will be listening for the tweet event and update the UI. 
+      - Finally Material Design is used to enhance the UX.
+
+  * *Usa directivas deprecated*. Ver ngTwitterAppOriginal para correcto con funcionamiento con librerias viejas.    
+
+--------------------------------------------------------------------    
+### [LookAround](https://github.com/shidhincr/LookAround) <------ VER ###
+  *AngularJS Learning Playground ( with some more items like Twitter bootstrap, Google maps API, TDD using Karma runner )*
+  
+  - */ejemplos/angular/lookAround*
+  - [Repo](https://github.com/shidhincr/LookAround)
+  - [Demo](http://lookaround.herokuapp.com/)
+  * Technologies/Frameworks used here:
+    - Angular JS
+    - **Google Maps API** 
+    - Google Analitycs (usa API en los controllers)
+    - **Twitter bootstrap: angular-ui-bootstrap**
+    - TDD ( Karma runner )
+    - Yeoman ( Optional now )
+
+  * Custom Directives:
+    - Loading indicator (para mostrar pgina loaing)  <---- **VER**
+    - gmaps - (renderMap: place the markers in the map) 
+  * Service: define service (factory) para google maps  <--- **VER**  
+  * Controller: usa google maps API para obtener ubicacion del zip code. **Usa $apply**
+
+*****************************************************************************************************
+## Testing ##
+
+### End to End Testing with Protractor * ###
+  - [Blog](http://thejackalofjavascript.com/end-to-end-testing-with-protractor)
+  - Con explicaciones de testing      
+
+*****************************************************************************************************
 ### [Tutoriales varios](http://angular.org.il/tutorials/ ) * ###
 
---------------------------------------------------------------------	
-### End to End Testing with Protractor * ###
-	Blog: http://thejackalofjavascript.com/end-to-end-testing-with-protractor
-		Con explicaciones de testing			
-
---------------------------------------------------------------------		
-### Wine Cellar  (versión vieja Angular) * ###
-	Blog: http://coenraets.org/blog/2012/02/sample-application-with-angular-js/
-	Repo: https://github.com/ccoenraets/angular-cellar
-	Demo: http://coenraets.org/angular-cellar
-
---------------------------------------------------------------------
-### Employee Directory ### 
-#### AngularJS: Sample Mobile Application with AngularJS * ####
-		Blog: http://coenraets.org/blog/2013/11/sample-mobile-application-with-angularjs/
-		Repo: https://github.com/ccoenraets/angular-directory
-		Demo: http://coenraets.org/apps/angular-directory/	
-			- Topcoat
-
-#### IONIC + AngularJS: Sample Mobile Application with Ionic and AngularJS * ####
-		Blog: http://coenraets.org/blog/2014/02/sample-mobile-application-with-ionic-and-angularjs/
-		Repo: https://github.com/ccoenraets/directory-angular-ionic
-		Demo: http://coenraets.org/apps/directory-angular-ionic/#/employees
-
---------------------------------------------------------------------		
-### AngularJS + Ratchet 2.0: Sample Mobile App built with AngularJS and Ratchet 2.0 ** ###
-	Blog: http://vicentegarcia.com/blog/aplicacion-movil-ratchet-angularjs/
-	Repo: https://github.com/vicentegarcia/app-mobile-angularjs-ratchet2
-	Lista de tareas - Localstorage
-	--> UI Framework: Ratchet http://goratchet.com/

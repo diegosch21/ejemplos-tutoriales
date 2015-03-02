@@ -1,0 +1,14 @@
+{
+  "name": "ngTwitterApp",
+  "version": "0.1.0",
+  "homepage": "https://github.com/diegosch21/ejemplos-tutoriales",
+  "authors": [
+    "Arvind + diegosch"
+  ],
+  "description": "Twitter Live Search App - Angularjs, Material Design and Twitter Streams",
+  "license": "MIT",
+  "dependencies": {
+    "angular-material": "~0.8.2",
+    "angular-socket-io": "~0.7.0"
+  }
+}
