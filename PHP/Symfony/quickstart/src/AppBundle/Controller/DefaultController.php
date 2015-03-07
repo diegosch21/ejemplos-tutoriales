@@ -58,10 +58,6 @@ class DefaultController extends Controller
             'name'  => "Pepe",
         )); 
 
-    
-
-
-    	       
         
     }
 
@@ -75,8 +71,10 @@ class DefaultController extends Controller
      */
     public function helloAction($name, $_format='html')
     {
-        return $this->render('default/hello.'.$_format.'.twig', array(
+        //return $this->render('default/hello.'.$_format.'.twig', array(      // usa template en /app/Resources/views/default
+        return $this->render('AppBundle:Default:hello.'.$_format.'.twig', array(  // usa template en /src/AppBundle/Resources/views/default
             'name' => $name
         ));
+
     }
 }
