@@ -1,0 +1,8 @@
+diego_demo_homepage:
+    path:     /random/{limit}
+    defaults: { _controller: DiegoDemoBundle:Random:index }
+
+diego_demo_database:
+    resource: "@DiegoDemoBundle/Controller/DatabasePruebaController.php"
+    type:     annotation
+    prefix:   /database

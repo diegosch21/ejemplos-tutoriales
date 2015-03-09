@@ -1,0 +1,11 @@
+{# src/Diego/DemoBundle/Resources/views/Random/index.html.twig #}
+ {% extends '::base.html.twig' %}   {# No tiene BundleName ni ControllerName: está en /app/Resources/views #}
+
+ {% block title %}
+     Mostrando número random...
+ {% endblock %}
+
+
+ {% block body %}
+     Number: {{ number }}
+ {% endblock %}
