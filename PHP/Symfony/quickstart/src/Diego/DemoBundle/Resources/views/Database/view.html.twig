@@ -1,0 +1,12 @@
+{# src/Diego/DemoBundle/Resources/views/Database/view.html.twig #}
+ {% extends '::base.html.twig' %}   {# No tiene BundleName ni ControllerName: está en /app/Resources/views #}
+
+ {% block title %}
+    {{ accion }}
+ {% endblock %}
+
+
+ {% block body %}
+    Joya! Acción realizada: {{ accion }} <br/>
+    Data => {{data}}
+ {% endblock %}
