@@ -20,7 +20,7 @@ http://localhost/ejemplos/PHP/Slim/task_manager/v1
 | /tasks     | GET    |                       | Fetching all tasks   |
 | /tasks/:id | GET    |                       | Fetching single task |
 | /tasks/:id | PUT    | task, status          | Updating single task |
-| /tasks/:id | DELETE |                      g | Deleting single task |
+| /tasks/:id | DELETE |                       | Deleting single task |
 
 ####Database tables####
 
