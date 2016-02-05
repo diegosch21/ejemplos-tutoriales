@@ -1,4 +1,1 @@
-[submodule "PHP/Laravel/quickstart-basic"]
-	path = PHP/Laravel/quickstart-basic
-	url = https://github.com/laravel/quickstart-basic
-	ignore = dirty
+
