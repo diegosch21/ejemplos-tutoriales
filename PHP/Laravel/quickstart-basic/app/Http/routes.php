@@ -23,11 +23,10 @@ Route::get('/', function () {
     ]);
 });
 
-
 /**
  * Add New Task
  */
-Route::post('/task', function (Request $request) {
+Route::post('/task', ['as' => 'new_task', function (Request $request) {
 	$validator = Validator::make($request->all(), [
 		'name' => 'required|max:255',
 	]);
@@ -43,14 +42,14 @@ Route::post('/task', function (Request $request) {
 	$task->save();
 
 	return redirect('/');
-});
+}]);
 
 
 /**
  * Delete Task
  */
-Route::delete('/task/{id}', function ($id) {
+Route::delete('/task/{id}', ['as' => 'delete_task', function ($id) {
 	Task::findOrFail($id)->delete();
 
 	return redirect('/');
-});
+}]);
