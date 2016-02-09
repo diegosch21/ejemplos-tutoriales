@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +27,16 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+    Route::get('/', function () {
+        return redirect('/login');
+    })->middleware('guest'); // este middleware hace redireccion a /tasks si está logueado (RedirectIfAuthenticated)
+
+    // Authentication Routes...
+    Route::auth();
+
+    // Routes tasks, con middleware auth (definido en el controller)
+    Route::get('/tasks', 'TaskController@index');
+    Route::post('/task', 'TaskController@store');
+    Route::delete('/task/{task}', 'TaskController@destroy');
 });
