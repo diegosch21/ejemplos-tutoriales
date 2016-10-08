@@ -1,1 +1,7 @@
 
+[submodule "PHP/Symfony/guard-authentication"]
+	path = PHP/Symfony/guard-authentication
+	url = https://github.com/knpuniversity/guard-presentation.git
+[submodule "PHP/Symfony/blog-rest-symfony2"]
+	path = PHP/Symfony/blog-rest-symfony2
+	url = https://github.com/liuggio/symfony2-rest-api-the-best-2013-way.git
