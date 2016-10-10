@@ -1,0 +1,691 @@
+>>>>>>>>  Info útil PHONEGAP - APACHE CORDOVA  <<<<<<<<<<<<
+
+VER proy-final/docs-viejo/recursos/Phonegap - Cordova/
+	Especialmente PRESENTACION PHONEGAP + WINDOWS PHONE.pdf	
+
+*********************************
+http://www.mozilla-hispano.org/phonegap-apache-cordova-vs-firefox-os/
+	La grandeza de este framework es que internamente es una API totalmente preparada para la integración Web con el uso nativo del OS. 
+	De esta manera se consigue que el framework no se llene de funcionalidades que son más bien desarrolladas como extensiones, las cuales cualquiera puede desarrollar.
+	Pero no nos engañemos. Una aplicación Web es ejecutada bajo el motor de renderizado base de cada OS, y éste se ve influenciado por el hardware del terminal en cuestión. 
+	Así que la comparativa de aplicaciones en PhoneGap corriendo en terminales de gama media o gama baja con Webkit como motor de renderizado de Android 2.3 o Android 4.0 por poner un ejemplo, es prácticamente inutilizable.
+	¿Por qué digo esto último? Porque PhoneGap no deja de ser un framework para la integración de apps Web, pero a estas hay que añadirles una interfaz gráfica con un desempeño en experiencia de usuario, y aquí volvemos a depender directamente del hardware del terminal y del motor de renderizado.
+	No olvidemos que PhoneGap es una API y el resto de componentes son de terceros, bajo el propio rendimiento de los mismos.		
+
+	PhoneGap es una solución que junto a frameworks UI/UX, véase Sencha Touch o jQuery Mobile, ofrecen una forma de conseguir lanzar nuestras aplicaciones Web en variedad de sistemas operativos y dispositivos. 
+	El problema es que para que el rendimiento sea ligeramente cercano al nativo es necesario disponer de un terminal con hardware de muy alta gama y aún así no llegaremos a conseguir un rendimiento igual o superior que una aplicación nativa. 
+	
+*****
+	Cordova does not provide any UI widgets or MV* frameworks. Cordova provides only the runtime in which those can execute. If you wish to use UI widgets and/or an MV* framework, you will need to select those and include them in your application yourself as third-party material.
+	
+	
+***********************************
+Algunos links...
+
+http://ccoenraets.github.io/cordova-tutorial/  <-- Buen tutorial  (ver ultima seccion de este txt)
+http://coenraets.org/slides/qconnyc2014/#0		<========= VER
+
+http://www.addthis.com/blog/2014/10/27/7-things-to-consider-when-making-ios-and-android-apps-with-cordova-or-phonegap/#.VIejhdKG8rg
+
+Developing Cross Platform Mobile Applications with Cordova CLI
+https://leanpub.com/developingwithcordovacli/read
+
+¿QUIÉN USA PHONEGAP/CORDOVA?
+http://www.tricedesigns.com/2012/03/27/who-uses-phonegapapache-cordova/
+
+************************************
+
+ it just requires html,css and js file to wrap up an application for different platforms. So downloading and linking phonegap.js in an the application is not required unless I need to access the device's native function	
+ 
+ To develop Cordova applications, you must install SDKs for each mobile platform you are targeting. This installation is necessary regardless of whether you do the majority of your work in the SDK or use the CLI for your build cycle
+ 
+ Para poder generar las app para cada plataforma, se necesita el SDK instalado en la computadora.... luego, mediante la CLI de Phonegap (Cordova) se pueden compilar esas apps en base al desarrollo HTML5. También se puede partir directamente con las SDK y agregr las funcionalidades de phonegap.
+ 
+ *** Cross-platform workflow (CLI) - (Web Project Dev) vs  Platform-centered workflow (Native Platform Dev) ***
+ ==>> VER Development Paths: http://cordova.apache.org/docs/en/4.0.0/guide_overview_index.md.html#Overview_development_paths <<==
+ 
+			Development Paths
+			As of version 3.0, you can use two basic workflows to create a mobile app. While you can often use either workflow to accomplish the same task, they each offer advantages:
+
+			-> Cross-platform (CLI) workflow: Use this workflow if you want your app to run on as many different mobile operating systems as possible, with little need for platform-specific development. This workflow centers around the cordova utility, otherwise known as the Cordova CLI, that was introduced with Cordova 3.0. The CLI is a high-level tool that allows you to build projects for many platforms at once, abstracting away much of the functionality of lower-level shell scripts. The CLI copies a common set of web assets into subdirectories for each mobile platform, makes any necessary configuration changes for each, runs build scripts to generate application binaries. The CLI also provides a common interface to apply plugins to your app. For more details on the CLI, see The Command-Line Interface. Unless you have a need for the platform-centered workflow, the cross-platform workflow is recommended.
+
+			-> Platform-centered workflow: Use this workflow if you want to focus on building an app for a single platform and need to be able to modify it at a lower level. You need to use this approach, for example, if you want your app to mix custom native components with web-based Cordova components, as discussed in Embedding WebViews. As a rule of thumb, use this workflow if you need to modify the project within the SDK. This workflow relies on a set of lower-level shell scripts that are tailored for each supported platform, and a separate Plugman utility that allows you to apply plugins. While you can use this workflow to build cross-platform apps, it is generally more difficult because the lack of a higher-level tool means separate build cycles and plugin modifications for each platform. Still, this workflow allows you greater access to development options provided by each SDK, and is essential for complex hybrid apps. See the various Platform Guides for details on each platform's available shell utilities.
+
+			* When first starting out, it may be easiest to use the cross-platform workflow to create an app, as described in The Command-line Interface. You then have the option to switch to a platform-centered workflow if you need the greater control the SDK provides. Lower-level shell utilities are available at cordova.apache.org in a separate distribution than the CLI. For projects initially generated by the CLI, these shell tools are also available in the project's various platforms/*/cordova directories.
+
+			* NOTE: Once you switch from the CLI-based workflow to one centered around the platform-specific SDKs and shell tools, you can't go back. The CLI maintains a common set of cross-platform source code, which on each build it uses to write over platform-specific source code. To preserve any modifications you make to the platform-specific assets, you need to switch to the platform-centered shell tools, which ignore the cross-platform source code, and instead relies on the platform-specific source code.
+ ---------
+	When you are doing Cordova development, there are two main tooling paradigms. You can use native tooling (Eclipse, XCode) to manage your source, edit your javascript and CSS, etc–this is called ‘Native Platform Dev’. Or you can use tooling more typically used in web development (a text editor like Sublime or vi) plus Cordova CLI–this is called ‘Web Project Dev’. Here’s a bit more on the names of these paradigms.
+	http://www.mooreds.com/wordpress/archives/1419
+ 
+ 
+ Alternativamente la compilación puede hacerse en la nube mediante PhoneGap Build... desarrollar sólo HTML5 y la interacción con plugins que usen características de las plataformas.... y en phonegap build compilar, sin necesidad de tener los SDK instalados. Usar los plugins provistos por PhoneGap Build o 3rd party, o crear uno propio y subirlo
+ 
+ 
+ Alternativa: Intel XDK 
+ 
+ http://stackoverflow.com/questions/19901274/doubts-on-phonegap-js-phonegap-build-and-intel-xdk
+	In my experience developing with Phonegap and its Build service I generally use a plain web IDE which is based on eclipse called Aptana. It's primary use is for just HTML web development. I never install iOS or Android SDK's since the whole reason you use Phonegap's online build service is so you can be free from having to set up multiple development environments.
+
+	All my project specifications are configured in the config.xml. I don't include a copy of Phonegap's libraries since they are bundled at the time of compilation in via Phonegap's online build service.
+
+	For general testing and debugging I use either the Chrome debug inspector or Chrome and the Ripple emulator. When I've finished testing and need to compile the binaries I send my code up to Phonegap's build service using maven and Chris Price's Phonegap build maven plugin.
+
+	This allows me to :
+		Unlock the signing keys (maven-ant-plugin and an http get call)
+		Upload my project for compilation to Phonegap's Build service
+		Sign my project with a specified signing key
+		Download a compiled binary for a specified platform
+		All from one single command. When I develop on my Mac Mini I installed a ruby script which will deploy the downloaded binary straight to my iOS device as final step.
+	
+	I came up with this solution with the idea that I wanted to be able to checkout my code and be able to compile it online using only maven on any machine. This achieves that.
+ 
+***********************************	
+=> PhoneGap o Apache Cordova?
+
+http://phonegap.com/2012/03/19/phonegap-cordova-and-what%E2%80%99s-in-a-name/
+.
+.
+.
+Simply put, Cordova is the open-source project that is the basis of PhoneGap. Think of it as the engine that drives PhoneGap.
+  
+The core engine for PhoneGap is also 100% open source, under the Apache Cordova project.
+	
+*********************************
+http://phonegap.com/2012/05/02/phonegap-explained-visually/
+
+PhoneGap is an application container technology that allows you to create natively-installed applications for mobile devices using HTML, CSS, and JavaScript.  
+The core engine for PhoneGap is also 100% open source, under the Apache Cordova project.
+
+Basically Cordova generates a hybrid app (i.e. which contains native component as well as non-native component with respect to each platform) in which
+	all UI is rendered using browser
+	functions are written in JavaScript
+	using Cordova framework access device native capabilities
+		(http://ishanaba.com/blog/tag/how-cordova-works/)
+	
+=> PhoneGap User Interface
+	The user interface for PhoneGap applications is created using HTML, CSS, and JavaScript. 
+	The UI layer of a PhoneGap application is a web browser view that takes up 100% of the device width and 100% of the device height.
+	
+	Think of this as a "chrome-less" web browser.  It renders HTML content, without the "chrome" or window decoration of a regular web browser. 
+	You build your application to take advantage of this space, and you build navigational/interactive/content elements and application chrome into your HTML and CSS based user interface.
+
+	The web view used by PhoneGap is the same web view used by the native operating system.  
+	On iOS, this is the Objective-C UIWebView class; on Android, this is android.webkit.WebView. 
+	Since there are differences in the web view rendering engines between operating systems, make sure that you account for this in your UI implementation.
+
+=> PhoneGap API
+	PhoneGap provides an application programming interface (API) that enables you to access native operating system functionality using JavaScript. 
+	You build your application logic using JavaScript, and the PhoneGap API handles communication with the native operating system. 	
+
+=> PhoneGap Application Packaging and Distribution
+	PhoneGap applications are developed using HTML, CSS, and JavaScript, 
+	however the final product of a PhoneGap application is a binary application archive that can be distributed through standard application ecosystems.
+	
+	For iOS applications the output is an IPA file) (iOS Application Archive),
+	for Android applications the output is an APK file) (Android Package), 
+	for Window Phone the output is a XAP file (Application Package), etc...  
+	These are the same application packaging formats used by "native" applications, and can be distributed through the appropriate ecosystems (App Store, Google Play, Amazon Market, BlackBerry App World, Windows Phone Marketplace, etc...)
+
+=> PhoneGap High-Level Application Architecture
+	Specific application architectures are going to differ on a case-by-case basis, however most data-driven applications employ the following basic architecture. 
+	The PhoneGap application acts as a client for the user to interact with.  
+	The PhoneGap client communicates with an application server to receive data. 
+	The application server handles business logic and communicates with a back-end data repository.	
+	
+	The application server is normally a web server (Apache, IIS, etc...) and has a server side scripting language such as ColdFusion, Java, .NET, PHP, etc... 
+	PhoneGap is agnostic of back-end technologies and can work with any application server using standard web protocols. 
+	The application server performs business logic and calculations, and generally retrieves or persists data from a separate data repository - this is normally a relational database, but could be any structure or mechanism for data persistence.
+	
+	PhoneGap applications generally do not talk directly to a database; communication is routed through an application server. 
+	The client to application server communication can be based upon standard HTTP requests for HTML content, REST-ful XML services, JSON services, or SOAP (or websockets if your OS supports it). 
+	These are the exact same techniques that you would use in a desktop-browser based AJAX application.
+
+	The client-side architecture generally uses the SINGLE-PAGE APPLICATION model, where the application logic is inside a single HTML page. 
+	This page is never unloaded from memory. 
+	All data will be displayed by updating the HTML DOM, data is retrieved from the application server using AJAX techniques, and variables are kept in-memory within JavaScript.
+
+	Multi-page client-side application architectures are supported, but are not recommended because you lose in-memory variables when loading a separate page.
+	(Más sobre la arquitectura, a continuación...)
+
+*********************************
+Otro buen resumen: http://www.risingj.com/archives/267	
+
+=> How does it work?
+	* Running an Application on a device
+		At runtime, PhoneGap works by instantiating a browser component on the device. This is a chrome-less browser, meaning that it does not have an address-bar or forward/back buttons. 
+		The end developer’s application consists of HTML, JavaScript and CSS that are loaded into the browser component. PhoneGap provides a JavaScript API that allows developer code to access device functionality, that is currently not accessible to web sites loaded in the default browser.
+	* Building for a device
+		PhoneGap includes tools and libraries for packaging developer code into an application that can run on the device. The exact process of packaging will depend on the device as each has its own methods of packaging. 
+		The developer code is typically maintained in a www folder indicating the root of the application. All content within this root folder is considered to be portable and will have little if any modification between device targets.
+	* Distributing your application
+		PhoneGap applications are distributed through app stores, just like any other native application. The same rules apply for what your app is allowed to do, and what kind of content is appropriate. 
+		Your PhoneGap application will typically need to be reviewed, and upon passing review, it will be distributed via app store downloads
+	
+=> More than websites on the phone
+	A common mis-conception that newcomers to PhoneGap have is that it is just a website. There is an important distinction that must be made when approaching developing a JavaScript based application.
+	
+	You should not expect to update your application whenever you like, as you would with your website. App store policies generally do not allow you to make changes without going through the review process again. 
+	While it is possible to serve web content over http to your app, it is best to avoid having this be the primary function of your app.
+
+	PhoneGap is not a web server, so you should not expect to run php, or .net code, or have paths like ‘/’ magically resolve to ‘/index.html’. Some consideration should also be made for data access methods. 
+	PhoneGap applications can not connect to a remote database servers directly, so you will need a web server to manage translation of your data from your database, and serve it over http.
+	
+	--> A typical PhoneGap application consists of one or more standalone web pages hosted on the device connecting to a RESTy API on the server, typically serving JSON for transport efficiency.
+	
+	Your application should provide some sort of offline functionality, or it should at least be aware when it is running offline, and inform the user of what to expect. 
+	App stores generally will not accept an application that shows an infinite spinner while attempting to connect to an unreachable server. 
+	PhoneGap provides the Network Connection API so your application can not only detect when it is connected, but tell if the connection is via wifi, or cellular data.
+	
+	In the world of mobile devices, although remarkable, processor capabilities are limited. The amount of code that needs to load before a user interface is presented is an important consideration.
+	
+	There are potentially 3 areas where code size can impact performance and applications should be optimized :
+		- Time for code to be loaded from the file system.
+		- Time for code to be interpreted by the script host.
+		- How much memory the code occupies at runtime.
+		
+	Modern best practices for JavaScript suggest that you concatenate files, and use a minification tool to compress the amount of data delivered. 
+	While file size will improve the load time for your app, there is no benefit in zipping your content as is currently done by many web servers. 
+	This is primarily because the file itself will not be subject to network latency, so minification should be enough for text based files.	
+	
+	Another area to consider is the actual screen sizes of the devices. Using css3 media queries it is possible to target different resolutions with different runtime assets.
+
+=> I'll tell you when I'm ready (Asincronismo - javascript)
+	The entire PhoneGap API is asynchronous, meaning calls to get device values do not return an immediate result, but return the result at some later time via a callback method. 
+	This approach is similar to an AJAX website, where the page is refreshed without having to reload, and the user interface can remain responsive to the user even while data is pending.
+	
+	Application logic, sometimes referred to as Business logic, is typically running in the webpage itself in JavaScript. 
+	This may be in contrast to web developers coming from an environment where the web server is doing all the work, and maintaining state for multiple clients. 
+	Application logic, including state, and view management is typically performed in JavaScript in PhoneGap applications.
+	HTML has many features that make it suitable for defining user interface presentation, as opposed to typical document layout.	
+		
+=> What doesn't PhoneGap do?
+	Quite purposefully, PhoneGap does not provide any user interface controls. PhoneGap is solely focused on being the best container, and device api host for your web tech built application. 
+	But PhoneGap does not limit your choice either, and it allows you to develop with whatever UI framework you are familiar with. There are many options including jQuery Mobile, and Sencha Touch. 
+	Similarly, there is a multitude of choices for providing application structure, via best practice patterns. Frameworks like Backbone, or Knockout fit comfortably into PhoneGap.		
+	
+=> Plugins
+	PhoneGap provides an easy mechanism to ‘plugin’ new functionality as it is developed. 
+	At it’s heart PhoneGap is providing a bridge from the JavaScript world to the native code world, and back again. 
+	This bridge can also be used by developers wishing to augment this functionality with their own native additions.
+	
+
+**************************************************
+=> ARQUITECTURA general  (http://java.dzone.com/articles/phonegap-architectural)
+
+* Single page vs Multiple page
+
+	http://coenraets.org/keypoint/phonegap-backbone/#6:
+									| Multi-Page			| Single-Page
+				====================|=======================|============
+				UI Generation Tier	| Server-Side			| Client-Side
+				Language			| Java, .NET, PHP, RoR	| JavaScript
+				Offline Support		| Limited				| Yes
+				Page Transitions	| Browser				| Developer
+				Performance			| Laggy					| Fast
+		
+	-> Single page: 
+		A single HTML file is loaded and every aspect of the user interface
+		and interactivity are generated dynamically at runtime with JavaScript (AJAX apps)
+		- Toda la lógica se desarrolla en js. 
+		- Permite crear web apps que parecen más apps que sitios web
+		- La librería js PhoneGap se inicializa una sola vez.
+		- No se pierde data residente en memoria. Se maneja la transición de contenido entre un estado visual a otro
+		- Frameworks MVC para esto. 
+		- Hay que manejar "manualmente" los URL e historial de la webview
+		
+		A “Single-Page Application” is a web application that lives within a single HTML page. 
+		The “views” of the application are injected into and removed from the DOM as needed as the user navigates through the app. 
+		A single-page application architecture is particularly well suited for mobile apps:
+			The absence of page refreshes provides a more fluid and closer to native experience.
+			The UI is entirely created at the client-side with no dependency on a server to create the UI, making it an ideal architecture for applications that work offline.
+
+	-> Multiple page: 
+		The app is broken into multiple discrete HTML pages.	
+		- Cada página tiene conjunto finito y discreto de funcionalidad. Actualización dinámica limitada del lado cliente.
+		- Se van cargando distintas páginas (del sist archivo local, o de servidor remoto)
+		DESVENTAJAS:
+			- Transición entre páginas: Se pierde lo que haya en memoria generado por js (librerías de framework, datos obtenidos, etc)
+										Efectos visuales más difícil.	
+			- Se debe incluir la librería js de PhoneGap en cada página.
+				La parte nativa se carga una sola vez, pero cada HTML debe incluir cordova.js y el evento "deviceready"
+			- No hay mucha diferencia entre la app y un sitio web orientado a móvil. 
+				Apple Store puede rechazarla (si se parece a sitio web y no cumple con iOS Human Interface Guidelines: https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/index.html)
+	
+
+* JavaScript LIBRARIES (ej: jQuery, Ext.js, underscore.js, ....)
+	These libraries may be for manipulation of the HTML DOM, managing interaction with the server, 
+	encapsulating specific tasks like data visualization, or something else entirely. 
+	- Hay que ver si las necesito!
+	PROS:
+		- APIs fáciles y familiares para tareas comunes, incrementan productividad
+		- Encapsulan lógica, el desarrollador no tiene que ser experto en ejecutar tareas comunes.
+	CONTRAS:
+		- Incluyen lógica/detección cross-platform: mayor tamaño de archivos, y más lógica para hacer determinadas acciones
+		- Puede tener bugs difíciles de debuguear o detectar
+		- Prestar atención a las licencias. 
+
+* FRAMEWORKS MVC
+	It depends on what you are trying to do.
+	In general, frameworks provide structure for building your applications along with solutions for common tasks and consistent coding patterns. 
+	These features are extremely helpful, especially if you are involved in team-based development. 	
+	MVC (Model-View-Controller) frameworks enforce common coding practices that separate the data (model), from the presentation logic (view), and from the application control/services logic (controller).  MVC paradigms are especially helpful on large-scale applications not only because they enforce discrete coding patterns, but because they also enforce granularity of code structure. This leads to codebases that are generally more organized, have more code reuse across modules, and are easier to maintain over a longer period of time.  MVC codebases often are more complex, and require a higher degree of programming knowledge when compared to simple inline scripting. 
+	
+	Libertad y variedad de elección!
+	
+	- FULL-STACK FRAMEWORKS
+		Buscan cubrir todos los aspectos de la aplicación, desde la estructura del código a la UI.
+		Ejemplos: 
+			# Sencha Touch - http://www.sencha.com/products/touch
+			# Kendo UI - http://www.telerik.com/kendo-ui
+			# jQuery Mobile - http://jquerymobile.com/
+			# Enyo.js - http://enyojs.com/
+		Offers touch-friendly, user interface controls with their own application architectural patterns.	
+		These frameworks offer complete solutions for developing applications from user interface to general architecture, with specific code patterns. 	
+		
+	- PARTIAL-STACK FRAMEWORKS
+		Cubren componentes individuales de todo el sistema:
+			> Componentes UI (user interface) y estilos
+				Ejemplos:
+					# Twitter Bootstrap - http://getbootstrap.com/
+					# Topcoat - http://topcoat.io/
+				These frameworks provide mobile user interface styling and reusable controls for developing your mobile applications.  
+				Pueden ser usados en conjunto con frameworks de arquitectura, como se ve a continuación...
+					
+			> Estructura MVC
+				Ejemplos:
+					# Backbone.js - http://backbonejs.org/
+					# AngularJS - https://angularjs.org/		
+					# EmberJS - http://emberjs.com/
+					# Knockout - http://knockoutjs.com/
+				They are MVC-style frameworks that provide separation of concerns. 
+				They enforce coding practices and enable the separation of user-interface views from data model and application flow/behavioral logic. 
+				These types of frameworks generally lead to fine-grain reusable components and well-organized code. 
+				However, they are simply architectural patterns, and do not offer user interface styling or essential utility functions. 
+				They need to work with jQuery, Underscore.js, or another JavaScript library for general productivity methods.		
+						
+			> Manipulación del DOM
+				
+			> Administración de módulos y dependencias
+				# Require.js - http://requirejs.org/
+				# amd.js - https://github.com/amdjs/amdjs-api/wiki/AMD
+				These are dependency management systems that ensure scripts are loaded when you need them, and help you manage JavaScript memory scope. 
+				This is especially useful for large-scale applications and team-based development. 
+				These do not enforce application-architectural patterns, but work with other common JS libraries and frameworks, including jQuery, Backbone.js and many others.		
+			
+		De esta forma, uno puede elegir distintos frameworks para cada componente, o escribir propio código sin usar framework.
+		
+* Arquitectura de servicios optimizada
+	No sólo hay que tener una buena arquitectura del lado cliente. 
+	Importante tener en cuenta el ambiente operativo de las app móviles. Dispositivos con potencia de cómputo limitada, conexión a red limitada.
+	-> Estructurar los servicios para retornar sólo los datos que requiere la app cuando la necesita.
+		Requerir lo mínimo para reducir tiempo de transferencia, y tiempo de serialización y deserialización de los datos.
+	"Lazy loading data"	
+	
+
+
+*********************************	
+
+===> WORKFLOW desarrollo... 
+(http://pabloleone.com/2012/11/comenzando-con-phonegap/)
+
+Si quieres comenzar a desarrollar tu aplicación para varios dispositivos...
+1° enfocarte en el sistema que mas te interese (adaptarlo será facil gracias a PhoneGap y HTML5).
+2° instalamos nuestro entorno Backend, como por ejemplo CodeIgniter. -->Implementar lado server
+3° por último descargamos e implementamos nuestro frontend con framework HMTL5 (jQTouch, por ejemplo).
+*A partir de ahora tenemos que tener en cuenta que todo el código y programación de la aplicación será bajo javascript y la iteracción de este con el DOM
+*Del backend (PHP), solo descargaremos los datos y subiremos las modificaciones a modo de charla, entre la aplicación y el servidor
+
+ O sea que podemos dividir nuestra aplicación en 4:
+ -1era: sería HTML + CSS, controlados por la 2° parte, javascript...
+ -2da: javascript, que a su vez este charla con la tercera parte (backend)
+ -3ra: el backend PHP (servidor)
+ -4ta: PHP se encarga de gestionar los cambios en la BD (MySQL) o sistema de ficheros.	
+ 
+ Luego, con PhoneGapBuild creamos las apps, o teniendo los SDK de cada plataforma, se pueden crear localmente usando el CLI de Cordova
+ 
+*************************************************************************************************************************	
+(http://www.smashingmagazine.com/2014/02/11/four-ways-to-build-a-mobile-app-part3-phonegap/)
+=> Plugins: Closing The Gap On Native Features  
+	PhoneGap essentially wraps a Web view of your HTML, CSS and JavaScript in a native application. 
+	This is required because the Web view in an application does not inherently support many device features, such as access to the file system or the camera. 
+	PhoneGap has a bridging mechanism that allows JavaScript running in the Web view to invoke native code contained in the application. 
+	PhoneGap comes complete with plugins to support device capabilities such as the following:
+		-> accelerometer, camera, contacts, file system, media playback and recording, network availability.
+	A full list of capabilities for each platform is available on PhoneGap’s website. Supported features: http://phonegap.com/about/feature/
+	If these capabilities aren’t enough, PhoneGap may be extended with plugins that enable the developer to access more device features, including these:
+		-> barcode scanning, Bluetooth, push notifications, text to speech, calendars, Facebook Connect.
+	Plugin registry: http://plugins.cordova.io/#/
+
+=> An HTML, CSS And JavaScript Foundation For Mobile Development
+	The majority of PhoneGap’s capabilities lie in non-visual components — things that access the file system, network availability, geolocation, etc. 
+	PhoneGap does not provide much assistance with building the user interface itself. 
+	For this, you must rely on the HTML and CSS foundation that you’ve built yourself or on a framework. 
+	Applications written for mobile browsers must respect the limitations of the given mobile platform (processing speed, screen size, network speed, touch events, etc.).
+	Unless you have been working with HTML and CSS for a long time and are well aware of these issues, 
+	developing an effective mobile application without some sort of framework can be daunting.
+
+	VER Herramientas - frameworks - recursos.txt:  FRAMEWORKS
+
+	The right tool depends largely on your application’s functionality, the mobile platforms you need to support, your demand for commercial support and your experience with Web and mobile development in general. 
+	I’m encouraged by some emerging frameworks, particularly Ionic, but as of the time of writing, Ionic is still in the alpha stage. 
+	If you are looking for something with a longer track record, then Sencha Touch or, for some cases, jQuery Mobile might be appropriate.
+
+	
+******************************************************************************************************************
+-->CORDOVA-CLI
+https://github.com/apache/cordova-cli#project_commands
+
+-->HOOKS
+Hooks are pieces of code that are executed at certain points in the application build lifecycle. They let you extend the Cordova CLI framework in a number of ways.
+	https://github.com/apache/cordova-lib/blob/master/cordova-lib/templates/hooks-README.md
+	https://leanpub.com/developingwithcordovacli/read#hooks-chapter
+	EJEMPLOS (usando Node.js)
+		http://devgirl.org/2013/11/12/three-hooks-your-cordovaphonegap-project-needs/
+		- Add plugins (en lugar de hacerlo manualmente por CLI, programarlo con hook)
+		- Reemplazar texto dependiendo ambiente (por ej: dev o producc)
+		- Copiar icons y splash
+		
+-->MERGES
+
+********************************************************************************************************************
+=> config.xml
+
+http://docs.phonegap.com/en/edge/config_ref_index.md.html#The%20config.xml%20File		
+Android:
+	http://docs.phonegap.com/en/edge/guide_platforms_android_config.md.html#Android%20Configuration
+	
+Usando PhoneGap Build
+		
+ 
+********************************************************************************************************************
+
+ 
+DEBUG
+
+http://cordova.apache.org/docs/en/4.0.0/guide_next_index.md.html#Debugging
+
+-->	- Desarrollo HTML: Chrome developer tools, Firebug, ...
+-->	- Ripple emulator (http://emulate.phonegap.com/  Con extensión para Chrome Ripple emulator). Se usa Chrome developer tools y permite emular eventos nativos. https://chrome.google.com/webstore/detail/ripple-emulator-beta/geelfhphabnejjhdalkjhgipohgpdnoc
+	- En dispositivo  http://app.phonegap.com/  (
+	- Debug remoto con Weinre (instalar localmente via npm, o en la nube con http://debug.phonegap.com). Script en index.html
+	- Logs en consola (console.log). Con adb logcat se pueden ver desde la PC: adb logcat | grep 'Web Console'
+
+
+****************************************************************************************************
+
+==> TIPS & TRICKS para perfomance y usabilidad de aplicaciones hechas con phonegap
+
+VER   ======> http://cordova.apache.org/docs/en/4.0.0/guide_next_index.md.html#Next%20Steps <=========
+
+(http://www.adobe.com/devnet/phonegap/articles/creating-apps-with-phonegap-lessons.html)
+
+* Entender principios de diseño y desarrollo nativos
+	El objetivo es que el usuario no sepa que está usando una app hecha con phonegap.
+	- El usuario espera que la aplicación actúe y se sienta como nativa.
+	- Patrones de diseño de la UI nativos (ej barra de navegación distinta en Android o iOS):
+		Para el usuario de cada plataforma tiene que ser natural usarla, parecida a las demás apps.
+		
+	
+* Manipulando el DOM.
+	Tener en cuenta que los dispositivos tienen menor poder de procesamiento que los desktop, para efectos en javascript, CSS3 complejo, etc.
+	- Aceleración de hardware para el browser: con WebKit (motor JS de Android y iOS) usar translate3d en CSS (aunque sean en 2d)
+			-webkit-transform: translate3d(0px,0px,0px);
+		Ver http://phonegap-tips.com/articles/force-hardware-acceleration-with-translate3d-sometimes.html
+		Usar con precaución, si es necesario (consume más VRAM). Los elementos se convierten en bitmaps y se envían al GPU como texturas, más rápido!
+		Testear, con iOS funciona mejor que con Android.
+	- Gradientes y box shadows reducen mucho la performance.
+	- Usar template y pre-compilar (ej: HandlebarsJS): incrementa el renderizado de las páginas
+	- Minimizar la estructura DOM: la WebView en una mobile app está limitada en memoria, por lo que conviene achicar la cantidad de nodos hijos en HTML.
+
+--> Perfomance HTML5: http://www.html5rocks.com/en/tutorials/speed/html5/		
+	
+* Testing and debugging: 
+	Hay que testear muy bien, porque a diferencia de la web, donde se pueden corregir errores y actualizar el sitio, en una app hay que largar una actualización.
+	DOM and XHR inspector:
+	Con sitios web, Firebug o Web Inspector
+	Con PhoneGap,  Weinre (Web Inspector Remote)
+		http://debug.phonegap.com/
+		Agregar esta línea en index.html: <script src="http://debug.phonegap.com/target/target-script-min.js#anonymous"></script>
+		
+	Debugging environments: VER http://www.tricedesigns.com/2013/01/18/my-workflow-for-developing-phonegap-applications/	
+								http://www.openlogic.com/wazi/bid/325805/How-to-debug-live-PhoneGap-apps
+	
+**************************************************************************
+=> Técnicas PERFOMANCE (http://coenraets.org/keypoint/phonegap-performance) 
+	[DESARROLLO HTML5] 
+	
+#1 No generar UI en el servidor (enviando pagina entera por AJAX)
+	Lento:
+		$.get("product.php?id=101").done(function(page) {
+			$("body").html(page);
+		});
+	Más rápido: Crear la UI con javascript del lado cliente, manipulando DOM
+		Single Page Application
+			<html>
+			<head>
+				<title>My App</title>
+				<script src="app.js"></script>
+			</head>
+			<body></body>
+			</html>
+
+#2 Evitar accesos a red
+	Lento:
+		$.ajax({url: "services/states"}).done(function(data) {
+			states = data;
+		});
+	Mejor:  - Cachear datos estáticos (LocalStorge, Database, File)
+			- Cachear datos dinámicos (en vez de hacer siempre Ajax) http://coenraets.org/keypoint/phonegap-performance/#12
+			- Limitar el tamaño del conjunto de resultados (cantidad y tamaño de cada uno). 
+			
+#3 No esperar a los datos para mostrar UI 
+	Lento:
+		// Get data	
+		$.ajax({url: "product/101"}).done(function(product) {
+			displayView(product); 	// Display view
+		});
+	Mejor: 
+		displayView(); // Display view
+		// Get data
+		$.ajax({url: "product/101"}).done(function(product) {
+			// Update view
+		});
+		
+#4 Usar Transiciones CSS + aceleración Hardware
+	Lento: $("#page").animate();
+	Rápido: Propiedad translate3d en CSS
+			PageSlider https://github.com/ccoenraets/PageSlider.
+			Native Scrolling 
+	(Ver Tips&Tricks más adelante)		
+
+#5 Evitar delay 300ms de los eventos de click
+	Más rápido: FastClick https://github.com/ftlabs/fastclick
+
+#6 Optimizar imágenes
+	Lento: Muchos <img src="..." />
+	Rápido: Usar CSS sprites sheets
+		- Usar el tamaño correcto (no escalar con HTML)
+		- Hostear img en sistemas distribuidos, escalables
+		- Evitar 404s para imágenes: <img src="{{pic}}" onerror='this.src="nopic.jpg"'/>
+		
+#7 Limitar sombras y gradientes
+	(box-shadow, border-radius, gradientes, text-align)
+
+#8 Minimizar reflows del browser https://developers.google.com/speed/articles/reflow?hl=es
+	- Reducir cant de elementos DOM
+	- Minimizar acceso a DOM. Por ej, guardar selectores de jQuery en una variable.
+	- Actualizar elementos "offline" antes de reinsertar en el DOM
+	- Evitar retocar el layout en javascript
+	(Ver Tips&Tricks)
+	
+#9 Necesito ese FRAMEWORK?
+	- No usar un framework full-stack sólo para usar una pequeña pieza del mismo (por ej transiciones o componentes UI)
+	- Entender las características de perfomance de las librerías que uso.
+
+#10 TEST
+	-> Chrome Dev Tools: Timeline
+	
+
+****************************************************************************************
+
+* Almacenamiento: 
+	La información que almacenamos usando localStorage queda guardada en el propio dispositivo y sobrevive a reinicios de la aplicación.
+	Cada aplicación tiene su propio localStorage, por lo que no es posible compartir información entre varias aplicaciones usando este tipo de almacenamiento. 
+	Además está limitado en tamaño (unos 5MB).
+
+	El encargado de guardar esta información es el navegador que esté usando Cordova para ejecutar nuestra aplicación HTML y, por tanto, 
+	depende de la plataforma concreta que estemos utilizando (Android, iOS, etc.).
+
+	La parte positiva es que, al menos en los (pocos) teléfonos Android que he probado, la información no se elimina aunque eliminemos los datos del navegador, 
+	sino que sólo se borra si eliminamos los datos de la propia aplicación.
+
+	For security reason each app that uses WebView has its own cache and history. "No User or OS wants such data to be accessed by 3rd party applications". 
+	So in a nutshell, your app will keep its own history and data in its cache folder and will be deleted in one of the following cases:
+		User manually deleted them.
+		User used app setting screen and deleted them.
+		App uninstalled.
+		To read more about this. take look at WebView cache : http://developer.android.com/reference/android/webkit/WebView.html
+
+*********************************************************************************************************************
+
+=> ¿Cómo funciona? (Android)
+
+VER:
+	http://ishanaba.com/blog/tag/how-cordova-works/ <<---
+	https://agiliq.com/blog/2012/09/dissecting-phonegaps-architecture/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+Agiliq+(Agiliq+Blog+%7C+Django+web+app+development)
+
+Every phonegap app has the following components:
+	- A chrome-less browser. On iOS and Android, it is WebKit (UIWebView on iOS and WebView on android to be specific).
+	- JS to Native bridge to allow for communication between the HTML application and the native platform.
+	- A native to JS bridge to allow the native platform to talk to the HTML application.
+	
+	
+**************************************************************************************************
+
+PLUGINS
+
+Slides extendiendo phonegap	
+	http://slides.com/hollyschinsky/extending-phonegap
+		- Plugins
+		- Push notification
+
+Cómo escribir en Android	
+		http://devgirl.org/2013/09/17/how-to-write-a-phonegap-3-0-plugin-for-android/
+		
+Mapas http://modernweb.com/2013/12/09/mobile-friendly-mapping-for-phonegap-apps/	
+
+****************************************************************************
+
+ICONS, SPLASH
+	https://github.com/phonegap/phonegap/wiki/App-Icon-Sizes
+	https://github.com/phonegap/phonegap/wiki/App-Splash-Screen-Sizes
+	http://devgirl.org/2014/09/29/new-icons-and-splash-screen-help-for-cordovaphonegap/
+	
+	Scripts para generar icon y splash con una sola imagen, para distintos tamaños y plataformas (install via npm)
+	https://github.com/AlexDisler/cordova-icon
+	https://github.com/AlexDisler/cordova-splash
+
+****************************************************************************
+
+PHONEGAP BUILD
+
+diego.sch21@gmail.com
+aycaramba21
+	
+DOCS: http://docs.build.phonegap.com/en_US/#googtrans(en)
+
+PLATAFORMAS SOPORTADAS: http://docs.build.phonegap.com/en_US/introduction_supported_platforms.md.html#Supported%20Platforms
+	iOS - Android - Windows Phone	
+	De cada una: links a la documentacion de la plataforma, guidelines para los store, certificacion, etc
+
+	Android:
+		Launch checklist http://developer.android.com/distribute/tools/launch-checklist.html
+		Publishing: http://developer.android.com/tools/publishing/publishing_overview.html
+		Certificacion: http://developer.android.com/tools/publishing/app-signing.html
+	iOS:
+		Situaciones comunes por las que se rechazan apps: https://developer.apple.com/app-store/review/rejections/
+		Certificacion: https://developer.apple.com/support/technical/certificates/
+		
+		Sin una Mac:
+			http://www.iandevlin.com/blog/2012/11/phonegap/building-an-ios-signing-key-for-phonegap-in-windows
+			http://community.phonegap.com/nitobi/topics/detailed_guide_for_setting_up_building_ios_apps_without_a_mac
+			http://nickalchemist.wordpress.com/iapproach-mobile-development-made-elegant/deploying-to-iphone-without-a-mac-with-an-apple-developer-account-and-phonegap-build/
+		
+	Windows:
+		Submission guide http://msdn.microsoft.com/library/windows/apps/jj206724(v=vs.105).aspx
+		Testing: http://msdn.microsoft.com/es-ES/library/windows/apps/jj247547(v=vs.105).aspx
+		Certificacion: http://msdn.microsoft.com/library/windows/apps/hh184843(v=vs.105).aspx
+				
+CONFIG:
+	Config.xml basico: http://docs.build.phonegap.com/en_US/configuring_basics.md.html
+	Preferences: http://docs.build.phonegap.com/en_US/configuring_preferences.md.html#Preferences
+	
+***********************************************************************************************************************************
+=> SIGNAR, PUBLICAR...
+
+**ANDROID
+	http://www.adamwadeharris.com/sign-publish-phonegap-app-google-play-store-windows/	
+	http://developer.android.com/tools/publishing/app-signing.html
+
+	Por línea de comandos...
+
+	1. cordova build android --release  --> Genera .apk
+
+	2. Generate a private key using keytool. 
+		$ keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+		Guardar el .keystore en un lugar seguro	 --> la voy a necesitar cada vez que compile nueva versión, siempre debe ser la misma
+		
+	3.  Sign your app with your private key using jarsigner:
+		$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk alias_name
+		
+		
+	4. Verify that your APK is signed. For example:
+		$ jarsigner -verify -verbose -certs my_application.apk
+	
+	5. Align the final APK package using zipalign.
+		$ zipalign -v 4 your_project_name-unaligned.apk your_project_name.apk
+		
+** iOS
+	-> compilar con Phonegap Build
+	-> tener cuenta Apple Store
+	
+	Certificados:
+		* P12 certificate file
+		* provisioning profile
+		* certificate password
+	
+	-> Usando OpenSSL... 
+	
+	1. Generar clave privada
+		openssl genrsa -des3 -out ios.key 2048
+				
+	2. Generar Certificate Signing Request (CSR file)
+		openssl req -new -key ios.key -out ios.csr -subj "/emailAddress=MY-EMAIL-ADDRESS, CN=COMPANY-NAME, C=COUNTRY-CODE"
+		
+	3. Generar iOS Development / Production Certificate, usando el CSR
+		En Apple Developer iOS Provisioning Portal https://developer.apple.com/account/overview.action
+		Certificates -> iOS App Development o App Store and Ad Hoc  
+		Upload .csr file
+		Download .cer
+		
+	4. Convertir el .cer a .pem
+		openssl x509 -in ios_development.cer -inform DER -out ios_development.pem -outform PEM
+	
+	5. Generar el archivo P12 (usando clave privada de 1. y el certificado pem de 4. )
+		openssl pkcs12 -export -inkey ios.key -in ios_development.pem -out ios_development.p12
+		(pide contraseña ingresada en 1.) (genera pass para el p12)
+				
+	6. Generar Provisioning profile	(development o production)
+		En Apple Developer iOS Provisioning Portal https://developer.apple.com/account/overview.action 
+		Para desarrollo...
+			En Provisioning Profiles -> iOS App Development
+				Pide app ID, certificado generado en 3. (development), y dispositivos iOS registrados
+				* Para registrar dispositivos: obtener UDID del mismo (ingresar a http://www.easy-udid.com/ ) y agregar en Devices
+		Para producción (Distribution)...
+			En Provisioning Profiles -> App Store
+				Pida app ID y certif generado en 3. (distribution)
+		
+	7. Compilar app con PhonegapBuild: usando repo con el código, archivo p12 (con su clave) y el provisioning profile
+	
+		
