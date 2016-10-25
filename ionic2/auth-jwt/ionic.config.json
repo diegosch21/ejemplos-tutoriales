@@ -2,5 +2,11 @@
   "name": "rest-api-auth-ionic2",
   "app_id": "",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://api.consorcioabierto.local/"
+    }
+  ]
 }
