@@ -10,15 +10,14 @@ import { LoginPage } from './../login/login';
 })
 export class HomePage {
 
-  user: any;
+  // data de user mostrado en vista obtenida de authService
 
   constructor(public navCtrl: NavController, public authService: AuthService) {
-    this.user = authService.user;
   }
 
   logout() {
-    this.authService.logout();
     this.navCtrl.setRoot(LoginPage);
+    this.authService.logout();
   }
 
   viewUser() {

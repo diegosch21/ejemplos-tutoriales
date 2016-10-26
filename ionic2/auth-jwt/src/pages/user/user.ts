@@ -10,6 +10,7 @@ import { AuthService } from './../../providers/authservice';
 export class UserPage {
 
   userData: any = false;
+  loading: Loading;
 
   constructor(public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController) {}
 
@@ -21,28 +22,25 @@ export class UserPage {
   // Runs when the page has loaded. This event only happens once per page being created.
   // If a page leaves but is cached, then this event will not fire again on a subsequent viewing.
   ionViewDidLoad() {
-    let loading = this.showLoading();
+    this.showLoading();
     this.userData = false;
     this.authService.getUserInfo()
-      .then(status => {
-        if (status) {
-          this.userData = this.authService.userData;
-        }
-        loading.dismiss();
+      .then(() => {
+        this.userData = this.authService.userData;
+        this.loading.dismiss();
       })
-      .catch(() => {
-        loading.dismiss();
+      .catch((err) => {
+        console.log(err);
+        this.loading.dismiss();
       });
   }
 
-  showLoading(): Loading{
-    let loading = this.loadingCtrl.create({});
-    loading.present();
+  showLoading() {
+    this.loading = this.loadingCtrl.create({});
+    this.loading.present();
     setTimeout(() => {
-      loading.dismiss();
+      this.loading.dismiss();
     }, 5000);
-
-    return loading;
   }
 
 }

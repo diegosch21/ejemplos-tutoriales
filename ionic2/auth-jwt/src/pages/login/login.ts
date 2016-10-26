@@ -13,39 +13,35 @@ export class LoginPage {
     email: "",
     password: ""
   };
-
-  errorLogin: any = false;
+  erroresLogin: any = [];
+  loading: Loading;
 
   constructor(public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController) {
   }
 
   login() {
-    this.errorLogin = false;
-    let loading = this.showLoading();
+    this.erroresLogin = [];
+    this.showLoading();
     this.authService.authenticate(this.credentials)
-      .then(status => {
-        if (status) {
-          this.navCtrl.setRoot(HomePage); // Cambia a home
-        }
-        else {
-          this.errorLogin = "Invalid credentials";
-        }
-        loading.dismiss();
+      .then(() => {
+        this.navCtrl.setRoot(HomePage); // Cambia a home
+        this.loading.dismiss();
       })
-      .catch(() => {
-        this.errorLogin = "Error login";
-        loading.dismiss();
+      .catch((err) => {
+        this.erroresLogin = [];
+        err.forEach(error => {
+          this.erroresLogin.push(error.detail || error.title);
+        });
+        this.loading.dismiss();
       });
   }
 
-  showLoading(): Loading{
-    let loading = this.loadingCtrl.create({});
-    loading.present();
+  showLoading() {
+    this.loading = this.loadingCtrl.create({});
+    this.loading.present();
     setTimeout(() => {
-      loading.dismiss();
+      this.loading.dismiss();
     }, 5000);
-
-    return loading;
   }
 
 

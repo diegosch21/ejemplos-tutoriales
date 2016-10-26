@@ -25,11 +25,8 @@ export class MyApp {
   }
 
   checkPrevAuth() {
-    if (this.authService.loadUserCredentials()) {
-      this.rootPage = HomePage;
-    }
-    else{
-      this.rootPage = LoginPage;
-    }
+    this.authService.loadUserToken()
+      .then(() => this.rootPage = HomePage)
+      .catch(() => this.rootPage = LoginPage);
   }
 }

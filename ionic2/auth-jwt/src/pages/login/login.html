@@ -20,5 +20,5 @@
   </ion-list>
   <button ion-button (click)="login()">Login</button>
 
-  <div *ngIf="errorLogin">{{ errorLogin }}</div>
+ <div *ngFor="let error of erroresLogin">{{error}}</div>
 </ion-content>

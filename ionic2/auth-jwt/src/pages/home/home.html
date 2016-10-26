@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-  <div>Hola {{ user.nombre }}!</div>
+  <div *ngIf="authService.user">Hola {{ authService.user.nombre }}!</div>
   <button ion-button (click)="viewUser()">Info user</button>
   <button ion-button (click)="logout()">Logout</button>
 </ion-content>
