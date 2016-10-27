@@ -15,7 +15,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public dataService: Data) {
     this.dataService.getData().then((todos) => {
       if (todos) {
-        this.items = JSON.parse(todos);
+        this.items = todos;
       }
     });
   }
