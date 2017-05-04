@@ -17,10 +17,16 @@ export class HeroService {
   // Simula tiempo de espera al obtener lista de Heroes de servidor
   getHeroesSlowly(): Promise<Hero[]> {
     return new Promise(resolve => {
-      // Simulate server latency with 2 second delay
+      // Simulate server latency with 1 second delay
       setTimeout(
         () => resolve(this.getHeroes()),
-        2000);
+        1000);
     });
+  }
+
+  // Filters the heroes list from getHeroes() by id
+  getHero(id: number): Promise<Hero> {
+    return this.getHeroes()
+               .then(heroes => heroes.find(hero => hero.id === id)); // Resuelve el promise retornando el valor obtenido por heroes.find()
   }
 }
