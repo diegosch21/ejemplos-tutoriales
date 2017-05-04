@@ -11,3 +11,6 @@
 [submodule "ionic2/ionic2-conference-app"]
 	path = ionic2/ionic2-conference-app
 	url = https://github.com/driftyco/ionic-conference-app.git
+[submodule "angularjs-v1/angular-phonecat"]
+	path = angularjs-v1/angular-phonecat
+	url = https://github.com/diegosch21/angular-phonecat.git
