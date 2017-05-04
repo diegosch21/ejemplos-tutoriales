@@ -1,25 +1,12 @@
-import { Component } from '@angular/core';
-
-export class Hero {
-  id: number;
-  name: string;
-}
-
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-]
+import { Component, OnInit } from '@angular/core';
+import { Hero } from './hero';
+import { HeroService } from './hero.service';
 
 @Component({
   selector: 'my-app',
+  // The providers array tells Angular to create a fresh instance of the HeroService when it creates an AppComponent.
+  // The AppComponent, as well as its child components, can use that service to get hero data.
+  providers: [HeroService],
   template: `
     <h1>{{title}}</h1>
     <h2>My Heroes</h2>
@@ -30,14 +17,8 @@ const HEROES: Hero[] = [
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
-    <div *ngIf="selectedHero">
-      <h2>{{selectedHero.name}} details!</h2>
-      <div><label>id: </label>{{selectedHero.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedHero.name" placeholder="name">
-      </div>
-    </div>
+
+    <hero-detail [hero]="selectedHero"></hero-detail>
   `,
   styles: [`
     .selected {
@@ -89,10 +70,28 @@ const HEROES: Hero[] = [
     }
   `]
 })
-export class AppComponent  {
+export class AppComponent implements OnInit {
+
   title = 'Tour of Heroes';
-  heroes = HEROES;
+  heroes: Hero[];
   selectedHero: Hero;
+
+  constructor(private heroService: HeroService) {  // Inject the HeroService (definido en providers)
+    // You might be tempted to call the getHeroes() method in a constructor,
+    // but a constructor should not contain complex logic,
+    // especially a constructor that calls a server, such as as a data access method.
+    // The constructor is for simple initializations, like wiring constructor parameters to properties.
+  }
+
+  ngOnInit(): void { // lifecycle hook: https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
+    // Inicializa heroes (podría obtenerlos de una API, por lo que no debe estar en constructor)
+    this.getHeroes();
+  }
+
+  getHeroes(): void {
+    // Obtengo lista de héroes: Respuesta asincrónica (retorna Promise)
+    this.heroService.getHeroesSlowly().then(heroes => this.heroes = heroes);
+  }
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
