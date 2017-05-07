@@ -5,12 +5,12 @@
 [submodule "PHP/Symfony/blog-rest-symfony2"]
 	path = PHP/Symfony/blog-rest-symfony2
 	url = https://github.com/liuggio/symfony2-rest-api-the-best-2013-way.git
-[submodule "ionic2/sidemenu-tabs"]
-	path = ionic2/sidemenu-tabs
-	url = https://github.com/abburi03/Ionic2-SideMenu-Tabs.git
-[submodule "ionic2/ionic2-conference-app"]
-	path = ionic2/ionic2-conference-app
-	url = https://github.com/driftyco/ionic-conference-app.git
 [submodule "angularjs-v1/angular-phonecat"]
 	path = angularjs-v1/angular-phonecat
 	url = https://github.com/diegosch21/angular-phonecat.git
+[submodule "ionic/sidemenu-tabs"]
+	path = ionic/sidemenu-tabs
+	url = https://github.com/abburi03/Ionic2-SideMenu-Tabs.git
+[submodule "ionic/ionic2-conference-app"]
+	path = ionic/ionic2-conference-app
+	url = https://github.com/driftyco/ionic-conference-app.git
