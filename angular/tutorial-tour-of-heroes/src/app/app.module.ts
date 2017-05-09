@@ -9,6 +9,7 @@ import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard.component';
 import { HeroesComponent }      from './heroes.component';
 import { HeroDetailComponent }  from './hero-detail.component';
+import { HeroSearchComponent } from './hero-search.component';
 
 import { HeroService }    from './hero.service';
 
@@ -26,6 +27,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
     BrowserModule,
     FormsModule, // <-- import the FormsModule before binding with [(ngModel)]
     HttpModule,
+    // the forRoot method initializes the in-memory web API with the seed data from the mock hero dataset.
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule
   ],
@@ -33,7 +35,8 @@ import { InMemoryDataService }  from './in-memory-data.service';
     AppComponent,
     DashboardComponent,
     HeroesComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    HeroSearchComponent
   ],
   providers: [
     HeroService
