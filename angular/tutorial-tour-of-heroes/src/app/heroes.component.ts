@@ -19,8 +19,7 @@ export class HeroesComponent implements OnInit {
   constructor(
     private router: Router,
     private heroService: HeroService // Inject service (definido en providers del module)
-  )
-  {
+  )  {
     // You might be tempted to call the getHeroes() method in a constructor,
     // but a constructor should not contain complex logic,
     // especially a constructor that calls a server, such as as a data access method.
@@ -43,5 +42,23 @@ export class HeroesComponent implements OnInit {
 
   goToDetail(): void {
     this.router.navigate(['/detail', this.selectedHero.id]);
+  }
+
+  add(name: string): void {
+    name =  name.trim();
+    if (!name) { return; }
+    this.heroService.create(name)
+        .then(hero => {
+          this.heroes.push(hero); // Agrega heroe creado a la lista de visualización
+          this.selectedHero = null;
+        });
+  }
+
+  delete(hero: Hero): void {
+    this.heroService.detele(hero.id)
+        .then(() => {
+          this.heroes = this.heroes.filter(h => h !== hero); // quita heroe de la lista de visualización
+          if (this.selectedHero === hero) { this.selectedHero = null; }
+        });
   }
 }

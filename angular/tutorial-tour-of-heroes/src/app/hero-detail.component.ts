@@ -37,6 +37,11 @@ export class HeroDetailComponent implements OnInit {
     // the route parameter value (id) is converted to a number with the JavaScript (+) operator.
   }
 
+  save(): void {
+    this.heroService.update(this.hero)
+        .then(() => this.goBack());
+  }
+
   goBack(): void {
     this.location.back();
   }
