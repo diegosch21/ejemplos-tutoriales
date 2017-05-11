@@ -14,3 +14,9 @@
 [submodule "ionic/ionic2-conference-app"]
 	path = ionic/ionic2-conference-app
 	url = https://github.com/driftyco/ionic-conference-app.git
+[submodule "angular/material-dashboard-angular"]
+	path = angular/material-dashboard-angular
+	url = https://github.com/creativetimofficial/material-dashboard-angular.git
+[submodule "angular/ng2-admin"]
+	path = angular/ng2-admin
+	url = https://github.com/akveo/ng2-admin.git
