@@ -1,5 +1,7 @@
 # TutorialTodoApp
 
+ABM de ToDos implementado utilizando Angular CLI. Se incluye unit testing.
+
 0) [The Ultimate Angular CLI Reference Guide](https://www.sitepoint.com/ultimate-angular-cli-reference/)
 
 1) [Angular 2 Tutorial: Create a CRUD App with Angular CLI](https://www.sitepoint.com/angular-2-tutorial/)
