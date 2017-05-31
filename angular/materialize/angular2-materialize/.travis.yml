@@ -1,0 +1,29 @@
+sudo: false
+language: node_js
+cache:
+  directories:
+    - node_modules
+    - sample/node_modules
+branches:
+  only:
+    - master
+notifications:
+  email: false
+node_js:
+  - '6'
+before_install:
+  - npm i -g npm
+  - npm i -g @angular/cli
+before_script:
+  - npm prune
+script:
+  - npm run build
+  - cd sample
+  - npm install
+  - npm run test
+after_success:
+  - cd ..
+  - npm run semantic-release
+branches:
+  except:
+    - "/^v\\d+\\.\\d+\\.\\d+$/"
