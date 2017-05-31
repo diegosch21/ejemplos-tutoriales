@@ -1,0 +1,34 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+machine:
+  node:
+    version: 7
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+
+dependencies:
+  override:
+    - yarn install
+  cache_directories:
+    - ~/.cache/yarn
+
+test:
+  pre:
+    - mkdir $CIRCLE_TEST_REPORTS/karma
+    - mkdir $CIRCLE_TEST_REPORTS/lint
+  override:
+    - yarn test -- --single-run
+    - yarn lint -- --formatters-dir ./tslint-formatters --format junit -o $CIRCLE_TEST_REPORTS/lint/tslint.xml
+    - yarn build
+  post:
+    - mv test-results.xml $CIRCLE_TEST_REPORTS/karma
+
+deployment:
+  release:
+    tag: /v[0-9]+(\.[0-9]+)*/
+    owner: sherweb
+    commands:
+      - cd demo-app && yarn install && yarn gh-pages:deploy

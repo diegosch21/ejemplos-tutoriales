@@ -1,0 +1,29 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/spec",
+    "module": "commonjs",
+    "target": "es5",
+    "baseUrl": "",
+    "types": [
+      "jasmine",
+      "jquery",
+      "materialize-css",
+      "mcustomscrollbar",
+      "node",
+      "prismjs"
+    ],
+    "paths": {
+      "@angular/*": ["../node_modules/@angular/*"],
+      "oidc-client": ["../node_modules/oidc-client"],
+      "rxjs/*": ["../node_modules/rxjs/*"]
+    }
+  },
+  "files": [
+    "test.ts"
+  ],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
+}

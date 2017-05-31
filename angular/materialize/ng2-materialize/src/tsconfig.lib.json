@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist",
+    "module": "es6",
+    "baseUrl": "",
+    "declaration": true,
+    "typeRoots": [
+      "../node_modules/@types"
+    ]
+  },
+  "include": [
+    "../inline-template/**/*"
+  ],
+  "exclude": [
+    "../inline-template/app.*",
+    "../inline-template/**/*.spec.ts"
+  ]
+}

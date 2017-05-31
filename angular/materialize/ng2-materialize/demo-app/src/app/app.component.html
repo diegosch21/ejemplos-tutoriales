@@ -1,0 +1,45 @@
+<header>
+  <mz-sidenav #sidenav
+    [id]="'sidenav'"
+    [backgroundClass]="'sidenav-background'"
+    [collapseButtonId]="'btn-sidenav'"
+    [fixed]="true">
+
+    <mz-sidenav-header class="sidenav-header">
+      <a [routerLink]="'home'">
+        <img class="angular-logo" src="assets/angular.png">
+        <img class="materialize-logo" src="assets/materialize-logo.png">
+      </a>
+      <h5 class="materialize-name center-align white-text">ng2-materialize</h5>
+    </mz-sidenav-header>
+
+    <ng-template ngFor let-groupedRoute [ngForOf]="groupedRoutes">
+      <mz-sidenav-subheader>
+        <span class="grey-text lighten-4">{{ groupedRoute.section }}</span>
+      </mz-sidenav-subheader>
+
+      <mz-sidenav-link *ngFor="let route of groupedRoute.routes">
+        <a class="waves-effect white-text" [routerLink]="route.path" *ngIf="route.data">
+          <i mz-icon-mdi [icon]="route.data.icon" class="{{ route.data.class }} grey-text lighten-5"></i>{{ route.data.text }}
+        </a>
+      </mz-sidenav-link>
+    </ng-template>
+  </mz-sidenav>
+
+  <button mz-button
+    class="sidenav-button hide-on-large-only"
+    id="btn-sidenav"
+    [float]="true"
+    [large]="true">
+    <i mz-icon-mdi [icon]="'menu'"></i>
+  </button>
+</header>
+
+<main>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
+<footer>
+</footer>

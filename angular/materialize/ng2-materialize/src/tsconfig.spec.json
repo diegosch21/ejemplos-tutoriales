@@ -1,0 +1,22 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/spec",
+    "module": "commonjs",
+    "target": "es5",
+    "baseUrl": "",
+    "types": [
+      "jasmine",
+      "jquery",
+      "materialize-css",
+      "node"
+    ]
+  },
+  "files": [
+    "test.ts"
+  ],
+  "include": [
+    "app/**/*.spec.ts",
+    "app/**/*.d.ts"
+  ]
+}
